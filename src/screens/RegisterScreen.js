@@ -12,7 +12,7 @@ import {
   passwordValidator,
   nameValidator,
 } from '../core/utils';
-import register from '../ApiManager';
+import {register} from '../ApiManager';
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState({ value: '', error: '' });

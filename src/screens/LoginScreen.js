@@ -8,13 +8,13 @@ import TextInput from '../components/TextInput';
 import BackButton from '../components/BackButton';
 import { theme } from '../core/theme';
 import { emailValidator, passwordValidator } from '../core/utils';
-import login from '../ApiManager';
+import {login} from '../ApiManager';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
-  const _onLoginPressed = () => {
+  const _onLoginPressed = async () => {
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
 
@@ -24,7 +24,8 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
 
-    login(email.value, password.value);
+    const res = await login(email.value, password.value);
+    console.log(res);
 
     navigation.navigate('Dashboard');
   };
