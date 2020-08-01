@@ -8,6 +8,7 @@ import TextInput from '../components/TextInput';
 import BackButton from '../components/BackButton';
 import { theme } from '../core/theme';
 import { emailValidator, passwordValidator } from '../core/utils';
+import login from '../ApiManager';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
@@ -22,6 +23,8 @@ const LoginScreen = ({ navigation }) => {
       setPassword({ ...password, error: passwordError });
       return;
     }
+
+    login(email.value, password.value);
 
     navigation.navigate('Dashboard');
   };

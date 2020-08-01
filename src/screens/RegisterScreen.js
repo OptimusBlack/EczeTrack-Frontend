@@ -12,6 +12,7 @@ import {
   passwordValidator,
   nameValidator,
 } from '../core/utils';
+import register from '../ApiManager';
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState({ value: '', error: '' });
@@ -29,6 +30,8 @@ const RegisterScreen = ({ navigation }) => {
       setPassword({ ...password, error: passwordError });
       return;
     }
+
+    register(name.value, email.value, password.value);
 
     navigation.navigate('Dashboard');
   };
