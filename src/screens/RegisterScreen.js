@@ -19,7 +19,7 @@ const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
-  const _onSignUpPressed = () => {
+  const _onSignUpPressed = async () => {
     const nameError = nameValidator(name.value);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
@@ -31,9 +31,18 @@ const RegisterScreen = ({ navigation }) => {
       return;
     }
 
-    register(name.value, email.value, password.value);
-
-    navigation.navigate('Dashboard');
+    const response = await register(name.value, email.value, password.value);
+    console.log(response);
+    if (response.code){
+      if (response.message == "Email already taken"){
+        setEmail({ ...email, error: response.message });
+      } else {
+        setPassword({ ...password, error: response.message });
+      }
+    }
+    else {
+      navigation.navigate('Dashboard');
+    }
   };
 
   return (

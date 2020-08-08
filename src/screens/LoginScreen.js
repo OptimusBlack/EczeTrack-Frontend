@@ -9,6 +9,7 @@ import BackButton from '../components/BackButton';
 import { theme } from '../core/theme';
 import { emailValidator, passwordValidator } from '../core/utils';
 import {login} from '../ApiManager';
+import Toast from 'react-native-simple-toast';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
@@ -24,10 +25,14 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
 
-    const res = await login(email.value, password.value);
-    console.log(res);
-
-    navigation.navigate('Dashboard');
+    const response = await login(email.value, password.value);
+    console.log(response);
+    if (response.code){
+      Toast.show(response.message);
+    }
+    else {
+      navigation.navigate('Dashboard');
+    }
   };
 
   return (
