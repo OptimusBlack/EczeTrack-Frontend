@@ -18,7 +18,7 @@ const Router = createStackNavigator(
     Dashboard,
   },
   {
-    initialRouteName: 'HomeScreen',
+    initialRouteName: 'Dashboard',
     headerMode: 'none',
   }
 );
