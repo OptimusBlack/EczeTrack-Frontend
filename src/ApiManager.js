@@ -15,7 +15,7 @@ let request = async (url, data) => {
     };
     try{
         const response = await fetch(url, config);
-        console.log("Got response...")
+        console.log("Got response...");
         const responseJson = await response.json();
         return responseJson;
     
