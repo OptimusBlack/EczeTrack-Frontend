@@ -9,7 +9,7 @@ import { theme } from '../../core/theme';
 const TermsAndConditions = ({ navigation }) => {
 
   const _onAgree = async () => {
-    navigation.navigate('Dashboard');
+    navigation.navigate('PersonalInformationCollectionStatement');
   };
 
   const _onDisagree = async () => {

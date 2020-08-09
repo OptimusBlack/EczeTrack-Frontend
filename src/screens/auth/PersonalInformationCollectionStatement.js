@@ -6,10 +6,10 @@ import Button from '../../components/Button';
 import BackButton from '../../components/BackButton';
 import { theme } from '../../core/theme';
 
-const TermsAndConditions = ({ navigation }) => {
+const PersonalInformationCollectionStatement = ({ navigation }) => {
 
   const _onAgree = async () => {
-    navigation.navigate('Dashboard');
+    navigation.navigate('RegisterScreen');
   };
 
   const _onDisagree = async () => {
@@ -33,15 +33,15 @@ const TermsAndConditions = ({ navigation }) => {
         <Text style={styles.heading}>Use of personal data</Text>
         <Text style={styles.paragraph}>
           During the term of business operation, the personal data collected by WeDerm may be electronically or manually processed/used by WeDerm for the following purposes within the jurisdictions in which WeDerm and/or data processors conduct businesses:
-          {'\n 1.'}processing your orders for products of WeDerm;
-          {'\n 2.'}processing your registration or order for services of WeDerm;
-          {'\n 3.'}verifying your identity for access to private contents of WeDerm’s app  or event of  WeDerm or for participating in activities of WeDerm;
-          {'\n 4.'}research and customer survey;
-          {'\n 5.'}processing your application for membership at WeDerm; managing, operating and maintaining the WeDerm membership;  and providing you with information on the activities and benefits of the WeDerm membership;
-          {'\n 6.'}billing and debt collection;
-          {'\n 7.'}dealing with your suggestion, enquiry and complaint;
-          {'\n 8.'}communicating with you generally;
-          {'\n 9.'}subject to the provisions of applicable laws to direct market WeDerm's products and services to you.
+          {'\n1. '}processing your orders for products of WeDerm;
+          {'\n2. '}processing your registration or order for services of WeDerm;
+          {'\n3. '}verifying your identity for access to private contents of WeDerm’s app  or event of  WeDerm or for participating in activities of WeDerm;
+          {'\n4. '}research and customer survey;
+          {'\n5. '}processing your application for membership at WeDerm; managing, operating and maintaining the WeDerm membership;  and providing you with information on the activities and benefits of the WeDerm membership;
+          {'\n6. '}billing and debt collection;
+          {'\n7. '}dealing with your suggestion, enquiry and complaint;
+          {'\n8. '}communicating with you generally;
+          {'\n9. '}subject to the provisions of applicable laws to direct market WeDerm's products and services to you.
         </Text>
 
         <Text style={styles.heading}>Transfer of Personal Data</Text>
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default memo(TermsAndConditions);
+export default memo(PersonalInformationCollectionStatement);

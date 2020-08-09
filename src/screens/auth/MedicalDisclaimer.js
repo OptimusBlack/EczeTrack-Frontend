@@ -1,11 +1,10 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Background from '../../components/Background';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import BackButton from '../../components/BackButton';
 import { theme } from '../../core/theme';
-// import {login} from '../../ApiManager'; TODO: Ask Harrison if this needs to be updated from the server?
 
 const MedicalDisclaimer = ({ navigation }) => {
 
