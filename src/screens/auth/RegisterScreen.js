@@ -1,18 +1,18 @@
 import React, { memo, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Background from '../components/Background';
-import Logo from '../components/Logo';
-import Header from '../components/Header';
-import Button from '../components/Button';
-import TextInput from '../components/TextInput';
-import BackButton from '../components/BackButton';
-import { theme } from '../core/theme';
+import Background from '../../components/Background';
+import Logo from '../../components/Logo';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
+import TextInput from '../../components/TextInput';
+import BackButton from '../../components/BackButton';
+import { theme } from '../../core/theme';
 import {
   emailValidator,
   passwordValidator,
   nameValidator,
-} from '../core/utils';
-import {register} from '../ApiManager';
+} from '../../core/utils';
+import {register} from '../../ApiManager';
 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState({ value: '', error: '' });

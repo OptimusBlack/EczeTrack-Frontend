@@ -15,7 +15,6 @@ let request = async (url, data) => {
     };
     try{
         const response = await fetch(url, config);
-        console.log("Got response...");
         const responseJson = await response.json();
         return responseJson;
     
@@ -36,6 +35,11 @@ const login = async (email, password) => {
 const register = async (name, email, password) => {
     const path = "auth/register";
     return await request(getApiUrl(path), {name, email, password});
+};
+
+const forgotPassword = async email => {
+    const path = "auth/forgot-password";
+    return await request(getApiUrl(path), {email});
 };
 
 export {
