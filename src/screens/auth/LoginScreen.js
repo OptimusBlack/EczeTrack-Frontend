@@ -1,15 +1,15 @@
 import React, { memo, useState } from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
-import Background from '../components/Background';
-import Logo from '../components/Logo';
-import Header from '../components/Header';
-import Button from '../components/Button';
-import TextInput from '../components/TextInput';
-import BackButton from '../components/BackButton';
-import { theme } from '../core/theme';
-import { emailValidator, passwordValidator } from '../core/utils';
-import {login} from '../ApiManager';
-import Toast from 'react-native-simple-toast';
+import Background from '../../components/Background';
+import Logo from '../../components/Logo';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
+import TextInput from '../../components/TextInput';
+import BackButton from '../../components/BackButton';
+import { theme } from '../../core/theme';
+import { emailValidator, passwordValidator } from '../../core/utils';
+import {login} from '../../ApiManager';
+// import Toast from 'react-native-simple-toast';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
@@ -28,7 +28,8 @@ const LoginScreen = ({ navigation }) => {
     const response = await login(email.value, password.value);
     console.log(response);
     if (response.code){
-      Toast.show(response.message);
+      // Toast.show(response.message);
+        setPassword({ error: response.message }); //Todo confirm with Amsal
     }
     else {
       navigation.navigate('Dashboard');
@@ -80,7 +81,7 @@ const LoginScreen = ({ navigation }) => {
 
       <View style={styles.row}>
         <Text style={styles.label}>Don’t have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('MedicalDisclaimer')}>
           <Text style={styles.link}>Sign up</Text>
         </TouchableOpacity>
       </View>
