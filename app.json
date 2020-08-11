@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "React Native Simple Login Template",
-    "slug": "react-native-simple-login-template",
+    "name": "EczeTrack",
+    "slug": "eczetrack",
+    "scheme": "eczetrack",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -25,7 +26,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Simple login template created with React Native.",
+    "description": "",
     "githubUrl": "https://github.com/venits/react-native-login-template"
   }
 }

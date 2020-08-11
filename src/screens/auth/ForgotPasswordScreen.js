@@ -1,5 +1,10 @@
-import React, { memo, useState } from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { memo, useState, useEffect } from 'react';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import { emailValidator } from '../../core/utils';
 import Background from '../../components/Background';
 import BackButton from '../../components/BackButton';
@@ -8,20 +13,50 @@ import Header from '../../components/Header';
 import TextInput from '../../components/TextInput';
 import { theme } from '../../core/theme';
 import Button from '../../components/Button';
+import {forgotPassword} from '../../ApiManager';
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
+  const [timer, setTimer] = useState(0);
+  const [loading, setLoading] = useState(false);
+  let interval;
 
-  const _onSendPressed = () => {
+
+  const _onSendPressed = async () => {
     const emailError = emailValidator(email.value);
 
     if (emailError) {
-      setEmail({ ...email, error: emailError });
+      setEmail({...email, error: emailError});
       return;
     }
-
-    navigation.navigate('LoginScreen');
+    setLoading(true);
+    const response = await forgotPassword(email.value);
+    setLoading(false);
+    if(response && response.code)
+      setEmail({...email, error: response.message});
+    else{
+      setTimer(60);
+    }
+      // navigation.navigate('ResetPassword');
   };
+
+  useEffect(() => {
+    if(timer === 60){
+      interval = setInterval( ()=> {
+        setTimer(prevTimer => {
+          if(prevTimer <= 1){
+            clearInterval(interval);
+            return 0;
+          }
+          return prevTimer-1;
+        });
+      }, 1000);
+    }
+    else if(timer === 0){
+      clearInterval(interval);
+    }
+  }, [timer]);
+
 
   return (
     <Background>
@@ -43,9 +78,13 @@ const ForgotPasswordScreen = ({ navigation }) => {
         textContentType="emailAddress"
         keyboardType="email-address"
       />
-
-      <Button mode="contained" onPress={_onSendPressed} style={styles.button}>
-        Send Reset Instructions
+      {timer > 0 && <Text style={styles.checkemail}>Check your email for instructions</Text>}
+      <Button
+        mode="contained"
+        onPress={_onSendPressed}
+        style={styles.button}
+        disabled={timer>0 || loading}>
+        {loading ? <ActivityIndicator color={theme.colors.primary}/> : timer ? 'Resend instructions in ' + timer + 's' : 'Send Reset Instructions'}
       </Button>
 
       <TouchableOpacity
@@ -70,6 +109,10 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
     width: '100%',
   },
+  checkemail: {
+    color: theme.colors.primary,
+    alignSelf: 'center',
+  }
 });
 
 export default memo(ForgotPasswordScreen);

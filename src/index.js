@@ -9,7 +9,8 @@ import {
   Dashboard,
   MedicalDisclaimer,
   TermsAndConditions,
-  PersonalInformationCollectionStatement
+  PersonalInformationCollectionStatement,
+  ResetPassword
 } from './screens';
 
 const Router = createStackNavigator(
@@ -21,7 +22,8 @@ const Router = createStackNavigator(
     Dashboard,
     MedicalDisclaimer,
     TermsAndConditions,
-    PersonalInformationCollectionStatement
+    PersonalInformationCollectionStatement,
+    ResetPassword
   },
   {
     initialRouteName: 'HomeScreen',
