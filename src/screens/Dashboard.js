@@ -1,7 +1,8 @@
 import React, { memo, useState } from 'react';
-import Background from '../components/Background';
+import { PlainBackground } from '../components/Background';
 import Header from '../components/Header';
 import { Picker } from '@react-native-community/picker';
+import Chart from '../components/Chart';
 
 const Dashboard = ({ navigation }) => {
   const [factor, setFactor] = useState('');
@@ -15,18 +16,25 @@ const Dashboard = ({ navigation }) => {
     'exercise': 'Exercise'
   };
 
+  const timeframe = ['03-06', '04-06', '05-06', '06-06', '07-06', '08-06', '09-06', '10-06', '11-06'];
+  const data = [3, 0, 0.5, 1.5, 2, 0];
+
   return (
-    <Background>
+    <PlainBackground>
       <Header>Case History</Header>
       <Picker
         selectedValue={factor}
-        style={{height: 50, width: 100}}
+        style={{height: 50, width: 300}}
         onValueChange={(itemValue, itemIndex) =>
           setFactor(itemValue)
         }>
-        <Picker.Item label="Java" value="java" />
+        {Object.keys(factorList).map(key =>
+          <Picker.Item label={factorList[key]} value={key} />
+        )}
       </Picker>
-    </Background>
+      
+      <Chart xValues={timeframe} yValues={data}></Chart>
+    </PlainBackground>
   );
 };
 

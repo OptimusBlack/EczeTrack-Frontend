@@ -3,6 +3,7 @@ import {
   ImageBackground,
   StyleSheet,
   KeyboardAvoidingView,
+  View,
 } from 'react-native';
 
 const Background = ({ children }) => (
@@ -15,6 +16,16 @@ const Background = ({ children }) => (
       {children}
     </KeyboardAvoidingView>
   </ImageBackground>
+);
+
+const PlainBackground = ({ children }) => (
+  <View
+    style={styles.background}
+  >
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
+      {children}
+    </KeyboardAvoidingView>
+  </View>
 );
 
 const styles = StyleSheet.create({
@@ -34,3 +45,4 @@ const styles = StyleSheet.create({
 });
 
 export default memo(Background);
+export {PlainBackground}
