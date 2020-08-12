@@ -5,4 +5,5 @@ export { default as ForgotPasswordScreen } from './auth/ForgotPasswordScreen';
 export { default as MedicalDisclaimer } from './auth/MedicalDisclaimer';
 export { default as TermsAndConditions } from './auth/TermsAndConditions';
 export { default as PersonalInformationCollectionStatement } from './auth/PersonalInformationCollectionStatement';
+export { default as ResetPassword } from './auth/ResetPassword';
 export { default as Dashboard } from './Dashboard';

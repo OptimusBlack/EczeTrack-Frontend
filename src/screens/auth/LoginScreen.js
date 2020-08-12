@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import Background from '../../components/Background';
 import Logo from '../../components/Logo';
 import Header from '../../components/Header';
@@ -9,7 +9,6 @@ import BackButton from '../../components/BackButton';
 import { theme } from '../../core/theme';
 import { emailValidator, passwordValidator } from '../../core/utils';
 import {login} from '../../ApiManager';
-// import Toast from 'react-native-simple-toast';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
@@ -26,12 +25,11 @@ const LoginScreen = ({ navigation }) => {
     }
 
     const response = await login(email.value, password.value);
-    console.log(response);
     if (response.code){
-      // Toast.show(response.message);
-        setPassword({ error: response.message }); //Todo confirm with Amsal
+        setPassword({...password, error: response.message });
     }
     else {
+      AsyncStorage.setItem('user', JSON.stringify(response));
       navigation.navigate('Dashboard');
     }
   };

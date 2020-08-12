@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native';
 import Background from '../../components/Background';
 import Logo from '../../components/Logo';
 import Header from '../../components/Header';
@@ -32,15 +32,15 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     const response = await register(name.value, email.value, password.value);
-    console.log(response);
     if (response.code){
-      if (response.message == "Email already taken"){
+      if (response.message === "Email already taken"){
         setEmail({ ...email, error: response.message });
       } else {
         setPassword({ ...password, error: response.message });
       }
     }
     else {
+      AsyncStorage.setItem('user', response);
       navigation.navigate('Dashboard');
     }
   };
