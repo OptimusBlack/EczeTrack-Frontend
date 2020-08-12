@@ -3,6 +3,7 @@ import { PlainBackground } from '../components/Background';
 import Header from '../components/Header';
 import { Picker } from '@react-native-community/picker';
 import Chart from '../components/Chart';
+import TimeRangeSelector from '../components/TimeRangeSelector';
 
 const Dashboard = ({ navigation }) => {
   const [factor, setFactor] = useState('');
@@ -22,6 +23,7 @@ const Dashboard = ({ navigation }) => {
   return (
     <PlainBackground>
       <Header>Case History</Header>
+      <TimeRangeSelector></TimeRangeSelector>
       <Picker
         selectedValue={factor}
         style={{height: 50, width: 300}}
