@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }) => {
   Promise.all([getUser, getURL])
     .then(([user, { path, queryParams }]) => {
       if(user)
-        navigation.navigate('Dashboard');
+        navigation.navigate('TabNavigator');
       else {
         console.log('Opening with URL:', queryParams);
         if(queryParams && queryParams.token)

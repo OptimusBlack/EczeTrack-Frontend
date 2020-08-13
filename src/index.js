@@ -6,11 +6,11 @@ import {
   LoginScreen,
   RegisterScreen,
   ForgotPasswordScreen,
-  Dashboard,
   MedicalDisclaimer,
   TermsAndConditions,
   PersonalInformationCollectionStatement,
-  ResetPassword
+  ResetPassword,
+  TabNavigator
 } from './screens';
 
 const Router = createStackNavigator(
@@ -19,14 +19,14 @@ const Router = createStackNavigator(
     LoginScreen,
     RegisterScreen,
     ForgotPasswordScreen,
-    Dashboard,
+    TabNavigator,
     MedicalDisclaimer,
     TermsAndConditions,
     PersonalInformationCollectionStatement,
     ResetPassword
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'HomeScreen',
     headerMode: 'none',
   }
 );

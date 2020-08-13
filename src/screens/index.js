@@ -6,4 +6,5 @@ export { default as MedicalDisclaimer } from './auth/MedicalDisclaimer';
 export { default as TermsAndConditions } from './auth/TermsAndConditions';
 export { default as PersonalInformationCollectionStatement } from './auth/PersonalInformationCollectionStatement';
 export { default as ResetPassword } from './auth/ResetPassword';
-export { default as Dashboard } from './Dashboard';
+// export { default as Dashboard } from './Dashboard';
+export { default as TabNavigator } from './TabNavigator';
