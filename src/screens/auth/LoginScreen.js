@@ -30,7 +30,7 @@ const LoginScreen = ({ navigation }) => {
     }
     else {
       AsyncStorage.setItem('user', JSON.stringify(response));
-      navigation.navigate('Dashboard');
+      navigation.navigate('TabNavigator');
     }
   };
 

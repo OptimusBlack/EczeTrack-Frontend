@@ -36,7 +36,7 @@ const ResetPassword = ({route,  navigation }) => {
       setPassword({ error: response.message });
     }
     else {
-      navigation.navigate('Dashboard');
+      navigation.navigate('TabNavigator');
     }
   };
 

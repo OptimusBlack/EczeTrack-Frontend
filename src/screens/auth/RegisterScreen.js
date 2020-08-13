@@ -41,7 +41,7 @@ const RegisterScreen = ({ navigation }) => {
     }
     else {
       AsyncStorage.setItem('user', response);
-      navigation.navigate('Dashboard');
+      navigation.navigate('TabNavigator');
     }
   };
 
