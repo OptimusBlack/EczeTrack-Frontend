@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { PlainBackground } from '../components/Background';
+import { GreenBackground } from '../components/Background';
 import Header from '../components/Header';
 import { AsyncStorage } from 'react-native';
 import Button from '../components/Button';
@@ -12,13 +12,13 @@ const SecondScreen = ({ navigation }) => {
 
 
   return (
-    <PlainBackground>
+    <GreenBackground>
       <Header>Second Screen</Header>
 
       <Button mode="outlined" onPress={onLogout}>
         Logout
       </Button>
-    </PlainBackground>
+    </GreenBackground>
   );
 };
 
