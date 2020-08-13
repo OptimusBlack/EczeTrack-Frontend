@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-paper';
+import { theme } from '../core/theme';
 
 const TimeRangeSelector = () => {
     return(
@@ -18,9 +19,12 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         borderRadius: 9,
-        borderWidth: 1,
+        borderWidth: 2,
         overflow: 'hidden',
-        height: 50
+        height: 50,
+        width: '100%',
+        margin: 15,
+        borderColor: theme.colors.primary
     },
     buttonText: {
         fontSize: 11,
@@ -30,7 +34,11 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         borderBottomWidth: 0,
         borderTopWidth: 0,
-        justifyContent: 'center'
+        borderWidth: 1,
+        justifyContent: 'center',
+        flex: 1,
+        backgroundColor: theme.colors.surface,
+        borderColor: theme.colors.primary
     }
 });
 
