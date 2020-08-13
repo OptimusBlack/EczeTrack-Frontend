@@ -5,8 +5,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { Ionicons } from '@expo/vector-icons'; // 6.2.2
 
 
-import Dashboard  from './Dashboard'
-import SecondScreen  from './SecondScreen'
+import Dashboard  from './Dashboard';
+import RecordScreen  from './RecordScreen';
+import SecondScreen  from './SecondScreen';
 
 const config = {
   headerMode: 'none',
@@ -40,6 +41,23 @@ DashboardStack.navigationOptions = {
 
 DashboardStack.path = '';
 
+// Record Screen
+const RecordScreenStack = createStackNavigator(
+  {
+    RecordScreen,
+  },
+  config
+);
+
+RecordScreenStack.navigationOptions = {
+  tabBarOptions,
+  tabBarIcon: ({ focused, tintColor }) => <Ionicons name={`recording${focused ? '' : '-outline'}`} size={25} color={tintColor} />,
+
+};
+
+RecordScreenStack.path = '';
+
+
 // Second Screen
 const SecondScreenStack = createStackNavigator(
   {
@@ -69,9 +87,10 @@ function SafeAreaMaterialTopTabBar (props) {
 
 const TabNavigator = createMaterialTopTabNavigator({
   DashboardStack,
+  RecordScreenStack,
   SecondScreenStack
 }, {
-  initialRouteName: 'DashboardStack',
+  initialRouteName: 'RecordScreenStack',
   tabBarPosition: 'bottom',
   swipeEnabled: true,
   // tabBarComponent: SafeAreaMaterialTopTabBar,
