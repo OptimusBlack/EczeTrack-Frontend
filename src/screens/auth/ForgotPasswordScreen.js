@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { emailValidator } from '../../core/utils';
-import Background from '../../components/Background';
+import { WhiteBackground } from '../../components/Background';
 import BackButton from '../../components/BackButton';
 import Logo from '../../components/Logo';
 import Header from '../../components/Header';
@@ -59,7 +59,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
 
   return (
-    <Background>
+    <WhiteBackground>
       <BackButton goBack={() => navigation.navigate('LoginScreen')} />
 
       <Logo />
@@ -93,7 +93,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       >
         <Text style={styles.label}>← Back to login</Text>
       </TouchableOpacity>
-    </Background>
+    </WhiteBackground>
   );
 };
 

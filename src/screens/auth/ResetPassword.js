@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import Background from '../../components/Background';
+import { WhiteBackground } from '../../components/Background';
 import Logo from '../../components/Logo';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -41,7 +41,7 @@ const ResetPassword = ({route,  navigation }) => {
   };
 
   return (
-    <Background>
+    <WhiteBackground>
       <BackButton goBack={() => navigation.navigate('HomeScreen')} />
 
       <Logo />
@@ -87,7 +87,7 @@ const ResetPassword = ({route,  navigation }) => {
         Reset Password
       </Button>
 
-    </Background>
+    </WhiteBackground>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import Background from '../../components/Background';
+import { WhiteBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import BackButton from '../../components/BackButton';
@@ -17,7 +17,7 @@ const TermsAndConditions = ({ navigation }) => {
   };
 
   return (
-    <Background>
+    <WhiteBackground>
       <BackButton goBack={() => navigation.navigate('HomeScreen')} />
 
       <Header>Terms & Conditions</Header>
@@ -217,7 +217,7 @@ const TermsAndConditions = ({ navigation }) => {
         </Button>
       </View>
 
-    </Background>
+    </WhiteBackground>
   );
 };
 

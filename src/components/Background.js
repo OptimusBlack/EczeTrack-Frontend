@@ -1,15 +1,13 @@
-import React, { memo } from 'react';
+import React from 'react';
 import {
   ImageBackground,
   StyleSheet,
-  KeyboardAvoidingView,
-  View,
+  KeyboardAvoidingView
 } from 'react-native';
 
-const Background = ({ children }) => (
+const WhiteBackground = ({ children }) => (
   <ImageBackground
-    source={require('../assets/background_dot.png')}
-    resizeMode="repeat"
+    source={require('../assets/white_background.png')}
     style={styles.background}
   >
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -18,14 +16,15 @@ const Background = ({ children }) => (
   </ImageBackground>
 );
 
-const PlainBackground = ({ children }) => (
-  <View
+const GreenBackground = ({ children }) => (
+  <ImageBackground
+    source={require('../assets/green_background.png')}
     style={styles.background}
   >
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       {children}
     </KeyboardAvoidingView>
-  </View>
+  </ImageBackground>
 );
 
 const styles = StyleSheet.create({
@@ -44,5 +43,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(Background);
-export {PlainBackground}
+export {
+  WhiteBackground, 
+  GreenBackground
+}

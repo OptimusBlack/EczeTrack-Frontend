@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { PlainBackground } from '../components/Background';
+import { GreenBackground } from '../components/Background';
 import Header from '../components/Header';
 import { Picker } from '@react-native-community/picker';
 import Chart from '../components/Chart';
@@ -29,9 +29,9 @@ const Dashboard = ({ navigation }) => {
 
 
   return (
-    <PlainBackground>
-      <Header>Case History</Header>
+    <GreenBackground>
       <TimeRangeSelector></TimeRangeSelector>
+      <Header>Case History</Header>
       <Picker
         selectedValue={factor}
         style={{height: 50, width: 300}}
@@ -48,7 +48,7 @@ const Dashboard = ({ navigation }) => {
       <Button mode="outlined" onPress={onLogout}>
         Logout
       </Button>
-    </PlainBackground>
+    </GreenBackground>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, AsyncStorage } from 'react-native';
-import Background from '../../components/Background';
+import { WhiteBackground } from '../../components/Background';
 import Logo from '../../components/Logo';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -46,7 +46,7 @@ const RegisterScreen = ({ navigation }) => {
   };
 
   return (
-    <Background>
+    <WhiteBackground>
       <BackButton goBack={() => navigation.navigate('HomeScreen')} />
 
       <Logo />
@@ -95,7 +95,7 @@ const RegisterScreen = ({ navigation }) => {
           <Text style={styles.link}>Login</Text>
         </TouchableOpacity>
       </View>
-    </Background>
+    </WhiteBackground>
   );
 };
 
