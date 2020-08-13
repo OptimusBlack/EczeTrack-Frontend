@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { PlainBackground } from '../components/Background';
+import { GreenBackground } from '../components/Background';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import {
@@ -53,11 +53,45 @@ const RecordScreen = ({ navigation }) => {
     setTime(selectedTime);
   };
 
+  const getFormattedTime = time => {
+    let ampm = 'AM';
+    let hh = time.getHours();
+
+    if(hh>11)
+      ampm = 'PM';
+
+    if(hh>12)
+      hh -= 12;
+
+    if(hh === 0){
+      hh = 12;
+      ampm = 'AM'
+    }
+
+    if(hh < 10)
+      hh = "0" + hh;
+
+
+    let mm = time.getMinutes();
+    if(mm < 10)
+      mm = "0" + mm;
+
+    return hh + ":" + mm + " " + ampm;
+  };
+
+  const _onChangeQuantity = text => {
+    let qty = text.replace(/\D/g, '');
+    if(qty === '')
+      qty = 0;
+    else
+      qty = parseInt(qty);
+    setQuantity(qty);
+  };
 
 
   return (
-    <PlainBackground>
-      <Header>Daily Diet Record</Header>
+    <GreenBackground>
+      <Text style={styles.header}>Daily Diet Record</Text>
 
       <View style={styles.container}>
         <Text style={styles.foodDiaryHeader}>Food Diary</Text>
@@ -78,8 +112,8 @@ const RecordScreen = ({ navigation }) => {
             <View style={styles.inputContainer}>
               <TextInput
                 style={styles.textInput2}
-                onChangeText={text => setQuantity(parseInt(text.replace(/[^0-9]/g, '')))}
-                value={quantity}
+                onChangeText={_onChangeQuantity}
+                value={quantity.toString()}
                 keyboardType={'number-pad'}
                 textAlign={'center'}
               />
@@ -89,7 +123,7 @@ const RecordScreen = ({ navigation }) => {
 
           <TouchableOpacity style={styles.inputContainerCol} onPress={() => setShow(s => !s)}>
             <View style={styles.inputContainer}>
-              <Text style={styles.textInput2}>{time.getHours()}:{time.getMinutes()}</Text>
+              <Text style={styles.textInput2}>{getFormattedTime(time)}</Text>
             </View>
             {show && (
               <DateTimePicker
@@ -111,16 +145,22 @@ const RecordScreen = ({ navigation }) => {
       <Button mode="contained">Confirm</Button>
 
 
-    </PlainBackground>
+    </GreenBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  header:{
+    fontSize: 15,
+    color: 'white',
+    marginBottom: 30
+  },
   container:{
     height: '70%',
-    borderRadius: 5,
+    borderRadius: 10,
     alignSelf: 'stretch',
-    padding: 20
+    padding: 20,
+    backgroundColor: 'white'
   },
   textInput: {
     borderColor: theme.colors.primary,
