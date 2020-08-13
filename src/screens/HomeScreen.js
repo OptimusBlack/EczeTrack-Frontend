@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import Background from '../components/Background';
+import { WhiteBackground } from '../components/Background';
 import Logo from '../components/Logo';
 import Header from '../components/Header';
 import Button from '../components/Button';
@@ -30,14 +30,14 @@ const HomeScreen = ({ navigation }) => {
 
   if(loading){
     return (
-      <Background>
+      <WhiteBackground>
         <Logo />
         <ActivityIndicator color={theme.colors.primary} size={'large'}/>
-      </Background>
+      </WhiteBackground>
     );
   }
   return (
-    <Background>
+    <WhiteBackground>
       <Logo />
       <Header>EczeTrack</Header>
 
@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
       >
         Sign Up
       </Button>
-    </Background>
+    </WhiteBackground>
 )};
 
 export default memo(HomeScreen);
