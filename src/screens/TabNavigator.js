@@ -3,7 +3,7 @@ import { Platform, SafeAreaView, View } from 'react-native';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Ionicons } from '@expo/vector-icons'; // 6.2.2
-
+import {theme} from '../core/theme';
 
 import Dashboard  from './Dashboard';
 import RecordScreen  from './RecordScreen';
@@ -17,7 +17,7 @@ const tabBarOptions = {
   showIcon: true,
   showLabel: false,
   style: {
-    backgroundColor: 'blue',
+    backgroundColor: '#2E765E',
     zIndex: 10
   },
   tabStyle: { paddingVertical: 0  },

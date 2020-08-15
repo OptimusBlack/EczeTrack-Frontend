@@ -13,6 +13,7 @@ import { factorList } from './dataItems/factorList';
 
 const Dashboard = ({ navigation }) => {
   const [factor, setFactor] = useState('');
+  const [factor2, setFactor2] = useState('');
   const [carouselItems, setCarouselItems] = useState([
     {
       header: 'Case History',
@@ -67,10 +68,10 @@ const Dashboard = ({ navigation }) => {
           </Picker>
           <Text style={styles.vsText} >vs</Text>
           <Picker
-            selectedValue={factor}
+            selectedValue={factor2}
             style={{flex: 1}}
             onValueChange={(itemValue, itemIndex) =>
-              setFactor(itemValue)
+              setFactor2(itemValue)
             }>
             {Object.keys(factorList).map(key =>
               <Picker.Item label={factorList[key]} value={key} />

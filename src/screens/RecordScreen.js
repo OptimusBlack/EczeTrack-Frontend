@@ -160,7 +160,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'stretch',
     padding: 20,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    minHeight: 300
   },
   textInput: {
     borderColor: theme.colors.primary,
