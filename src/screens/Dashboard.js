@@ -40,6 +40,7 @@ const Dashboard = ({ navigation }) => {
             items={factorList}
             defaultValue={factor}
             containerStyle={{height: 40, alignSelf: 'stretch'}}
+            style={styles.selector}
             onChangeItem={(item) => setFactor(item.value)}
           />
   
@@ -49,25 +50,26 @@ const Dashboard = ({ navigation }) => {
     }
 
     return(
-      <View style={styles.carouselItemContainer} >
+      <View style={[styles.carouselItemContainer]} >
         <Header>{item.header}</Header>
-        <View style={[styles.container, {alignItems: 'center', alignContent:'space-between', zIndex: 10}]} >
+        <View style={[styles.container, styles.dualSelectorContainer]} >
           <DropDownPicker
             items={factorList}
             defaultValue={factor}
             containerStyle={{height: 40, flex: 1}}
+            style={styles.selector}
             onChangeItem={(item) => setFactor(item.value)}
           />
           <Text style={styles.vsText} >vs</Text>
           <DropDownPicker
             items={factorList}
-            defaultValue={factor}
+            defaultValue={factor2}
             containerStyle={{height: 40, flex: 1}}
-            onChangeItem={(item) => setFactor(item.value)}
+            style={styles.selector}
+            onChangeItem={(item) => setFactor2(item.value)}
           />
-        </View>
-
-        <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
+          <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
+        </View>        
       </View>
     );
   }
@@ -89,17 +91,16 @@ const Dashboard = ({ navigation }) => {
         </Carousel>
       </View>
 
-      <Button mode="outlined" onPress={onLogout}>
+      {/* <Button mode="outlined" onPress={onLogout}>
         Logout
-      </Button>
+      </Button> */}
     </GreenBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection:'row', 
-    justifyContent: 'center'
+    flexDirection:'row'
   },
   carouselItemContainer: {
     alignItems: 'center', 
@@ -114,7 +115,18 @@ const styles = StyleSheet.create({
     width: 300
   },
   vsText: {
-    color: '#8e8e8e'
+    color: '#8e8e8e',
+    paddingRight: 5,
+    paddingLeft: 5
+  },
+  dualSelectorContainer: {
+    alignItems: 'center',
+    alignContent:'space-between',
+    flexWrap:'wrap'
+  },
+  selector: {
+    borderWidth: 2,
+    borderColor: theme.colors.primary
   }
 })
 
