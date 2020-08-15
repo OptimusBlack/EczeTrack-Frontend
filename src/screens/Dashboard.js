@@ -56,7 +56,7 @@ const Dashboard = ({ navigation }) => {
             containerStyle={{height: 40, alignSelf: 'stretch'}}
           />
   
-          <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}></Chart>
+          <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
         </View>
       );
     }
@@ -64,7 +64,7 @@ const Dashboard = ({ navigation }) => {
     return(
       <View style={styles.carouselItemContainer} >
         <Header>{item.header}</Header>
-        <View style={[styles.container, {alignItems: 'center', alignContent:'space-between'}]} >
+        <View style={[styles.container, {alignItems: 'center', alignContent:'space-between', zIndex: 10}]} >
           {/* <Picker
             selectedValue={factor}
             style={{flex: 1}}
@@ -104,7 +104,7 @@ const Dashboard = ({ navigation }) => {
           />
         </View>
 
-        <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}></Chart>
+        <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
       </View>
     );
   }
