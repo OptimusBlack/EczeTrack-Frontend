@@ -1,9 +1,9 @@
-export const factorList = {
-    'symptoms': 'Symptoms',
-    'msu': 'Moisturizer & Steroid Usage',
-    'das': 'Diet Adherence Score',
-    'stress': 'Stress',
-    'environment': 'Environment',
-    'sleep': 'Sleep',
-    'exercise': 'Exercise'
-};
+export const factorList = [
+    {value: 'symptoms', label: 'Symptoms'},
+    {value: 'msu', label: 'Moisturizer & Steroid Usage'},
+    {value: 'das', label: 'Diet Adherence Score'},
+    {value: 'stress', label: 'Stress'},
+    {value: 'environment', label: 'Environment'},
+    {value: 'sleep', label: 'Sleep'},
+    {value: 'exercise', label: 'Exercise'}
+];

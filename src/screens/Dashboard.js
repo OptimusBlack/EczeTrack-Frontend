@@ -1,7 +1,6 @@
 import React, { memo, useState } from 'react';
 import { GreenBackground } from '../components/Background';
 import Header from '../components/Header';
-import { Picker } from '@react-native-community/picker';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Chart from '../components/Chart';
 import TimeRangeSelector from '../components/TimeRangeSelector';
@@ -13,8 +12,8 @@ import { factorList } from './dataItems/factorList';
 
 
 const Dashboard = ({ navigation }) => {
-  const [factor, setFactor] = useState('');
-  const [factor2, setFactor2] = useState('');
+  const [factor, setFactor] = useState(factorList[0].value);
+  const [factor2, setFactor2] = useState(factorList[1].value);
   const [carouselItems, setCarouselItems] = useState([
     {
       header: 'Case History',
@@ -37,23 +36,11 @@ const Dashboard = ({ navigation }) => {
       return(
         <View style={styles.carouselItemContainer} >
           <Header>{item.header}</Header>
-          {/* <Picker
-            selectedValue={factor}
-            style={styles.picker}
-            onValueChange={(itemValue, itemIndex) =>
-              setFactor(itemValue)
-            }>
-            {Object.keys(factorList).map(key =>
-              <Picker.Item label={factorList[key]} value={key} />
-            )}
-          </Picker> */}
           <DropDownPicker
-            items={[
-              {label: 'UK', value: 'uk'},
-              {label: 'France', value: 'france'},
-            ]}
-            defaultValue={'uk'}
+            items={factorList}
+            defaultValue={factor}
             containerStyle={{height: 40, alignSelf: 'stretch'}}
+            onChangeItem={(item) => setFactor(item.value)}
           />
   
           <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}></Chart>
@@ -65,42 +52,18 @@ const Dashboard = ({ navigation }) => {
       <View style={styles.carouselItemContainer} >
         <Header>{item.header}</Header>
         <View style={[styles.container, {alignItems: 'center', alignContent:'space-between'}]} >
-          {/* <Picker
-            selectedValue={factor}
-            style={{flex: 1}}
-            onValueChange={(itemValue, itemIndex) =>
-              setFactor(itemValue)
-            }>
-            {Object.keys(factorList).map(key =>
-              <Picker.Item label={factorList[key]} value={key} />
-            )}
-          </Picker> */}
           <DropDownPicker
-            items={[
-              {label: 'UK', value: 'uk'},
-              {label: 'France', value: 'france'},
-            ]}
-            defaultValue={'uk'}
-            containerStyle={{height: 40, flex: 1}}
+            items={factorList}
+            defaultValue={factor}
+            containerStyle={{height: 40, alignSelf: 'stretch'}}
+            onChangeItem={(item) => setFactor(item.value)}
           />
           <Text style={styles.vsText} >vs</Text>
-          {/* <Picker
-            selectedValue={factor2}
-            style={{flex: 1}}
-            onValueChange={(itemValue, itemIndex) =>
-              setFactor2(itemValue)
-            }>
-            {Object.keys(factorList).map(key =>
-              <Picker.Item label={factorList[key]} value={key} />
-            )}
-          </Picker> */}
           <DropDownPicker
-            items={[
-              {label: 'UK', value: 'uk'},
-              {label: 'France', value: 'france'},
-            ]}
-            defaultValue={'uk'}
-            containerStyle={{height: 40, flex: 1}}
+            items={factorList}
+            defaultValue={factor}
+            containerStyle={{height: 40, alignSelf: 'stretch'}}
+            onChangeItem={(item) => setFactor(item.value)}
           />
         </View>
 
