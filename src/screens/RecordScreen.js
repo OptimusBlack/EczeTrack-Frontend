@@ -32,6 +32,7 @@ const RecordScreen = ({ navigation }) => {
   const [quantity, setQuantity] = useState(0);
   const [time, setTime] = useState(new Date());
   const [show, setShow] = useState(false);
+  const [isSelected, setIsSelected] = useState(-1);
 
   const _onChangeText = text => {
     setQuery(text);
@@ -39,11 +40,13 @@ const RecordScreen = ({ navigation }) => {
     setFoodList(newList);
   };
 
-  const FoodList = foodList.map( food => (
-    <View style={styles.foodContainer}>
+  const FoodList = foodList.map( (food, idx) => (
+    <TouchableOpacity
+      style={[styles.foodContainer, isSelected === idx && styles.isActive]}
+      onPress={()=> setIsSelected(idx)}>
       <MaterialCommunityIcons name="food-apple" size={24} color="#aaa" />
       <Text style={styles.foodLabel}>{food.toUpperCase()}</Text>
-    </View>
+    </TouchableOpacity>
   ));
 
   const onTimeChange = (event, selectedTime) => {
@@ -179,8 +182,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomColor: '#ddd',
     borderBottomWidth: 1,
-    alignItems: 'center'
-
+    alignItems: 'center',
+    paddingHorizontal: 20
+  },
+  isActive: {
+    backgroundColor: theme.colors.surface
   },
   foodDiaryHeader:{
     color: theme.colors.primary,
@@ -198,7 +204,7 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.primary,
     borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: 20
+
   },
   inputContainerRow:{
     flexDirection: 'row',

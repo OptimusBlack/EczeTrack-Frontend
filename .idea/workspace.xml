@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0ffb349-1a24-4a16-8fc5-495ec42a9711" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/RecordScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/RecordScreen.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,13 +16,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/screens/RecordScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+            <state relative-caret-position="202">
+              <caret line="188" column="41" selection-start-line="188" selection-start-column="41" selection-end-line="188" selection-end-column="41" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
+                <element signature="e#1330#1487#0" />
+                <element signature="e#1525#1853#0" />
+                <element signature="e#1892#2028#0" />
               </folding>
             </state>
           </provider>
@@ -40,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/screens/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="66" column="103" selection-start-line="66" selection-start-column="103" selection-end-line="66" selection-end-column="103" />
+            <state relative-caret-position="360">
+              <caret line="106" column="8" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -105,6 +108,7 @@
       <find>theme</find>
       <find>blue</find>
       <find>map</find>
+      <find>paddingH</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,8 +138,8 @@
         <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/src/components/TimeRangeSelector.js" />
         <option value="$PROJECT_DIR$/src/components/Background.js" />
-        <option value="$PROJECT_DIR$/src/screens/RecordScreen.js" />
         <option value="$PROJECT_DIR$/src/screens/Dashboard.js" />
+        <option value="$PROJECT_DIR$/src/screens/RecordScreen.js" />
       </list>
     </option>
   </component>
@@ -221,12 +225,12 @@
       <updated>1596279483468</updated>
       <workItem from="1596279487327" duration="3450000" />
       <workItem from="1596884684355" duration="418000" />
-      <workItem from="1596939504833" duration="47712000" />
+      <workItem from="1596939504833" duration="48054000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51580000" />
+    <option name="totallyTimeSpent" value="51922000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="394" y="23" width="1046" height="877" extended-state="0" />
@@ -502,22 +506,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/RecordScreen.js">
+    <entry file="file://$PROJECT_DIR$/src/screens/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        <state relative-caret-position="360">
+          <caret line="106" column="8" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/Dashboard.js">
+    <entry file="file://$PROJECT_DIR$/src/screens/RecordScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="66" column="103" selection-start-line="66" selection-start-column="103" selection-end-line="66" selection-end-column="103" />
+        <state relative-caret-position="202">
+          <caret line="188" column="41" selection-start-line="188" selection-start-column="41" selection-end-line="188" selection-end-column="41" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#1330#1487#0" />
+            <element signature="e#1525#1853#0" />
+            <element signature="e#1892#2028#0" />
           </folding>
         </state>
       </provider>
