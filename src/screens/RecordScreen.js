@@ -93,7 +93,7 @@ const RecordScreen = ({ navigation }) => {
 
 
   return (
-    <GreenBackground>
+    <GreenBackground notAvoidingKeyboard={true}>
       <Text style={styles.header}>Daily Diet Record</Text>
 
       <View style={styles.container}>

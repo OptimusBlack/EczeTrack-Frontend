@@ -2,7 +2,8 @@ import React from 'react';
 import {
   ImageBackground,
   StyleSheet,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  View
 } from 'react-native';
 
 const WhiteBackground = ({ children }) => (
@@ -16,14 +17,18 @@ const WhiteBackground = ({ children }) => (
   </ImageBackground>
 );
 
-const GreenBackground = ({ children }) => (
+const GreenBackground = ({ children, notAvoidingKeyboard }) => (
   <ImageBackground
     source={require('../assets/green_background.png')}
     style={styles.background}
   >
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      {children}
-    </KeyboardAvoidingView>
+    {!notAvoidingKeyboard ?
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        {children}
+      </KeyboardAvoidingView> :
+      <View style={styles.container} behavior="padding">
+        {children}
+      </View>}
   </ImageBackground>
 );
 
