@@ -51,23 +51,23 @@ const Dashboard = ({ navigation }) => {
     return(
       <View style={styles.carouselItemContainer} >
         <Header>{item.header}</Header>
-        <View style={[styles.container, {alignItems: 'center', alignContent:'space-between'}]} >
+        <View style={[styles.container, {alignItems: 'center', alignContent:'space-between', zIndex: 10}]} >
           <DropDownPicker
             items={factorList}
             defaultValue={factor}
-            containerStyle={{height: 40, alignSelf: 'stretch'}}
+            containerStyle={{height: 40, flex: 1}}
             onChangeItem={(item) => setFactor(item.value)}
           />
           <Text style={styles.vsText} >vs</Text>
           <DropDownPicker
             items={factorList}
             defaultValue={factor}
-            containerStyle={{height: 40, alignSelf: 'stretch'}}
+            containerStyle={{height: 40, flex: 1}}
             onChangeItem={(item) => setFactor(item.value)}
           />
         </View>
 
-        <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}></Chart>
+        <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
       </View>
     );
   }
