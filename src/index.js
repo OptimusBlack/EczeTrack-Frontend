@@ -26,7 +26,7 @@ const Router = createStackNavigator(
     ResetPassword
   },
   {
-    initialRouteName: 'TabNavigator',
+    initialRouteName: 'HomeScreen',
     headerMode: 'none',
   }
 );

@@ -90,7 +90,7 @@ const TabNavigator = createMaterialTopTabNavigator({
   RecordScreenStack,
   SecondScreenStack
 }, {
-  initialRouteName: 'RecordScreenStack',
+  initialRouteName: 'DashboardStack',
   tabBarPosition: 'bottom',
   swipeEnabled: true,
   // tabBarComponent: SafeAreaMaterialTopTabBar,

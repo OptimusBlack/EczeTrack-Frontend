@@ -119,6 +119,8 @@ const RecordScreen = ({ navigation }) => {
                 value={quantity.toString()}
                 keyboardType={'number-pad'}
                 textAlign={'center'}
+                returnKeyType={'done'}
+
               />
             </View>
             <Text style={styles.inputLabel}>Quantity</Text>
