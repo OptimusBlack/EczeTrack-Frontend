@@ -2,14 +2,14 @@ import React, { memo } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { theme } from '../core/theme';
 
-const Header = ({ children, white }) => {
+const Header = ({ children, white, style }) => {
   if (white){
     return (
-      <Text style={[styles.header, {color: '#FFFFFF'}]}>{children}</Text>
+      <Text style={[styles.header, {color: '#FFFFFF'}, style]}>{children}</Text>
     );
   }
   return (
-    <Text style={styles.header}>{children}</Text>
+    <Text style={[styles.header, style]}>{children}</Text>
   );
 }
 

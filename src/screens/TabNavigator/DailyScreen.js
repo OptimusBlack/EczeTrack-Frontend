@@ -1,25 +1,26 @@
 import React, { memo, useState } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
-import { AsyncStorage } from 'react-native';
-import Button from '../../components/Button';
+import { TouchableOpacity, Text } from 'react-native';
+import { factorList } from '../dataItems/factorList.js';
 
-
-const SettingScreen = ({ navigation }) => {
-  const onLogout = () => {
-    AsyncStorage.removeItem('user', () => navigation.navigate('HomeScreen'));
-  };
-
-
+const DailyScreen = ({ navigation }) => {
   return (
     <GreenBackground>
-      <Header>Daily Screen</Header>
+      <Header white style={{ fontSize: 30 }}>
+        {(new Date()).toDateString()}
+      </Header>
 
-      <Button mode="outlined" onPress={onLogout}>
-        Logout
-      </Button>
+      {factorList.slice(0, 4).map((e, idx) =>
+        <TouchableOpacity
+          key={idx}
+        >
+          <Text>{e.label}</Text>
+        </TouchableOpacity>
+      )}
+
     </GreenBackground>
   );
 };
 
-export default memo(SettingScreen);
+export default memo(DailyScreen);
