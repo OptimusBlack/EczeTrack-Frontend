@@ -6,27 +6,33 @@ import {
   View
 } from 'react-native';
 
-const WhiteBackground = ({ children }) => (
+const WhiteBackground = ({ children, notAvoidingKeyboard, containerStyle }) => (
+
   <ImageBackground
     source={require('../assets/white_background.png')}
     style={styles.background}
   >
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      {children}
-    </KeyboardAvoidingView>
+    {!notAvoidingKeyboard ?
+      <KeyboardAvoidingView style={[styles.container, containerStyle]} behavior="padding">
+        {children}
+      </KeyboardAvoidingView> :
+      <View style={[styles.container, containerStyle]} behavior="padding">
+        {children}
+      </View>}
   </ImageBackground>
+
 );
 
-const GreenBackground = ({ children, notAvoidingKeyboard }) => (
+const GreenBackground = ({ children, notAvoidingKeyboard, containerStyle }) => (
   <ImageBackground
     source={require('../assets/green_background.png')}
     style={styles.background}
   >
     {!notAvoidingKeyboard ?
-      <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <KeyboardAvoidingView style={[styles.container, containerStyle]} behavior="padding">
         {children}
       </KeyboardAvoidingView> :
-      <View style={styles.container} behavior="padding">
+      <View style={[styles.container, containerStyle]} behavior="padding">
         {children}
       </View>}
   </ImageBackground>

@@ -9,6 +9,8 @@ import Dashboard  from './Dashboard';
 import RecordScreen  from './RecordScreen';
 import SecondScreen  from './SecondScreen';
 
+import Dermatology  from './daily/Dermatology';
+
 const config = {
   headerMode: 'none',
 };
@@ -58,6 +60,25 @@ RecordScreenStack.navigationOptions = {
 RecordScreenStack.path = '';
 
 
+// Dermatology Screen
+const DermatologyScreenStack = createStackNavigator(
+  {
+    Dermatology,
+  },
+  config
+);
+
+DermatologyScreenStack.navigationOptions = {
+  tabBarOptions,
+  // tabBarIcon: ({ focused, tintColor }) => <Ionicons name={`recording${focused ? '' : '-outline'}`} size={25} color={tintColor} />,
+
+};
+
+DermatologyScreenStack.path = '';
+
+
+
+
 // Second Screen
 const SecondScreenStack = createStackNavigator(
   {
@@ -88,9 +109,10 @@ function SafeAreaMaterialTopTabBar (props) {
 const TabNavigator = createMaterialTopTabNavigator({
   DashboardStack,
   RecordScreenStack,
-  SecondScreenStack
+  SecondScreenStack,
+  DermatologyScreenStack
 }, {
-  initialRouteName: 'DashboardStack',
+  initialRouteName: 'DermatologyScreenStack',
   tabBarPosition: 'bottom',
   swipeEnabled: true,
   // tabBarComponent: SafeAreaMaterialTopTabBar,

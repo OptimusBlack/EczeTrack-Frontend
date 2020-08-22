@@ -50,7 +50,6 @@ const RecordScreen = ({ navigation }) => {
   ));
 
   const onTimeChange = (event, selectedTime) => {
-    console.log("Time selected:", selectedTime)
     selectedTime = selectedTime || time;
     setShow(Platform.OS === 'ios');
     setTime(selectedTime);
@@ -136,8 +135,9 @@ const RecordScreen = ({ navigation }) => {
                 value={time}
                 mode={'time'}
                 is24Hour={true}
-                display="default"
                 onChange={onTimeChange}
+                display={'default'}
+                textColor={theme.colors.secondary}
               />
             )}
             <Text style={styles.inputLabel}>Time</Text>
