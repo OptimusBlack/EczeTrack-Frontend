@@ -32,10 +32,6 @@ const Dermatology = ({ navigation }) => {
         />
 
 
-
-
-
-
       </View>
 
       <View style={styles.row}>

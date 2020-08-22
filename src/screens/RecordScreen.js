@@ -7,10 +7,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  TextInput, ScrollView } from 'react-native';
+  TextInput,
+  ScrollView
+} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
+import {Picker} from '@react-native-community/picker';
 
 import {theme} from "../core/theme";
 
@@ -31,6 +34,7 @@ const RecordScreen = ({ navigation }) => {
   const [foodList, setFoodList] = useState(FOOD_LIST);
   const [quantity, setQuantity] = useState(0);
   const [time, setTime] = useState(new Date());
+  const [mealType, setMealType] = useState('Snack');
   const [show, setShow] = useState(false);
   const [isSelected, setIsSelected] = useState(-1);
 
@@ -127,20 +131,22 @@ const RecordScreen = ({ navigation }) => {
 
           <TouchableOpacity style={styles.inputContainerCol} onPress={() => setShow(s => !s)}>
             <View style={styles.inputContainer}>
-              <Text style={styles.textInput2}>{getFormattedTime(time)}</Text>
+              <Text style={styles.textInput2}>{mealType}</Text>
             </View>
-            {show && (
-              <DateTimePicker
-                testID="dateTimePicker"
-                value={time}
-                mode={'time'}
-                is24Hour={true}
-                onChange={onTimeChange}
-                display={'default'}
-                textColor={theme.colors.secondary}
-              />
-            )}
-            <Text style={styles.inputLabel}>Time</Text>
+            {show &&
+              <Picker
+                selectedValue={mealType}
+                onValueChange={(itemValue) => setMealType(itemValue)}
+                itemStyle={{color: theme.colors.secondary}}
+                returnKeyType={'done'}
+              >
+                <Picker.Item label="Snack" value="Snack" />
+                <Picker.Item label="Breakfast" value="Breakfast" />
+                <Picker.Item label="Lunch" value="Lunch" />
+                <Picker.Item label="Dinner" value="Dinner" />
+              </Picker>
+            }
+            {!show && <Text style={styles.inputLabel}>Meal Type</Text>}
           </TouchableOpacity>
 
         </View>
