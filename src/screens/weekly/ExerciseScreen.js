@@ -1,6 +1,11 @@
 import React, { memo, useState } from 'react';
+
 import { GreenBackground } from '../../components/Background';
 import Button from '../../components/Button';
+import WhiteContainer from "../../components/WhiteContainer";
+import BackButton from "../../components/BackButton";
+import Header from "../../components/Header";
+
 import {
   View,
   Text,
@@ -9,105 +14,22 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {Picker} from '@react-native-community/picker';
 
 import {theme} from "../../core/theme";
-import WhiteContainer from "../../components/WhiteContainer";
+
 
 
 const ExerciseScreen = ({ navigation }) => {
-
-  const [query, setQuery] = useState('');
-  const [foodList, setFoodList] = useState(FOOD_LIST);
-  const [quantity, setQuantity] = useState(0);
-  const [mealType, setMealType] = useState('Snack');
-  const [show, setShow] = useState(false);
-  const [isSelected, setIsSelected] = useState(-1);
-
-  const _onChangeText = text => {
-    setQuery(text);
-    const newList = FOOD_LIST.filter(food => food.includes(text.toLowerCase()));
-    setFoodList(newList);
-  };
-
-  const FoodList = foodList.map( (food, idx) => (
-    <TouchableOpacity
-      style={[styles.foodContainer, isSelected === idx && styles.isActive]}
-      onPress={()=> setIsSelected(idx)}
-      key={idx}
-    >
-      <MaterialCommunityIcons name="food-apple" size={24} color="#aaa" />
-      <Text style={styles.foodLabel}>{food.toUpperCase()}</Text>
-    </TouchableOpacity>
-  ));
-
-  const _onChangeQuantity = text => {
-    let qty = text.replace(/\D/g, '');
-    if(qty === '')
-      qty = 0;
-    else
-      qty = parseInt(qty);
-    setQuantity(qty);
-  };
-
-
   return (
     <GreenBackground notAvoidingKeyboard={true}>
-      <Text style={styles.header}>Weekly Exercise</Text>
+      <BackButton goBack={() => navigation.navigate('TabNavigator')} />
+      <Header white>Weekly Exercise</Header>
 
       <WhiteContainer>
         <Text style={styles.foodDiaryHeader}>Food Diary</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={_onChangeText}
-          value={query}
-          placeholder={'SEARCH'}
-        />
-
-        <ScrollView style={styles.scrollView}>
-          {FoodList}
-        </ScrollView>
-
-
-        <View style={styles.inputContainerRow}>
-          <View style={styles.inputContainerCol}>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.textInput2}
-                onChangeText={_onChangeQuantity}
-                value={quantity.toString()}
-                keyboardType={'number-pad'}
-                textAlign={'center'}
-                returnKeyType={'done'}
-
-              />
-            </View>
-            <Text style={styles.inputLabel}>Quantity</Text>
-          </View>
-
-          <TouchableOpacity style={styles.inputContainerCol} onPress={() => setShow(s => !s)}>
-            <View style={styles.inputContainer}>
-              <Text style={styles.textInput2}>{mealType}</Text>
-            </View>
-            {show &&
-            <Picker
-              selectedValue={mealType}
-              onValueChange={(itemValue) => setMealType(itemValue)}
-              itemStyle={{color: theme.colors.secondary}}
-              returnKeyType={'done'}
-            >
-              <Picker.Item label="Snack" value="Snack" />
-              <Picker.Item label="Breakfast" value="Breakfast" />
-              <Picker.Item label="Lunch" value="Lunch" />
-              <Picker.Item label="Dinner" value="Dinner" />
-            </Picker>
-            }
-            {!show && <Text style={styles.inputLabel}>Meal Type</Text>}
-          </TouchableOpacity>
-
-        </View>
 
       </WhiteContainer>
 
