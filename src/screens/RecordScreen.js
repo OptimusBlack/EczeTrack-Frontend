@@ -43,7 +43,9 @@ const RecordScreen = ({ navigation }) => {
   const FoodList = foodList.map( (food, idx) => (
     <TouchableOpacity
       style={[styles.foodContainer, isSelected === idx && styles.isActive]}
-      onPress={()=> setIsSelected(idx)}>
+      onPress={()=> setIsSelected(idx)}
+      key={idx}
+    >
       <MaterialCommunityIcons name="food-apple" size={24} color="#aaa" />
       <Text style={styles.foodLabel}>{food.toUpperCase()}</Text>
     </TouchableOpacity>
