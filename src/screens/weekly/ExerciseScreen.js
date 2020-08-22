@@ -16,18 +16,8 @@ import {Picker} from '@react-native-community/picker';
 import {theme} from "../../core/theme";
 import WhiteContainer from "../../components/WhiteContainer";
 
-const FOOD_LIST = [
-  "apple",
-  "pear",
-  "lemon",
-  "pineapple",
-  "starfruit",
-  "watermelon",
-  "peach",
-  "banana",
-];
 
-const DietScreen = ({ navigation }) => {
+const ExerciseScreen = ({ navigation }) => {
 
   const [query, setQuery] = useState('');
   const [foodList, setFoodList] = useState(FOOD_LIST);
@@ -65,7 +55,7 @@ const DietScreen = ({ navigation }) => {
 
   return (
     <GreenBackground notAvoidingKeyboard={true}>
-      <Text style={styles.header}>Daily Diet Record</Text>
+      <Text style={styles.header}>Weekly Exercise</Text>
 
       <WhiteContainer>
         <Text style={styles.foodDiaryHeader}>Food Diary</Text>
@@ -102,17 +92,17 @@ const DietScreen = ({ navigation }) => {
               <Text style={styles.textInput2}>{mealType}</Text>
             </View>
             {show &&
-              <Picker
-                selectedValue={mealType}
-                onValueChange={(itemValue) => setMealType(itemValue)}
-                itemStyle={{color: theme.colors.secondary}}
-                returnKeyType={'done'}
-              >
-                <Picker.Item label="Snack" value="Snack" />
-                <Picker.Item label="Breakfast" value="Breakfast" />
-                <Picker.Item label="Lunch" value="Lunch" />
-                <Picker.Item label="Dinner" value="Dinner" />
-              </Picker>
+            <Picker
+              selectedValue={mealType}
+              onValueChange={(itemValue) => setMealType(itemValue)}
+              itemStyle={{color: theme.colors.secondary}}
+              returnKeyType={'done'}
+            >
+              <Picker.Item label="Snack" value="Snack" />
+              <Picker.Item label="Breakfast" value="Breakfast" />
+              <Picker.Item label="Lunch" value="Lunch" />
+              <Picker.Item label="Dinner" value="Dinner" />
+            </Picker>
             }
             {!show && <Text style={styles.inputLabel}>Meal Type</Text>}
           </TouchableOpacity>
@@ -213,4 +203,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(DietScreen);
+export default memo(ExerciseScreen);

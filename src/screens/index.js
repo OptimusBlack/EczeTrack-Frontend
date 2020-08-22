@@ -7,3 +7,5 @@ export { default as TermsAndConditions } from './auth/TermsAndConditions';
 export { default as PersonalInformationCollectionStatement } from './auth/PersonalInformationCollectionStatement';
 export { default as ResetPassword } from './auth/ResetPassword';
 export { default as TabNavigator } from './TabNavigator';
+
+export { default as ExerciseScreen } from './weekly/ExerciseScreen';

@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0ffb349-1a24-4a16-8fc5-495ec42a9711" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/screens/TabNavigator/DailyScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/TabNavigator/WeeklyScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/WhiteContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/weekly/ExerciseScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/weekly/SleepScreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/weekly/StressScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/RecordScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/daily/DietScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SecondScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/SettingScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/TabNavigator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/daily/Dermatology.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/daily/Dermatology.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/daily/DietScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/daily/DietScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,10 +25,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/screens/daily/DietScreen.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-293">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#2524#2676#0" />
+                <element signature="e#2686#2767#0" />
+                <element signature="e#2778#4217#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="89" column="18" lean-forward="true" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+            <state relative-caret-position="-38">
+              <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -34,32 +50,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/screens/daily/DietScreen.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/screens/weekly/ExerciseScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="142" column="27" selection-start-line="142" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
+            <state relative-caret-position="281">
+              <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
-                <element signature="e#958#1090#0" />
-                <element signature="e#1147#1444#0" />
-                <element signature="e#1500#1609#0" />
-                <element signature="e#1647#1975#0" />
+                <element signature="e#1835#1987#0" />
+                <element signature="e#1997#2078#0" />
+                <element signature="e#2089#3528#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/index.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/WhiteContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <element signature="e#297#348#0" expanded="true" />
-                <element signature="e#552#577#0" />
+                <element signature="e#0#46#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/screens/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -67,11 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/SettingScreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="33" selection-end-line="25" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="19" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -79,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="16" />
+            <state relative-caret-position="433">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -121,6 +140,8 @@
       <find>render</find>
       <find>blue</find>
       <find>navigationText</find>
+      <find>yell</find>
+      <find>isS</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,23 +165,27 @@
         <option value="$PROJECT_DIR$/src/screens/auth/LoginScreen.js" />
         <option value="$PROJECT_DIR$/src/screens/HomeScreen.js" />
         <option value="$PROJECT_DIR$/src/screens/auth/RegisterScreen.js" />
-        <option value="$PROJECT_DIR$/src/screens/index.js" />
         <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/src/components/TimeRangeSelector.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/screens/daily/dermatology.js" />
         <option value="$PROJECT_DIR$/src/screens/TabNavigator.js" />
         <option value="$PROJECT_DIR$/src/components/Background.js" />
         <option value="$PROJECT_DIR$/src/screens/Dashboard.js" />
-        <option value="$PROJECT_DIR$/src/screens/daily/Dermatology.js" />
         <option value="$PROJECT_DIR$/src/screens/RecordScreen.js" />
         <option value="$PROJECT_DIR$/src/screens/TabNavigator/Daily.js" />
         <option value="$PROJECT_DIR$/src/screens/TabNavigator/Weekly.js" />
         <option value="$PROJECT_DIR$/src/screens/TabNavigator/DailyScreen.js" />
         <option value="$PROJECT_DIR$/src/screens/TabNavigator/WeeklyScreen.js" />
         <option value="$PROJECT_DIR$/src/screens/DietScreen.js" />
-        <option value="$PROJECT_DIR$/src/screens/daily/DietScreen.js" />
         <option value="$PROJECT_DIR$/src/screens/TabNavigator/index.js" />
+        <option value="$PROJECT_DIR$/src/screens/weekly/StressScreen.js" />
+        <option value="$PROJECT_DIR$/src/screens/weekly/SleepScreen.js" />
+        <option value="$PROJECT_DIR$/src/screens/daily/Dermatology.js" />
+        <option value="$PROJECT_DIR$/src/screens/index.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/components/WhiteContainer.js" />
+        <option value="$PROJECT_DIR$/src/screens/daily/DietScreen.js" />
+        <option value="$PROJECT_DIR$/src/screens/weekly/ExerciseScreen.js" />
       </list>
     </option>
   </component>
@@ -199,6 +224,12 @@
               <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -207,13 +238,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="screens" type="462c0819:PsiDirectoryNode" />
               <item name="daily" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="screens" type="462c0819:PsiDirectoryNode" />
-              <item name="TabNavigator" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -266,15 +290,16 @@
       <workItem from="1596939504833" duration="51103000" />
       <workItem from="1597669821120" duration="1963000" />
       <workItem from="1597915797435" duration="2811000" />
-      <workItem from="1598084919891" duration="7997000" />
+      <workItem from="1598084919891" duration="10336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67742000" />
+    <option name="totallyTimeSpent" value="70081000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="413" y="23" width="1040" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2188755" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -290,7 +315,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32738853" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32738853" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -498,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Button.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -531,36 +549,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/body_image.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="89" column="18" lean-forward="true" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/daily/Dermatology.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/SettingScreen.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="33" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/DailyScreen.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -593,10 +581,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-213">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#297#348#0" expanded="true" />
+            <element signature="e#552#577#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/SettingScreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/weekly/SleepScreen.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/weekly/StressScreen.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/daily/Dermatology.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="52" column="19" lean-forward="true" selection-end-line="99" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="16" />
+        <state relative-caret-position="433">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/WhiteContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-38">
+          <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
           </folding>
@@ -605,26 +655,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/daily/DietScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="142" column="27" selection-start-line="142" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
+        <state relative-caret-position="-293">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
-            <element signature="e#0#46#0" expanded="true" />
-            <element signature="e#958#1090#0" />
-            <element signature="e#1147#1444#0" />
-            <element signature="e#1500#1609#0" />
-            <element signature="e#1647#1975#0" />
+            <element signature="e#2524#2676#0" />
+            <element signature="e#2686#2767#0" />
+            <element signature="e#2778#4217#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/index.js">
+    <entry file="file://$PROJECT_DIR$/src/screens/weekly/ExerciseScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+        <state relative-caret-position="281">
+          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
-            <element signature="e#297#348#0" expanded="true" />
-            <element signature="e#552#577#0" />
+            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#1835#1987#0" />
+            <element signature="e#1997#2078#0" />
+            <element signature="e#2089#3528#0" />
           </folding>
         </state>
       </provider>

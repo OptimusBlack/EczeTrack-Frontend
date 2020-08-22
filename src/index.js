@@ -10,7 +10,9 @@ import {
   TermsAndConditions,
   PersonalInformationCollectionStatement,
   ResetPassword,
-  TabNavigator
+  TabNavigator,
+
+  ExerciseScreen
 } from './screens';
 
 const Router = createStackNavigator(
@@ -23,10 +25,12 @@ const Router = createStackNavigator(
     MedicalDisclaimer,
     TermsAndConditions,
     PersonalInformationCollectionStatement,
-    ResetPassword
+    ResetPassword,
+
+    ExerciseScreen
   },
   {
-    initialRouteName: 'HomeScreen',
+    initialRouteName: 'ExerciseScreen',
     headerMode: 'none',
   }
 );
