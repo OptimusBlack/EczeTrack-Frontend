@@ -48,9 +48,9 @@ const Dashboard = ({ navigation }) => {
           />
           
           <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}></Chart>
-          
-          <Text style={styles.navigationText}>Two-factor Comparison</Text>
-
+          <View style={styles.navigationContainer}>
+            <Text style={styles.navigationText}>Two-factor Comparison</Text>
+          </View>
           <IconButton 
             icon="transfer-down"
             onPress={() => carouselRef.current.snapToNext()}
@@ -82,9 +82,9 @@ const Dashboard = ({ navigation }) => {
           />
         </View>
         <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
-        
-        <Text style={styles.navigationText}>Case History</Text>
-
+        <View style={styles.navigationContainer}>
+          <Text style={styles.navigationText}>Case History</Text>
+        </View>
         <IconButton 
             icon="transfer-up"
             onPress={() => carouselRef.current.snapToPrev()}
@@ -150,16 +150,20 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: theme.colors.primary
   },
-  navigationText: {
-    color: theme.colors.primary,
-    fontWeight: 'bold',
+  navigationContainer:{
+    justifyContent: 'center',
+    alignItems: 'center',
     borderWidth: 2,
     borderRadius: 10,
     width: 150,
     height: 25,
+    borderColor: theme.colors.primary,
+  },
+  navigationText: {
+    color: theme.colors.primary,
+    fontWeight: 'bold',
     textAlign: "center",
     textAlignVertical: 'center',
-    borderColor: theme.colors.primary,
     fontSize: 10,
   }
 })
