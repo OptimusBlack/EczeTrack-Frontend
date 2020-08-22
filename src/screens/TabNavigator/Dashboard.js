@@ -5,7 +5,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Chart from '../../components/Chart';
 import TimeRangeSelector from '../../components/TimeRangeSelector';
 import { AsyncStorage, View, StyleSheet, Text } from 'react-native';
-import Button from '../../components/Button';
 import Carousel from 'react-native-snap-carousel';
 import { theme } from '../../core/theme';
 import { factorList } from '../dataItems/factorList';
