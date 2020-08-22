@@ -7,9 +7,7 @@ import {
   Text,
   StyleSheet,
   Image,
-  TextInput, ScrollView } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import DateTimePicker from '@react-native-community/datetimepicker';
+} from 'react-native';
 import {theme} from "../../core/theme";
 
 

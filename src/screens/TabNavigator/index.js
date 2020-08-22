@@ -23,7 +23,7 @@ const tabBarOptions = {
     backgroundColor: 'transparent',
     zIndex: 10
   },
-  tabStyle: { paddingVertical: 0  },
+  tabStyle: { paddingVertical: 5  },
   indicatorStyle: { backgroundColor: 'white' },
   labelStyle: { fontSize: 10 }
 };
