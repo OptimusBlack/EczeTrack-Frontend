@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
-import { GreenBackground } from '../components/Background';
-import Header from '../components/Header';
-import Button from '../components/Button';
+import { GreenBackground } from '../../components/Background';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 import {Picker} from '@react-native-community/picker';
 
-import {theme} from "../core/theme";
+import {theme} from "../../core/theme";
 
 const FOOD_LIST = [
   "apple",
@@ -28,7 +28,7 @@ const FOOD_LIST = [
   "banana",
 ];
 
-const RecordScreen = ({ navigation }) => {
+const DietScreen = ({ navigation }) => {
 
   const [query, setQuery] = useState('');
   const [foodList, setFoodList] = useState(FOOD_LIST);
@@ -245,4 +245,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(RecordScreen);
+export default memo(DietScreen);

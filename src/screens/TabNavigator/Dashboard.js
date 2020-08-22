@@ -1,14 +1,14 @@
 import React, { memo, useState, useRef } from 'react';
-import { GreenBackground } from '../components/Background';
-import Header from '../components/Header';
+import { GreenBackground } from '../../components/Background';
+import Header from '../../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Chart from '../components/Chart';
-import TimeRangeSelector from '../components/TimeRangeSelector';
+import Chart from '../../components/Chart';
+import TimeRangeSelector from '../../components/TimeRangeSelector';
 import { AsyncStorage, View, StyleSheet, Text } from 'react-native';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import Carousel from 'react-native-snap-carousel';
-import { theme } from '../core/theme';
-import { factorList } from './dataItems/factorList';
+import { theme } from '../../core/theme';
+import { factorList } from '../dataItems/factorList';
 import { IconButton } from 'react-native-paper';
 
 

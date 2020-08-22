@@ -1,11 +1,11 @@
 import React, { memo, useState } from 'react';
-import { GreenBackground } from '../components/Background';
-import Header from '../components/Header';
+import { GreenBackground } from '../../components/Background';
+import Header from '../../components/Header';
 import { AsyncStorage } from 'react-native';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 
 
-const SecondScreen = ({ navigation }) => {
+const SettingScreen = ({ navigation }) => {
   const onLogout = () => {
     AsyncStorage.removeItem('user', () => navigation.navigate('HomeScreen'));
   };
@@ -13,7 +13,7 @@ const SecondScreen = ({ navigation }) => {
 
   return (
     <GreenBackground>
-      <Header>Second Screen</Header>
+      <Header>Weekly Screen</Header>
 
       <Button mode="outlined" onPress={onLogout}>
         Logout
@@ -22,4 +22,4 @@ const SecondScreen = ({ navigation }) => {
   );
 };
 
-export default memo(SecondScreen);
+export default memo(SettingScreen);
