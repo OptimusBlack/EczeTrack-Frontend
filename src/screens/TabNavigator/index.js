@@ -20,12 +20,11 @@ const tabBarOptions = {
   showIcon: true,
   showLabel: true,
   style: {
-    backgroundColor: '#2E765E',
+    backgroundColor: 'transparent',
     zIndex: 10
   },
   tabStyle: { paddingVertical: 0  },
   indicatorStyle: { backgroundColor: 'white' },
-  iconStyle: { height: 60 },
   labelStyle: { fontSize: 10 }
 };
 

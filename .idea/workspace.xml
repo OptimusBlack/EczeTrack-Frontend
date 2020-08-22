@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0ffb349-1a24-4a16-8fc5-495ec42a9711" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/screens/TabNavigator/DailyScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/TabNavigator/WeeklyScreen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/RecordScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/daily/DietScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SecondScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/SettingScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/TabNavigator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,7 +19,7 @@
         <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="457">
-              <caret line="89" column="18" lean-forward="true" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+              <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -38,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/screens/daily/DietScreen.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1575">
-              <caret line="142" column="27" selection-start-line="142" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
+              <caret line="144" column="27" selection-start-line="144" selection-start-column="27" selection-end-line="145" selection-end-column="27" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
                 <element signature="e#958#1090#0" />
@@ -53,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+            <state relative-caret-position="342">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
                 <element signature="e#297#348#0" expanded="true" />
@@ -266,17 +259,18 @@
       <workItem from="1596939504833" duration="51103000" />
       <workItem from="1597669821120" duration="1963000" />
       <workItem from="1597915797435" duration="2811000" />
-      <workItem from="1598084919891" duration="7997000" />
+      <workItem from="1598084919891" duration="8538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67742000" />
+    <option name="totallyTimeSpent" value="68283000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="413" y="23" width="1040" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2188755" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2188755" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -535,7 +529,7 @@
     <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
-          <caret line="89" column="18" lean-forward="true" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+          <caret line="88" column="18" lean-forward="true" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
           </folding>
@@ -606,7 +600,7 @@
     <entry file="file://$PROJECT_DIR$/src/screens/daily/DietScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1575">
-          <caret line="142" column="27" selection-start-line="142" selection-start-column="27" selection-end-line="143" selection-end-column="27" />
+          <caret line="144" column="27" selection-start-line="144" selection-start-column="27" selection-end-line="145" selection-end-column="27" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
             <element signature="e#958#1090#0" />
@@ -619,8 +613,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/TabNavigator/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+        <state relative-caret-position="342">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
             <element signature="e#297#348#0" expanded="true" />
