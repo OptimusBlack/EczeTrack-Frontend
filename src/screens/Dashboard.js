@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useRef } from 'react';
 import { GreenBackground } from '../components/Background';
 import Header from '../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import Carousel from 'react-native-snap-carousel';
 import { theme } from '../core/theme';
 import { factorList } from './dataItems/factorList';
+import { IconButton } from 'react-native-paper';
 
 
 const Dashboard = ({ navigation }) => {
@@ -26,6 +27,7 @@ const Dashboard = ({ navigation }) => {
       data: [[3, 0, 0.5, 1.5, 2, 0], [1, 0, 0.5, 0.5, 3, 0]]
     }
   ]);
+  const carouselRef = useRef(null);
 
   const onLogout = () => {
     AsyncStorage.removeItem('user', () => navigation.navigate('HomeScreen'));
@@ -36,6 +38,7 @@ const Dashboard = ({ navigation }) => {
       return(
         <View style={styles.carouselItemContainer} >
           <Header>{item.header}</Header>
+          
           <DropDownPicker
             items={factorList}
             defaultValue={factor}
@@ -43,8 +46,17 @@ const Dashboard = ({ navigation }) => {
             style={styles.selector}
             onChangeItem={(item) => setFactor(item.value)}
           />
-  
+          
           <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}></Chart>
+          
+          <Text style={styles.navigationText}>Two-factor Comparison</Text>
+
+          <IconButton 
+            icon="transfer-down"
+            onPress={() => carouselRef.current.snapToNext()}
+            color={theme.colors.primary}
+            size={40}
+          />
         </View>
       );
     }
@@ -68,8 +80,17 @@ const Dashboard = ({ navigation }) => {
             style={styles.selector}
             onChangeItem={(item) => setFactor2(item.value)}
           />
-          <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
-        </View>        
+        </View>
+        <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
+        
+        <Text style={styles.navigationText}>Case History</Text>
+
+        <IconButton 
+            icon="transfer-up"
+            onPress={() => carouselRef.current.snapToPrev()}
+            color={theme.colors.primary}
+            size={40}
+          />
       </View>
     );
   }
@@ -82,9 +103,10 @@ const Dashboard = ({ navigation }) => {
       <View style={styles.container}>
         <Carousel
           layout={"default"}
+          ref={carouselRef}
           data={carouselItems}
-          sliderHeight={400}
-          itemHeight={400}
+          sliderHeight={500}
+          itemHeight={500}
           renderItem={_renderItem}
           vertical
         >
@@ -105,7 +127,7 @@ const styles = StyleSheet.create({
   carouselItemContainer: {
     alignItems: 'center', 
     backgroundColor: theme.colors.surface,
-    borderRadius: 5,
+    borderRadius: 10,
     borderWidth: 2,
     borderColor: theme.colors.primary,
     padding: 10
@@ -127,6 +149,18 @@ const styles = StyleSheet.create({
   selector: {
     borderWidth: 2,
     borderColor: theme.colors.primary
+  },
+  navigationText: {
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+    borderWidth: 2,
+    borderRadius: 10,
+    width: 150,
+    height: 25,
+    textAlign: "center",
+    textAlignVertical: 'center',
+    borderColor: theme.colors.primary,
+    fontSize: 10,
   }
 })
 
