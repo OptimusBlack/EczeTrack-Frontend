@@ -9,3 +9,5 @@ export { default as ResetPassword } from './auth/ResetPassword';
 export { default as TabNavigator } from './TabNavigator';
 
 export { default as ExerciseScreen } from './weekly/ExerciseScreen';
+export { default as SleepScreen } from './weekly/SleepScreen';
+export { default as StressScreen } from './weekly/StressScreen';
