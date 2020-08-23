@@ -34,7 +34,7 @@ const Router = createStackNavigator(
     StressScreen
   },
   {
-    initialRouteName: 'StressScreen',
+    initialRouteName: 'HomeScreen',
     headerMode: 'none',
   }
 );
