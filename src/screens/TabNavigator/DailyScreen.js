@@ -1,25 +1,44 @@
 import React, { memo, useState } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
-import { AsyncStorage } from 'react-native';
-import Button from '../../components/Button';
+import { StyleSheet, View } from 'react-native';
+import { factorList } from '../dataItems/factorList.js';
+import RecordScreenButton from '../../components/RecordScreenButton';
 
-
-const SettingScreen = ({ navigation }) => {
-  const onLogout = () => {
-    AsyncStorage.removeItem('user', () => navigation.navigate('HomeScreen'));
-  };
-
+const DailyScreen = ({ navigation }) => {
+  const icons = ['hand-paper', 'pills', 'globe', 'apple-alt'];
 
   return (
     <GreenBackground>
-      <Header>Daily Screen</Header>
-
-      <Button mode="outlined" onPress={onLogout}>
-        Logout
-      </Button>
+      <Header white style={styles.header}>
+        Your records for {(new Date()).toDateString()}
+      </Header>
+      <View style={styles.container}>
+        {factorList.slice(0, 4).map((e, idx) =>
+          <RecordScreenButton
+            key={idx}
+            ticked
+            icon={icons[idx]}
+          >
+            {e.label}
+          </RecordScreenButton>
+        )}
+      </View>
     </GreenBackground>
   );
 };
 
-export default memo(SettingScreen);
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 20,
+    marginTop: 30,
+    marginBottom: 30
+  },
+  container: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'stretch'
+  }
+})
+
+export default memo(DailyScreen);
