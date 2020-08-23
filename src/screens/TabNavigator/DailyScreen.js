@@ -7,6 +7,7 @@ import RecordScreenButton from '../../components/RecordScreenButton';
 
 const DailyScreen = ({ navigation }) => {
   const icons = ['hand-paper', 'pills', 'globe', 'apple-alt'];
+  const screenNavigation = ['SymptomScreen', '', 'DietScreen', ''];
 
   return (
     <GreenBackground>
@@ -19,6 +20,7 @@ const DailyScreen = ({ navigation }) => {
             key={idx}
             ticked
             icon={icons[idx]}
+            onPress={() => navigation.navigate(screenNavigation[idx])}
           >
             {e.label}
           </RecordScreenButton>

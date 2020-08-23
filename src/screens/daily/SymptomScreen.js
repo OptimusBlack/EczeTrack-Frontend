@@ -11,9 +11,7 @@ import {
 import {theme} from "../../core/theme";
 
 
-const Dermatology = ({ navigation }) => {
-
-
+const SymptomScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={true} containerStyle={styles.bgContainer}>
       <Text style={styles.header}>Daily Dermatology</Text>
@@ -96,4 +94,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(Dermatology);
+export default memo(SymptomScreen);
