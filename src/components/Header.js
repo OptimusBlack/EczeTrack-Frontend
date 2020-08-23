@@ -16,7 +16,8 @@ const Header = ({ children, white, style }) => {
 const styles = StyleSheet.create({
   header: {
     fontSize: 14,
-    paddingVertical: 14
+    paddingVertical: 14,
+    textAlign: "center"
   }
 });
 
