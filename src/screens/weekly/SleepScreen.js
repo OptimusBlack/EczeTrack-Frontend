@@ -15,10 +15,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  TextInput,
   ScrollView,
-  Platform
 } from 'react-native';
 
 

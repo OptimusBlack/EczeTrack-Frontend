@@ -17,8 +17,10 @@ const HomeScreen = ({ navigation }) => {
 
   Promise.all([getUser, getURL])
     .then(([user, { path, queryParams }]) => {
-      if(user)
+      if(user){
+        console.log("USER:", user);
         navigation.navigate('TabNavigator');
+      }
       else {
         if(queryParams && queryParams.token)
           navigation.navigate('ResetPassword', {token: queryParams.token});

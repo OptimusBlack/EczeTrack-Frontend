@@ -13,12 +13,8 @@ import questions from '../../data/stressQuestions';
 
 import {
   View,
-  Text,
   StyleSheet,
-  TouchableOpacity,
-  TextInput,
   ScrollView,
-  Platform
 } from 'react-native';
 
 
