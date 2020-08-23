@@ -46,7 +46,6 @@ const StressScreen = ({ navigation }) => {
         setError(i);
         return;
       }
-      console.log(values);
     }
 
   };

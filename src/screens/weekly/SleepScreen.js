@@ -44,7 +44,6 @@ const SleepScreen = ({ navigation }) => {
         setError(i);
         return;
       }
-      console.log(values);
     }
 
   };
