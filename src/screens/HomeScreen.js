@@ -20,7 +20,6 @@ const HomeScreen = ({ navigation }) => {
       if(user)
         navigation.navigate('TabNavigator');
       else {
-        console.log('Opening with URL:', queryParams);
         if(queryParams && queryParams.token)
           navigation.navigate('ResetPassword', {token: queryParams.token});
         else

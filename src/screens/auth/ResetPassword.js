@@ -31,7 +31,6 @@ const ResetPassword = ({route,  navigation }) => {
     }
 
     const response = await resetPassword(token, password.value);
-    console.log("Response in ResetPassword", response);
     if (response && response.code){
       setPassword({ error: response.message });
     }

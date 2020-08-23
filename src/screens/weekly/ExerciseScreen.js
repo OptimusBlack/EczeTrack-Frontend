@@ -45,7 +45,6 @@ const ExerciseScreen = ({ navigation }) => {
         setError(i);
         return;
       }
-      console.log(values);
     }
 
   };
