@@ -112,9 +112,6 @@ const Dashboard = ({ navigation }) => {
         </Carousel>
       </View>
 
-      {/* <Button mode="outlined" onPress={onLogout}>
-        Logout
-      </Button> */}
     </GreenBackground>
   );
 };

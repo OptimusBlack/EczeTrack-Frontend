@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 const WhiteContainer = ({ navigation, style, children }) =>
-  <View style={[styles.container, style]}>{children}</View>;
+  <View style={[styles.container, style]} children={children}/>;
 
 const styles = StyleSheet.create({
   container:{

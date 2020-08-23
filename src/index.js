@@ -12,7 +12,9 @@ import {
   ResetPassword,
   TabNavigator,
 
-  ExerciseScreen
+  ExerciseScreen,
+  SleepScreen,
+  StressScreen
 } from './screens';
 
 const Router = createStackNavigator(
@@ -27,10 +29,12 @@ const Router = createStackNavigator(
     PersonalInformationCollectionStatement,
     ResetPassword,
 
-    ExerciseScreen
+    ExerciseScreen,
+    SleepScreen,
+    StressScreen
   },
   {
-    initialRouteName: 'ExerciseScreen',
+    initialRouteName: 'StressScreen',
     headerMode: 'none',
   }
 );

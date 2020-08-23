@@ -5,6 +5,10 @@ import Button from '../../components/Button';
 import WhiteContainer from "../../components/WhiteContainer";
 import BackButton from "../../components/BackButton";
 import Header from "../../components/Header";
+import QuestionContainer from "../../components/QuestionContainer";
+import QuestionText from "../../components/QuestionText";
+
+import questions from '../../data/exerciseQuestions';
 
 import {
   View,
@@ -12,28 +16,75 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  ScrollView
+  ScrollView,
+  Platform
 } from 'react-native';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import {Picker} from '@react-native-community/picker';
 
 import {theme} from "../../core/theme";
 
 
 
 const ExerciseScreen = ({ navigation }) => {
+  const [q1, setQ1] = useState('');
+  const [q2, setQ2] = useState('');
+  const [q3, setQ3] = useState('');
+  const [q4, setQ4] = useState('');
+  const [q5, setQ5] = useState('');
+  const [q6, setQ6] = useState('');
+  const [q7, setQ7] = useState('');
+  const [error, setError] = useState(-1);
+
+  const values = [q1, q2, q3, q4, q5, q6, q7];
+  const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6, setQ7];
+  const refs = [0,0,0,0,0,0,0];
+
+  const validate = ()=>{
+    for(let i=0; i<values.length; i++){
+      if(isNaN(parseInt(values[i]))){
+        setError(i);
+        return;
+      }
+      console.log(values);
+    }
+
+  };
+
+  const allQuestions = questions.map( (q, i) => (
+    <QuestionContainer questionNumber={i+1} key={i}>
+      <QuestionText>{q.question}</QuestionText>
+      <View style={styles.answerContainer}>
+        <TextInput
+          style={styles.inputBox}
+          keyboardType = 'numeric'
+          value={values[i]}
+          returnKeyType={Platform.OS === 'ios' ? 'done' : i< questions.length - 1 ? 'next' : 'submit'}
+          onChangeText={val => setters[i](val)}
+          ref={(input) => { refs[i] = input }}
+          onSubmitEditing={() => { i< questions.length - 1 ? refs[i+1].focus() : validate() }}
+          blurOnSubmit={false}
+        />
+        <Text>{q.unit}</Text>
+        {error === i && <Text style={styles.error}>Enter a valid value</Text>}
+      </View>
+    </QuestionContainer>
+  ));
+
+
+
   return (
-    <GreenBackground notAvoidingKeyboard={true}>
+    <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Header white>Weekly Exercise</Header>
 
       <WhiteContainer>
-        <Text style={styles.foodDiaryHeader}>Food Diary</Text>
+        <ScrollView style={{alignSelf: 'stretch'}}>
+          {allQuestions}
+        </ScrollView>
 
       </WhiteContainer>
 
-      <Button mode="contained">Confirm</Button>
+      <Button mode="contained" onPress={validate}>Confirm</Button>
 
 
     </GreenBackground>
@@ -41,86 +92,24 @@ const ExerciseScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  header:{
-    fontSize: 15,
-    color: 'white',
-    marginBottom: 30
-  },
-  container:{
-    height: '70%',
-    borderRadius: 10,
-    alignSelf: 'stretch',
-    padding: 20,
-    backgroundColor: 'white',
-    minHeight: 300
-  },
-  textInput: {
-    borderColor: theme.colors.primary,
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingVertical: 5,
-    paddingHorizontal: 20,
-    marginBottom: 15,
-    width: '70%',
-    alignSelf: 'center',
-
-  },
-  foodContainer: {
+  answerContainer:{
     flexDirection: 'row',
-    paddingVertical: 10,
-    borderBottomColor: '#ddd',
+    alignItems: 'flex-end'
+  },
+  inputBox:{
+    width: 50,
     borderBottomWidth: 1,
-    alignItems: 'center',
-    paddingHorizontal: 20
+    borderBottomColor: 'rgba(0,0,0,0.3)',
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    marginRight: 5
   },
-  isActive: {
-    backgroundColor: theme.colors.surface
-  },
-  foodDiaryHeader:{
-    color: theme.colors.primary,
-    textAlign: 'center',
-    fontSize: 14,
-    marginBottom: 20
-  },
-  foodLabel:{
-    color: '#555',
-    marginLeft: 20,
-    fontWeight: 'bold',
-    fontSize: 12
-  },
-  scrollView: {
-    borderColor: theme.colors.primary,
-    borderWidth: 1,
-    borderRadius: 10,
+  error: {
+    color: theme.colors.error,
+    fontSize: 12,
+    flex: 1,
+    textAlign: 'right'
 
-  },
-  inputContainerRow:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignSelf: 'stretch',
-    marginVertical: 10
-  },
-  inputContainerCol:{
-    width: '48%',
-  },
-  inputContainer:{
-    borderWidth: 3,
-    borderColor: theme.colors.primary,
-    paddingVertical: 15,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textInput2: {
-    width: '100%',
-    color: theme.colors.primary,
-    fontSize: 25,
-    textAlign: 'center'
-  },
-  inputLabel:{
-    color: theme.colors.primary,
-    fontSize: 10,
-    marginTop: 5
   }
 });
 
