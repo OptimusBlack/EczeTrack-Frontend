@@ -11,3 +11,6 @@ export { default as TabNavigator } from './TabNavigator';
 export { default as ExerciseScreen } from './weekly/ExerciseScreen';
 export { default as SleepScreen } from './weekly/SleepScreen';
 export { default as StressScreen } from './weekly/StressScreen';
+
+export { default as SymptomScreen } from './daily/SymptomScreen';
+export { default as DietScreen } from './daily/DietScreen';

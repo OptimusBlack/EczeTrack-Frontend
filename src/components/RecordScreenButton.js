@@ -2,9 +2,10 @@ import React, { memo } from 'react';
 import { TouchableOpacity, StyleSheet, Text, ImageBackground } from 'react-native';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 
-const RecordScreenButton = ({ children, ticked, icon }) => (
+const RecordScreenButton = ({ children, ticked, icon, onPress }) => (
   <TouchableOpacity
     style={styles.button}
+    onPress={onPress}
   >
     <ImageBackground
       source={require('../assets/button_background.png')}
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     flex: 1
   },

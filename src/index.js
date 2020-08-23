@@ -14,7 +14,10 @@ import {
 
   ExerciseScreen,
   SleepScreen,
-  StressScreen
+  StressScreen,
+
+  SymptomScreen,
+  DietScreen
 } from './screens';
 
 const Router = createStackNavigator(
@@ -31,7 +34,10 @@ const Router = createStackNavigator(
 
     ExerciseScreen,
     SleepScreen,
-    StressScreen
+    StressScreen,
+
+    SymptomScreen,
+    DietScreen
   },
   {
     initialRouteName: 'HomeScreen',
