@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import { StyleSheet, View } from 'react-native';
@@ -6,7 +6,7 @@ import { factorList } from '../dataItems/factorList.js';
 import RecordScreenButton from '../../components/RecordScreenButton';
 
 const DailyScreen = ({ navigation }) => {
-  const icons = ['hand-paper', 'pills', 'globe', 'apple-alt'];
+  const icons = ['hand-paper', 'pills', 'apple-alt', 'globe'];
   const screenNavigation = ['SymptomScreen', '', 'DietScreen', ''];
 
   return (
@@ -28,7 +28,7 @@ const DailyScreen = ({ navigation }) => {
       </View>
     </GreenBackground>
   );
-};
+}
 
 const styles = StyleSheet.create({
   header: {
@@ -41,6 +41,6 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'stretch'
   }
-})
+});
 
 export default memo(DailyScreen);
