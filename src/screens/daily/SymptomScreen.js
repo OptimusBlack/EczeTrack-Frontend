@@ -9,11 +9,13 @@ import {
   Image,
 } from 'react-native';
 import {theme} from "../../core/theme";
+import BackButton from "../../components/BackButton";
 
 
 const SymptomScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={true} containerStyle={styles.bgContainer}>
+      <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Text style={styles.header}>Daily Dermatology</Text>
 
       <View style={styles.container}>

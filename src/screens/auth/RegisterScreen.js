@@ -40,7 +40,7 @@ const RegisterScreen = ({ navigation }) => {
       }
     }
     else {
-      AsyncStorage.setItem('user', response);
+      AsyncStorage.setItem('user', JSON.stringify(response));
       navigation.navigate('TabNavigator');
     }
   };

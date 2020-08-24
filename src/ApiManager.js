@@ -53,9 +53,15 @@ const resetPassword = async (token, password) => {
   return await request(getApiUrl(path), {password});
 };
 
+const refreshToken = async (refreshToken) => {
+  const path = `auth/refresh-tokens`;
+  return await request(getApiUrl(path), {refreshToken});
+};
+
 export {
   login,
   register,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  refreshToken
 }

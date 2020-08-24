@@ -6,6 +6,8 @@ import Button from '../components/Button';
 import Paragraph from '../components/Paragraph';
 import { theme } from '../core/theme';
 
+import {refreshToken} from '../ApiManager.js'
+
 import { ActivityIndicator, AsyncStorage } from 'react-native';
 import * as Linking from 'expo-linking';
 
@@ -16,10 +18,25 @@ const HomeScreen = ({ navigation }) => {
   const getURL = Linking.parseInitialURLAsync();
 
   Promise.all([getUser, getURL])
-    .then(([user, { path, queryParams }]) => {
+    .then(async ([user, { path, queryParams }]) => {
       if(user){
+        user = JSON.parse(user);
         console.log("USER:", user);
-        navigation.navigate('TabNavigator');
+        if(new Date() > new Date(user.tokens.refresh.expires))
+          setLoading(false);
+        else if(new Date() < new Date(user.tokens.access.expires))
+          navigation.navigate('TabNavigator');
+        else{
+          const res = await refreshToken(user.tokens.refresh.token);
+          if(res.code)
+            setLoading(false);
+          else{
+            user.tokens = res;
+            AsyncStorage.setItem('user', JSON.stringify(user));
+            navigation.navigate('TabNavigator');
+          }
+        }
+
       }
       else {
         if(queryParams && queryParams.token)

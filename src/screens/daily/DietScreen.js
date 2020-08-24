@@ -15,6 +15,7 @@ import {Picker} from '@react-native-community/picker';
 
 import {theme} from "../../core/theme";
 import WhiteContainer from "../../components/WhiteContainer";
+import BackButton from "../../components/BackButton";
 
 const FOOD_LIST = [
   "apple",
@@ -65,6 +66,7 @@ const DietScreen = ({ navigation }) => {
 
   return (
     <GreenBackground notAvoidingKeyboard={true}>
+      <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Text style={styles.header}>Daily Diet Record</Text>
 
       <WhiteContainer>
