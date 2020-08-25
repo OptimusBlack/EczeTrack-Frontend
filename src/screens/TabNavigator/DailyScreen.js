@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import { StyleSheet, View } from 'react-native';
-import { factorList } from '../dataItems/factorList.js';
+import { factorList } from '../dataItems/factorList';
 import RecordScreenButton from '../../components/RecordScreenButton';
 
 const DailyScreen = ({ navigation }) => {
   const icons = ['hand-paper', 'pills', 'apple-alt', 'globe'];
-  const screenNavigation = ['SymptomScreen', '', 'DietScreen', ''];
+  const screenNavigation = ['SymptomScreen', 'MSUScreen', 'DietScreen', 'EnvironmentScreen'];
 
   return (
     <GreenBackground>

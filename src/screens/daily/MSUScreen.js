@@ -8,7 +8,7 @@ import Header from "../../components/Header";
 import QuestionContainer from "../../components/QuestionContainer";
 import QuestionText from "../../components/QuestionText";
 
-import questions from '../../data/exerciseQuestions';
+import questions from '../../data/msuQuestions';
 
 import {
   View,
@@ -19,34 +19,17 @@ import {
   Platform
 } from 'react-native';
 
+import { theme } from "../../core/theme";
 
-import {theme} from "../../core/theme";
-
-
-
-const ExerciseScreen = ({ navigation }) => {
+const MSUScreen = ({ navigation }) => {
   const [q1, setQ1] = useState('');
-  const [q2, setQ2] = useState('');
+  const [q2, setQ2] = useState(0);
   const [q3, setQ3] = useState('');
-  const [q4, setQ4] = useState('');
-  const [q5, setQ5] = useState('');
-  const [q6, setQ6] = useState('');
-  const [q7, setQ7] = useState('');
-  const [error, setError] = useState(-1);
+  const [q4, setQ4] = useState(0);
 
-  const values = [q1, q2, q3, q4, q5, q6, q7];
-  const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6, setQ7];
-  const refs = [0,0,0,0,0,0,0];
-
-  const validate = ()=>{
-    for(let i=0; i<values.length; i++){
-      if(isNaN(parseInt(values[i]))){
-        setError(i);
-        return;
-      }
-    }
-
-  };
+  const values = [q1, q2, q3, q4];
+  const setters = [setQ1, setQ2, setQ3, setQ4];
+  const refs = [0,0,0,0];
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
@@ -54,16 +37,13 @@ const ExerciseScreen = ({ navigation }) => {
       <View style={styles.answerContainer}>
         <TextInput
           style={styles.inputBox}
-          keyboardType = 'numeric'
+          keyboardType = {q.isNumber ? 'numeric' : 'default'}
           value={values[i]}
           returnKeyType={Platform.OS === 'ios' ? 'done' : i< questions.length - 1 ? 'next' : 'submit'}
           onChangeText={val => setters[i](val)}
           ref={(input) => { refs[i] = input }}
-          onSubmitEditing={() => { i< questions.length - 1 ? refs[i+1].focus() : validate() }}
           blurOnSubmit={false}
         />
-        <Text>{q.unit}</Text>
-        {error === i && <Text style={styles.error}>Enter a valid value</Text>}
       </View>
     </QuestionContainer>
   ));
@@ -73,7 +53,7 @@ const ExerciseScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Header white>Weekly Exercise</Header>
+      <Header white>Moisturizer & Stedroid Usage</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
@@ -82,8 +62,7 @@ const ExerciseScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
-
+      <Button mode="contained">Confirm</Button>
 
     </GreenBackground>
   );
@@ -95,7 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   inputBox:{
-    width: 50,
+    width: '100%',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.3)',
     paddingHorizontal: 5,
@@ -107,9 +86,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     flex: 1,
     textAlign: 'right'
-
   }
 });
 
 
-export default memo(ExerciseScreen);
+export default memo(MSUScreen);

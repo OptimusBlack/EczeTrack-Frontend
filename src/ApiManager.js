@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 
-const BACKEND_HOST = 'heroku';
+const BACKEND_HOST = 'localhost';
 let BASE_URL;
 
 if(BACKEND_HOST === 'heroku')

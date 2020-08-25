@@ -1,0 +1,18 @@
+[
+  {
+    "question": "Steroid Active Ingredient (i.e. strength)",
+    "isNumber": false
+  },
+  {
+    "question": "Steroid Use (no. of FTUs)",
+    "isNumber": true
+  },
+  {
+    "question": "Moisturizer Name",
+    "isNumber": false
+  },
+  {
+    "question": "Moisturizer Use (no. of applications)",
+    "isNumber": true
+  }
+]

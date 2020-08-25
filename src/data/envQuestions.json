@@ -1,0 +1,158 @@
+[
+  {
+    "category": "Irritant",
+    "prev": 0,
+    "questions": [
+      {
+        "question": "Smoke",
+        "isSpecify": false
+      },
+      {
+        "question": "Air Pollution",
+        "isSpecify": false
+      },
+      {
+        "question": "Fumes or Car Exhaust",
+        "isSpecify": false
+      },
+      {
+        "question": "Strong Odours or Perfume",
+        "isSpecify": false
+      },
+      {
+        "question": "Soaps",
+        "isSpecify": false
+      },
+      {
+        "question": "Detergent",
+        "isSpecify": false
+      },
+      {
+        "question": "Fabric",
+        "isSpecify": true
+      },
+      {
+        "question": "Tight Clothing",
+        "isSpecify": false
+      },
+      {
+        "question": "Cosmetics",
+        "isSpecify": false
+      },
+      {
+        "question": "Air Conditioning",
+        "isSpecify": false
+      }
+    ]
+  },
+  {
+    "category": "Weather",
+    "prev": 10,
+    "questions": [
+      {
+        "question": "Cold Air",
+        "isSpecify": false
+      },
+      {
+        "question": "Rapid Temperature Change (e.g. from cold indoor to hot outdoor)",
+        "isSpecify": false
+      },
+      {
+        "question": "Humid Day",
+        "isSpecify": false
+      },
+      {
+        "question": "Heat",
+        "isSpecify": false
+      },
+      {
+        "question": "Sun",
+        "isSpecify": false
+      }
+    ]
+  },
+  {
+    "category": "Allergens",
+    "prev": 15,
+    "questions": [
+      {
+        "question": "Grass",
+        "isSpecify": false
+      },
+      {
+        "question": "Dust or Vacuuming",
+        "isSpecify": false
+      },
+      {
+        "question": "Damp or Musty Area",
+        "isSpecify": false
+      },
+      {
+        "question": "Animals",
+        "isSpecify": true
+      },
+      {
+        "question": "Mold",
+        "isSpecify": false
+      },
+      {
+        "question": "Pollen",
+        "isSpecify": false
+      }
+    ]
+  },
+  {
+    "category": "Location: Outdoors",
+    "prev": 21,
+    "questions": [
+      {
+        "question": "Parks/Fields",
+        "isSpecify": false
+      },
+      {
+        "question": "Garden",
+        "isSpecify": false
+      }
+    ]
+  },
+  {
+    "category": "Location: Indoors",
+    "prev": 23,
+    "questions": [
+      {
+        "question": "Daycare",
+        "isSpecify": false
+      },
+      {
+        "question": "Home",
+        "isSpecify": false
+      },
+      {
+        "question": "School",
+        "isSpecify": false
+      },
+      {
+        "question": "Work",
+        "isSpecify": false
+      },
+      {
+        "question": "Any other unusual locations",
+        "isSpecify": true
+      }
+    ]
+  },
+  {
+    "category": "Others",
+    "prev": 28,
+    "questions": [
+      {
+        "question": "Foreign",
+        "isSpecify": false
+      },
+      {
+        "question": "Others",
+        "isSpecify": true
+      }
+    ]
+  }
+]
