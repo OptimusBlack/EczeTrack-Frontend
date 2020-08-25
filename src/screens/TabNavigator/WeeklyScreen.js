@@ -7,7 +7,7 @@ import RecordScreenButton from '../../components/RecordScreenButton';
 
 
 const SettingScreen = ({ navigation }) => {
-  const icons = ['running', 'window-minimize', 'bed'];
+  const icons = ['running', 'hand-point-down', 'bed'];
   const screenNavigation = ['ExerciseScreen', 'StressScreen', 'SleepScreen'];
 
   return (

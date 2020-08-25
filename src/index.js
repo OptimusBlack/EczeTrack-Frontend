@@ -40,7 +40,7 @@ const Router = createStackNavigator(
     DietScreen
   },
   {
-    initialRouteName: 'HomeScreen',
+    initialRouteName: 'TabNavigator',
     headerMode: 'none',
   }
 );
