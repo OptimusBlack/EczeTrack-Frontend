@@ -1,8 +1,11 @@
 import Constants from 'expo-constants';
 
+const BACKEND_HOST = 'heroku';
 let BASE_URL;
 
-if(Constants.platform.ios)
+if(BACKEND_HOST === 'heroku')
+  BASE_URL = "http://eczetrack.herokuapp.com/v1/";
+else if(Constants.platform.ios)
   BASE_URL = "http://localhost:3000/v1/";
 else
   BASE_URL = "http://10.0.2.2:3000/v1/";

@@ -26,6 +26,10 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.wederm.eczetrack",
+      "versionCode": 1
+    },
     "description": "",
     "githubUrl": "https://github.com/venits/react-native-login-template"
   }
