@@ -9,12 +9,13 @@ import { setCustomText } from 'react-native-global-props';
 const Main = () => {
   let [fontsLoaded] = useFonts({
     'AlegreyaSansSC-Regular': require('./src/assets/fonts/AlegreyaSansSC-Regular.ttf'),
-    'AlegreyaSansSC-Bold': require('./src/assets/fonts/AlegreyaSansSC-Bold.ttf'),
+    'Avenir': require('./src/assets/fonts/Avenir-Medium.otf'),
+    'Avenir-Bold': require('./src/assets/fonts/Avenir-Medium-Bold.otf')
   });
 
   const customTextProps = {
     style: {
-      // fontFamily: 'AlegreyaSansSC-Regular'
+      fontFamily: 'Avenir'
     }
   };
 

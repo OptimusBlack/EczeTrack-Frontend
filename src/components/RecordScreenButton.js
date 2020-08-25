@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { TouchableOpacity, StyleSheet, Text, ImageBackground } from 'react-native';
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { theme } from '../core/theme';
 
 const RecordScreenButton = ({ children, ticked, icon, onPress }) => (
   <TouchableOpacity
@@ -15,7 +16,7 @@ const RecordScreenButton = ({ children, ticked, icon, onPress }) => (
       <FontAwesome5
         name={icon}
         size={24}
-        color='white'
+        color='#15342f'
         style={styles.icon}
       />
 
@@ -26,7 +27,7 @@ const RecordScreenButton = ({ children, ticked, icon, onPress }) => (
       <FontAwesome
         name={ticked && 'check-circle'}
         size={24}
-        color='black'
+        color='#15342f'
         style={styles.icon}
       />
 
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     // margin: 20,
     borderWidth: 4,
     borderRadius: 33,
-    borderColor: 'white',
+    borderColor: '#15342f',
   },
   background: {
     flex: 1,
@@ -52,9 +53,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    color: 'white',
+    color: '#15342f',
     fontSize: 20,
-    fontWeight: 'bold',
+    // fontFamily: 'Avenir-Bold',
     flex: 1
   },
   icon: {

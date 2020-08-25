@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
   },
   navigationText: {
     color: theme.colors.primary,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
+    fontFamily: 'Avenir-Bold',
     textAlign: "center",
     textAlignVertical: 'center',
     fontSize: 10,
