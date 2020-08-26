@@ -3,10 +3,11 @@ import { TouchableOpacity, StyleSheet, Text, ImageBackground } from 'react-nativ
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { theme } from '../core/theme';
 
-const RecordScreenButton = ({ children, ticked, icon, onPress }) => (
+const RecordScreenButton = ({ children, ticked, icon, onPress, disabled }) => (
   <TouchableOpacity
     style={styles.button}
     onPress={onPress}
+    disabled={disabled}
   >
     <ImageBackground
       source={require('../assets/button_background.png')}
@@ -25,9 +26,9 @@ const RecordScreenButton = ({ children, ticked, icon, onPress }) => (
       </Text>
 
       <FontAwesome
-        name={ticked && 'check-circle'}
+        name={ticked ? 'check-circle' : 'exclamation-circle'}
         size={24}
-        color='#15342f'
+        color={ticked ? '#15342f' : '#4f2020'}
         style={styles.icon}
       />
 

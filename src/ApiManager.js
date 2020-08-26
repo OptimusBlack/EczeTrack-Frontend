@@ -75,11 +75,35 @@ const record = async (data, recordModel) => {
     return null;
 };
 
+const checkWeekly = async () => {
+  const path = `record/check-weekly`;
+  let user = await AsyncStorage.getItem('user', false);
+  if(user) {
+    user = JSON.parse(user);
+    return await request(getApiUrl(path), {userId: user.user.id});
+  }
+  else
+    return null;
+};
+
+const checkDaily = async () => {
+  const path = `record/check-daily`;
+  let user = await AsyncStorage.getItem('user', false);
+  if(user) {
+    user = JSON.parse(user);
+    return await request(getApiUrl(path), {userId: user.user.id});
+  }
+  else
+    return null;
+};
+
 export {
   login,
   register,
   forgotPassword,
   resetPassword,
   refreshToken,
-  record
+  record,
+  checkWeekly,
+  checkDaily
 }

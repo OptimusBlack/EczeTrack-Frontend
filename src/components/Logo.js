@@ -7,10 +7,11 @@ const Logo = () => (
 
 const styles = StyleSheet.create({
   image: {
-    width: 128,
-    height: 128,
+    width: 300,
+    height: 168,
     marginBottom: 12,
   },
 });
+// 5692 × 3200
 
 export default memo(Logo);
