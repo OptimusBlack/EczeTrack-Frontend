@@ -1,6 +1,10 @@
+import React from 'react';
 import Constants from 'expo-constants';
+import {AsyncStorage} from 'react-native'
 
-const BACKEND_HOST = 'heroku';
+// const BACKEND_HOST = 'heroku';
+const BACKEND_HOST = 'local';
+
 let BASE_URL;
 
 if(BACKEND_HOST === 'heroku')
@@ -61,10 +65,22 @@ const refreshToken = async (refreshToken) => {
   return await request(getApiUrl(path), {refreshToken});
 };
 
+const record = async (data, recordModel) => {
+  const path = `record`;
+  let user = await AsyncStorage.getItem('user', false);
+  if(user) {
+    user = JSON.parse(user);
+    return await request(getApiUrl(path), {data, userId: user.user.id, recordModel});
+  }
+  else
+    return null;
+};
+
 export {
   login,
   register,
   forgotPassword,
   resetPassword,
-  refreshToken
+  refreshToken,
+  record
 }
