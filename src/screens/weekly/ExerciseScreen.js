@@ -10,7 +10,7 @@ import QuestionText from "../../components/QuestionText";
 
 import questions from '../../data/exerciseQuestions';
 
-import {record} from '../../ApiManager'
+import {record} from '../../ApiManager';
 
 import {
   View,
@@ -49,7 +49,7 @@ const ExerciseScreen = ({ navigation }) => {
     }
     const vals = {0: q1, 1: q2, 2: q3, 3: q4, 4: q5, 5: q6, 6:q7};
     const res = await record(vals, 'exercise');
-    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded})
+    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
   };
   
   const allQuestions = questions.map( (q, i) => (

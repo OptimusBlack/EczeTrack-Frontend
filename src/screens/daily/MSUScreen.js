@@ -10,6 +10,8 @@ import QuestionText from "../../components/QuestionText";
 
 import questions from '../../data/msuQuestions';
 
+import {record} from '../../ApiManager';
+
 import {
   View,
   Text,
@@ -26,10 +28,32 @@ const MSUScreen = ({ navigation }) => {
   const [q2, setQ2] = useState(0);
   const [q3, setQ3] = useState('');
   const [q4, setQ4] = useState(0);
+  const [error, setError] = useState(-1);
 
   const values = [q1, q2, q3, q4];
   const setters = [setQ1, setQ2, setQ3, setQ4];
   const refs = [0,0,0,0];
+
+  const validate = async () => {
+    for (let i=0; i<values.length; i++){
+      console.log(values[i])
+      if (i%2 === 0){
+        if (values[i] === ''){
+          setError(i);
+          return
+        }
+      } else {
+        if (isNaN(values[i])){
+          setError(i);
+          return;
+        }
+      }
+    }
+
+    const vals = {steroid: q1, steroidUse: q2, moisturizer: q3, moisturizerUse: q4};
+    const res = await record(vals, 'msu');
+    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
+  }
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
@@ -44,6 +68,7 @@ const MSUScreen = ({ navigation }) => {
           ref={(input) => { refs[i] = input }}
           blurOnSubmit={false}
         />
+        {error === i && <Text style={styles.error}>Enter a valid value</Text>}
       </View>
     </QuestionContainer>
   ));
@@ -62,7 +87,7 @@ const MSUScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained">Confirm</Button>
+      <Button mode="contained" onPress={validate} >Confirm</Button>
 
     </GreenBackground>
   );
@@ -74,7 +99,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   inputBox:{
-    width: '100%',
+    width: '50%',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.3)',
     paddingHorizontal: 5,
