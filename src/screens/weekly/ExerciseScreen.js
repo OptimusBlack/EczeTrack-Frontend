@@ -40,6 +40,8 @@ const ExerciseScreen = ({ navigation }) => {
   const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6, setQ7];
   const refs = [0,0,0,0,0,0,0];
 
+  const onComplete = navigation.getParam('onComplete', ()=>{});
+
   const validate = async ()=>{
     for(let i=0; i<values.length; i++){
       if(isNaN(parseInt(values[i]))){
@@ -49,7 +51,8 @@ const ExerciseScreen = ({ navigation }) => {
     }
     const vals = {0: q1, 1: q2, 2: q3, 3: q4, 4: q5, 5: q6, 6:q7};
     const res = await record(vals, 'exercise');
-    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded})
+    onComplete('exercise');
+    navigation.navigate('WeeklyScreenStack', {recordAdded: res.recordAdded})
   };
   
   const allQuestions = questions.map( (q, i) => (
