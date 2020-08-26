@@ -38,7 +38,7 @@ const MSUScreen = ({ navigation }) => {
         <TextInput
           style={styles.inputBox}
           keyboardType = {q.isNumber ? 'numeric' : 'default'}
-          value={values[i]}
+          value={values[i].toString()}
           returnKeyType={Platform.OS === 'ios' ? 'done' : i< questions.length - 1 ? 'next' : 'submit'}
           onChangeText={val => setters[i](val)}
           ref={(input) => { refs[i] = input }}

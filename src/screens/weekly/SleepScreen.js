@@ -18,6 +18,7 @@ import {
   ScrollView,
 } from 'react-native';
 
+import {record} from '../../ApiManager'
 
 import {theme} from "../../core/theme";
 
@@ -35,13 +36,18 @@ const SleepScreen = ({ navigation }) => {
   const values = [q1, q2, q3, q4, q5, q6];
   const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6];
 
-  const validate = ()=>{
+  const validate = async ()=>{
     for(let i=0; i<values.length; i++){
       if(values[i] === 0){
         setError(i);
         return;
       }
     }
+
+
+    const vals = {0: q1-1, 1: q2-1, 2: q3-1, 3: q4-1, 4: q5-1, 5: q6-1};
+    const res = await record(vals, 'sleep');
+    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
 
   };
 

@@ -47,9 +47,7 @@ const StressScreen = ({ navigation }) => {
 
     const vals = {0: q1-1, 1: q2-1, 2: q3-1, 3: q4-1, 4: q5-1, 5: q6-1, 6:q7-1, 7: q8-1};
     const res = await record(vals, 'stress');
-    console.log("Stress response", res);
-
-
+    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
   };
 
   const allQuestions = questions.map( (q, i) => (

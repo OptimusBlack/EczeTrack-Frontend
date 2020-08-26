@@ -49,7 +49,7 @@ const ExerciseScreen = ({ navigation }) => {
     }
     const vals = {0: q1, 1: q2, 2: q3, 3: q4, 4: q5, 5: q6, 6:q7};
     const res = await record(vals, 'exercise');
-    console.log("Exercise response", res);
+    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded})
   };
   
   const allQuestions = questions.map( (q, i) => (

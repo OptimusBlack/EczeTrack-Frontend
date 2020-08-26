@@ -57,8 +57,8 @@ const EnvironmentScreen = ({ navigation }) => {
   const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6, setQ7, setQ8, setQ9, setQ10, setQ11, setQ12, setQ13, setQ14, setQ15, setQ16, setQ17, setQ18, setQ19, setQ20, setQ21, setQ22, setQ23, setQ24, setQ25, setQ26, setQ27, setQ28, setQ29, setQ30];
   const refs = new Array(30).fill(0);
 
-  const allQuestions = questions.map((category) => (
-    <View>
+  const allQuestions = questions.map((category, idx) => (
+    <View key={idx}>
       <Header>{category.category}</Header>
 
       {
@@ -68,7 +68,7 @@ const EnvironmentScreen = ({ navigation }) => {
 
             <View style={styles.answerContainer}>
               <Checkbox
-                value={values[category.prev + i]}
+                value={values[category.prev + i].toString()}
                 onValueChange={(val) => setters[category.prev + i](val)}
               />
 
