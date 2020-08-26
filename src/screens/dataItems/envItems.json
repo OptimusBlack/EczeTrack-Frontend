@@ -1,0 +1,122 @@
+[
+  {
+    "item": "smoke",
+    "other": false
+  },
+  {
+    "item": "air_pollution",
+    "other": false
+  },
+  {
+    "item": "fumes_or_car_exhaust",
+    "other": false
+  },
+  {
+    "item": "strong_odours_or_perfume",
+    "other": false
+  },
+  {
+    "item": "soaps",
+    "other": false
+  },
+  {
+    "item": "detergent",
+    "other": false
+  },
+  {
+    "item": "fabric",
+    "other": true
+  },
+  {
+    "item": "tight_clothing",
+    "other": false
+  },
+  {
+    "item": "cosmetics",
+    "other": false
+  },
+  {
+    "item": "air_conditioning",
+    "other": false
+  },
+  {
+    "item": "cold_air",
+    "other": false
+  },
+  {
+    "item": "rapid_temperature_change",
+    "other": false
+  },
+  {
+    "item": "humid_day",
+    "other": false
+  },
+  {
+    "item": "heat",
+    "other": false
+  },
+  {
+    "item": "sun",
+    "other": false
+  },
+  {
+    "item": "grass",
+    "other": false
+  },
+  {
+    "item": "dust_or_vacuuming",
+    "other": false
+  },
+  {
+    "item": "damp_or_musty_area",
+    "other": false
+  },
+  {
+    "item": "animals",
+    "other": true
+  },
+  {
+    "item": "mold",
+    "other": false
+  },
+  {
+    "item": "pollen",
+    "other": false
+  },
+  {
+    "item": "parks",
+    "other": false
+  },
+  {
+    "item": "garden",
+    "other": false
+  },
+  {
+    "item": "daycare",
+    "other": false
+  },
+  {
+    "item": "home",
+    "other": false
+  },
+  {
+    "item": "school",
+    "other": false
+  },
+  {
+    "item": "work",
+    "other": false
+  },
+  {
+    "item": "any_other_unusual_locations",
+    "other": true
+  },
+  {
+    "item": "foreign_travel",
+    "other": false
+  },
+  {
+    "item": "others",
+    "other": true
+  }
+]
