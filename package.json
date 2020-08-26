@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@expo/vector-icons": "latest",
-    "@react-native-community/checkbox": "^0.5.0",
     "@react-native-community/datetimepicker": "2.4.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-community/picker": "1.6.0",
@@ -21,6 +20,7 @@
     "react-dom": "16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
     "react-native-chart-kit": "^6.4.1",
+    "react-native-check-box": "^2.1.7",
     "react-native-dropdown-picker": "^3.1.11",
     "react-native-gesture-handler": "~1.6.0",
     "react-native-global-props": "^1.1.5",

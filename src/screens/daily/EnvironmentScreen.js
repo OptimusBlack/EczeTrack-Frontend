@@ -17,7 +17,7 @@ import {
   ScrollView
 } from 'react-native';
 
-import Checkbox from '@react-native-community/checkbox';
+import Checkbox from 'react-native-check-box';
 
 import { theme } from "../../core/theme";
 
@@ -68,8 +68,9 @@ const EnvironmentScreen = ({ navigation }) => {
 
             <View style={styles.answerContainer}>
               <Checkbox
-                value={values[category.prev + i]}
-                onValueChange={(val) => setters[category.prev + i](val)}
+                isChecked={values[category.prev + i]}
+                onClick={() => setters[category.prev + i](!values[category.prev + i])}
+                checkBoxColor={theme.colors.primary}
               />
 
               {
