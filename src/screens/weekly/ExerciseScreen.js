@@ -51,12 +51,8 @@ const ExerciseScreen = ({ navigation }) => {
     }
     const vals = {0: q1, 1: q2, 2: q3, 3: q4, 4: q5, 5: q6, 6:q7};
     const res = await record(vals, 'exercise');
-<<<<<<< HEAD
-    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
-=======
     onComplete('exercise');
     navigation.navigate('WeeklyScreenStack', {recordAdded: res.recordAdded})
->>>>>>> 3f9d039ecd01e9bc345c7954e3b744411f0353fb
   };
   
   const allQuestions = questions.map( (q, i) => (
