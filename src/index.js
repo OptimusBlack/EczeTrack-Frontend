@@ -44,7 +44,7 @@ const Router = createStackNavigator(
     EnvironmentScreen
   },
   {
-    initialRouteName: 'TabNavigator',
+    initialRouteName: 'HomeScreen',
     headerMode: 'none',
   }
 );

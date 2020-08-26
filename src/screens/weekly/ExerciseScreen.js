@@ -10,6 +10,8 @@ import QuestionText from "../../components/QuestionText";
 
 import questions from '../../data/exerciseQuestions';
 
+import {record} from '../../ApiManager'
+
 import {
   View,
   Text,
@@ -38,16 +40,18 @@ const ExerciseScreen = ({ navigation }) => {
   const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6, setQ7];
   const refs = [0,0,0,0,0,0,0];
 
-  const validate = ()=>{
+  const validate = async ()=>{
     for(let i=0; i<values.length; i++){
       if(isNaN(parseInt(values[i]))){
         setError(i);
         return;
       }
     }
-
+    const vals = {0: q1, 1: q2, 2: q3, 3: q4, 4: q5, 5: q6, 6:q7};
+    const res = await record(vals, 'exercise');
+    console.log("Exercise response", res);
   };
-
+  
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
       <QuestionText>{q.question}</QuestionText>
