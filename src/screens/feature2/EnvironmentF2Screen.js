@@ -24,7 +24,7 @@ import Checkbox from 'react-native-check-box';
 
 import { theme } from "../../core/theme";
 
-const EnvironmentScreen = ({ navigation }) => {
+const EnvironmentF2Screen = ({ navigation }) => {
   const [q1, setQ1] = useState({value: false});
   const [q2, setQ2] = useState({value: false});
   const [q3, setQ3] = useState({value: false});
@@ -69,10 +69,14 @@ const EnvironmentScreen = ({ navigation }) => {
         vals[e.item] = values[i].value;
       }
     });
-    
+
     const res = await record(vals, 'environment');
     navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
-  }
+  };
+
+  const customQuestions = {
+    1: (<TextInput/>)
+  };
 
   const allQuestions = questions.map((category, j) => (
     <View key={j}>
@@ -122,7 +126,10 @@ const EnvironmentScreen = ({ navigation }) => {
 
       <WhiteContainer>
         <ScrollView style={{ alignSelf: 'stretch' }}>
-          {allQuestions}
+          {/********************************   Questions Start Here   *******************************/}
+
+
+          {/********************************   Questions End Here   *******************************/}
         </ScrollView>
 
       </WhiteContainer>
@@ -155,4 +162,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(EnvironmentScreen);
+export default memo(EnvironmentF2Screen);

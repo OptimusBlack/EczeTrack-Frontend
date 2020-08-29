@@ -2,7 +2,7 @@ import React, { memo, useEffect } from 'react';
 import { StyleSheet, View, RefreshControl, ScrollView } from 'react-native';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
-import { factorList } from '../dataItems/factorList.js';
+import { factorList } from '../../data/factorList.js';
 import RecordScreenButton from '../../components/RecordScreenButton';
 
 import {checkWeekly} from '../../ApiManager'
@@ -39,7 +39,7 @@ const WeeklyScreen = ({ route, navigation }) => {
   }, []);
   
   const onComplete = label => {
-    update = {};
+    let update = {};
     update[label] = true;
     setCheck({...check, ...update});
   };

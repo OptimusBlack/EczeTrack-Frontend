@@ -3,10 +3,10 @@ import { View, StyleSheet, Text } from 'react-native';
 import { TextInput as Input } from 'react-native-paper';
 import { theme } from '../core/theme';
 
-const TextInput = ({ errorText, ...props }) => (
+const TextInput = ({ errorText, style, ...props }) => (
   <View style={styles.container}>
     <Input
-      style={styles.input}
+      style={[styles.input, style]}
       selectionColor={theme.colors.primary}
       underlineColor="transparent"
       mode="outlined"

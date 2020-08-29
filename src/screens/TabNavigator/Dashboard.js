@@ -4,10 +4,10 @@ import Header from '../../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Chart from '../../components/Chart';
 import TimeRangeSelector from '../../components/TimeRangeSelector';
-import { AsyncStorage, View, StyleSheet, Text } from 'react-native';
+import { AsyncStorage, View, StyleSheet, Text, BackHandler } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { theme } from '../../core/theme';
-import { factorList } from '../dataItems/factorList';
+import { factorList } from '../../data/factorList';
 import { IconButton } from 'react-native-paper';
 
 
@@ -28,9 +28,13 @@ const Dashboard = ({ navigation }) => {
   ]);
   const carouselRef = useRef(null);
 
-  const onLogout = () => {
-    AsyncStorage.removeItem('user', () => navigation.navigate('HomeScreen'));
+
+  const onBackPress = ()=>{
+    BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    BackHandler.exitApp();
   };
+  BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
 
   const _renderItem = ({item, index}) => {
     if (index == 0){
