@@ -97,6 +97,12 @@ const checkDaily = async () => {
     return null;
 };
 
+const getFoodList = async () => {
+  const path = '/get/food-list';
+  let res = await request(getApiUrl(path));
+  return res.data;
+}
+
 export {
   login,
   register,
@@ -105,5 +111,6 @@ export {
   refreshToken,
   record,
   checkWeekly,
-  checkDaily
+  checkDaily,
+  getFoodList
 }
