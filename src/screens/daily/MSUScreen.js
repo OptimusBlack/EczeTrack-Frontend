@@ -34,6 +34,7 @@ const MSUScreen = ({ navigation }) => {
   const setters = [setQ1, setQ2, setQ3, setQ4];
   const refs = [0,0,0,0];
 
+  const onComplete = navigation.getParam('onComplete', ()=>{});
   const validate = async () => {
     for (let i=0; i<values.length; i++){
       console.log(values[i])
@@ -52,8 +53,9 @@ const MSUScreen = ({ navigation }) => {
 
     const vals = {steroid: q1, steroidUse: q2, moisturizer: q3, moisturizerUse: q4};
     const res = await record(vals, 'msu');
+    onComplete('msu');
     navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
-  }
+  };
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>

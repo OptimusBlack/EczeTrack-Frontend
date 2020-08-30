@@ -1,17 +1,27 @@
-import React, { memo, useState, useRef } from 'react';
+import React, { memo, useState, useRef, useEffect } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Chart from '../../components/Chart';
 import TimeRangeSelector from '../../components/TimeRangeSelector';
-import { AsyncStorage, View, StyleSheet, Text, BackHandler } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Text, BackHandler } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { theme } from '../../core/theme';
 import { factorList } from '../../data/factorList';
 import { IconButton } from 'react-native-paper';
 
+let DATA = {
+  symptoms: [],
+  msu: [],
+  das: [],
+  environment: [],
+  exercise: [],
+  stress: [],
+  sleep: []
+};
 
 const Dashboard = ({ navigation }) => {
+  const [loading, setLoading] = useState(true);
   const [factor, setFactor] = useState(factorList[0].value);
   const [factor2, setFactor2] = useState(factorList[1].value);
   const [carouselItems, setCarouselItems] = useState([
@@ -35,9 +45,15 @@ const Dashboard = ({ navigation }) => {
   };
   BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
+  useEffect(()=>{
+    setTimeout(()=>{
+      setLoading(false);
+    }, 2000)
+  });
+
 
   const _renderItem = ({item, index}) => {
-    if (index == 0){
+    if (index === 0){
       return(
         <View style={styles.carouselItemContainer} >
           <Header>{item.header}</Header>
@@ -50,7 +66,7 @@ const Dashboard = ({ navigation }) => {
             onChangeItem={(item) => setFactor(item.value)}
           />
           
-          <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}></Chart>
+          <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
           <View style={styles.navigationContainer}>
             <Text style={styles.navigationText}>Two-factor Comparison</Text>
           </View>
@@ -96,24 +112,24 @@ const Dashboard = ({ navigation }) => {
           />
       </View>
     );
-  }
+  };
 
   return (
     <GreenBackground>
       <Header white >Insight</Header>
-      <TimeRangeSelector></TimeRangeSelector>
+      <TimeRangeSelector/>
 
       <View style={styles.container}>
-        <Carousel
-          layout={"default"}
-          ref={carouselRef}
-          data={carouselItems}
-          sliderHeight={500}
-          itemHeight={500}
-          renderItem={_renderItem}
-          vertical
-        >
-        </Carousel>
+        {loading ? <ActivityIndicator size={500}/> :
+          <Carousel
+            layout={"default"}
+            ref={carouselRef}
+            data={carouselItems}
+            sliderHeight={500}
+            itemHeight={500}
+            renderItem={_renderItem}
+            vertical
+          />}
       </View>
 
     </GreenBackground>
