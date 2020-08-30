@@ -48,7 +48,7 @@ const Router = createStackNavigator(
     SymptomF2Screen
   },
   {
-    initialRouteName: 'SymptomScreen',
+    initialRouteName: 'HomeScreen',
     headerMode: 'none',
   }
 );

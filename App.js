@@ -6,6 +6,8 @@ import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
 import { setCustomText } from 'react-native-global-props';
 
+import Notifications from './src/NotificationManager'
+
 const Main = () => {
   let [fontsLoaded] = useFonts({
     'AlegreyaSansSC-Regular': require('./src/assets/fonts/AlegreyaSansSC-Regular.ttf'),
@@ -28,6 +30,7 @@ const Main = () => {
   return (
     <Provider theme={theme}>
       <App />
+      <Notifications/>
     </Provider>
   );
 }

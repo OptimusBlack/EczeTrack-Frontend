@@ -1,8 +1,8 @@
 import Constants from 'expo-constants';
 import {AsyncStorage} from 'react-native'
 
-// const BACKEND_HOST = 'heroku';
-const BACKEND_HOST = 'local';
+const BACKEND_HOST = 'heroku';
+// const BACKEND_HOST = 'local';
 
 let BASE_URL;
 
