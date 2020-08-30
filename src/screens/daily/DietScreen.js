@@ -18,7 +18,7 @@ import { theme } from "../../core/theme";
 import WhiteContainer from "../../components/WhiteContainer";
 import BackButton from "../../components/BackButton";
 
-import { getFoodList } from "../../ApiManager";
+import { getFoodList, record } from "../../ApiManager";
 
 let FOOD_LIST = [];
 
@@ -33,19 +33,12 @@ const DietScreen = ({ navigation }) => {
   const [query, setQuery] = useState('');
   const [foodList, setFoodList] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const [foodItem, setFoodItem] = useState('');
   const [mealType, setMealType] = useState('Snack');
   const [show, setShow] = useState(false);
   const [isSelected, setIsSelected] = useState(-1);
 
-  // useEffect(() => {
-  //   const getItems = async () => {
-  //     console.log('CHAL RAHA HUN MADARCHOD');
-  //     let res = await getFoodList();
-  //     // console.log(FOOD_LIST);
-  //     setFoodList(res);
-  //   }
-  //   getItems();
-  // });
+  const onComplete = navigation.getParam('onComplete', ()=>{});
 
   const _onChangeText = text => {
     setQuery(text);
@@ -59,11 +52,24 @@ const DietScreen = ({ navigation }) => {
 
   };
 
+  const _selectFoodItem = (foodItem, index) => {
+    setIsSelected(index);
+    setFoodItem(foodItem);
+  }
+
+  const validate = async () => {
+    setQuantity(parseFloat(quantity));
+    const vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
+    const res = await record(vals, 'das');
+    onComplete('das')
+    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
+  }
+
   const _renderFoodItem = ({ item, index }) => {
     return (
       <TouchableOpacity
         style={[styles.foodContainer, isSelected === index && styles.isActive]}
-        onPress={() => setIsSelected(index)}
+        onPress={() => _selectFoodItem(item, index)}
         key={index}
       >
         <MaterialCommunityIcons name="food-apple" size={24} color="#aaa" />
@@ -149,8 +155,7 @@ const DietScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained">Confirm</Button>
-
+      <Button mode="contained" onPress={validate}>Confirm</Button>
 
     </GreenBackground>
   );
@@ -179,7 +184,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: '70%',
     alignSelf: 'center',
-
   },
   foodContainer: {
     flexDirection: 'row',

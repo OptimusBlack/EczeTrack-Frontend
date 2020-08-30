@@ -9,9 +9,9 @@ import {
   Image,
   Modal,
   ScrollView,
-  TouchableOpacity,
-  Picker
+  TouchableOpacity
 } from 'react-native';
+import { Picker } from '@react-native-community/picker';
 import {theme} from "../../core/theme";
 import BackButton from "../../components/BackButton";
 import WhiteContainer from "../../components/WhiteContainer";
