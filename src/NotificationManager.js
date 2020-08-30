@@ -18,8 +18,8 @@ async function getNotificationId() {
 
 
 function NotificationManager() {
-  const notificationListener = useRef();
-  const responseListener = useRef();
+  // const notificationListener = useRef();
+  // const responseListener = useRef();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(async token => {
@@ -27,6 +27,9 @@ function NotificationManager() {
       if(!notificationId)
         setDailyNotification(token);
     });
+
+    /*  // Can use this code (Notification Response Received Handler) to navigate to DailyScreen or WeeklyScreen when Notification is clicked.
+        // Not implemented to make sure that the user is authenticated
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       console.log("Notification Received:", notification);
@@ -40,6 +43,7 @@ function NotificationManager() {
       Notifications.removeNotificationSubscription(notificationListener);
       Notifications.removeNotificationSubscription(responseListener);
     };
+    */
   }, []);
 
   return null;
@@ -76,7 +80,6 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log("Notification Token:", token);
   }
 
   if (Platform.OS === 'android') {
