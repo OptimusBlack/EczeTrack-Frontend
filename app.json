@@ -28,7 +28,8 @@
     },
     "android": {
       "package": "com.wederm.eczetrack",
-      "versionCode": 1
+      "versionCode": 1,
+      "useNextNotificationsApi": true
     },
     "description": "",
     "githubUrl": "https://github.com/venits/react-native-login-template"

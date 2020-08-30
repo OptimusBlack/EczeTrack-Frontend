@@ -1,0 +1,287 @@
+{
+  "householdQuestions": [
+    {
+      "q": "What is your current occupation?",
+      "type": "text"
+    },
+    {
+      "q": "How long have you lived at your present location?",
+      "type":  "numerical",
+      "unit": "Year(s)"
+    },
+    {
+      "q": "Location:",
+      "type":  "mcq",
+      "options": [
+        "urban",
+        "suburb",
+        "islands (e.g. ping chau, cheung chau)"
+      ]
+    },
+    {
+      "q": "Air conditioning:",
+      "type":  "mcq",
+      "options": [
+        "none",
+        "central",
+        "split-type",
+        "window units"
+      ]
+    },
+    {
+      "q": "Floor (Bedroom)",
+      "type":  "mcq",
+      "options": [
+        "carpeting",
+        "wood/laminate",
+        "tile",
+        "cement",
+        "other"
+      ]
+    },
+    {
+      "q": "Floor (Family room)",
+      "type":  "mcq",
+      "options": [
+        "carpeting",
+        "wood/laminate",
+        "tile",
+        "cement",
+        "other"
+      ]
+    },
+    {
+      "q": "Mattress:",
+      "type":  "mcq",
+      "options": [
+        "regular",
+        "foam",
+        "air mattress",
+        "other"
+      ]
+    },
+    {
+      "q": "Pillow:",
+      "type":  "mcq",
+      "options": [
+        "synthetic",
+        "foam",
+        "down",
+        "feather",
+        "cotton",
+        "other"
+      ]
+    },
+    {
+      "q": "Comforter:",
+      "type":  "mcq",
+      "options": [
+        "none",
+        "down",
+        "synthetic",
+        "feather",
+        "other"
+      ]
+    },
+    {
+      "q": "Do you have zippered dust mite allergy covers (encasements)?",
+      "type":  "mcq",
+      "options": [
+        "Yes*",
+        "No"
+      ]
+    },
+    {
+      "q": "*If yes, what item is covered?",
+      "type":  "mcq",
+      "options": [
+        "pillows",
+        "mattress",
+        "comforter"
+      ]
+    },
+    {
+      "q": "Do you have any pets?",
+      "type":  "mcq",
+      "options": [
+        "Yes*",
+        "No"
+      ]
+    },
+    {
+      "q": "*If yes, check all that apply and how many of each animal.",
+      "type":  "chekcbox",
+      "options": [
+        "cat(s) #",
+        "dog(s) #",
+        "bird(s) #",
+        "guinea pig(s) #",
+        "hamster(s) #",
+        "rabbit(s) #",
+        "other"
+      ]
+    },
+    {
+      "q": "Circle all pets that live in or have access to your (or the patient’s) bedroom.",
+      "type":  "TODO"
+    },
+    {
+      "q": "Do you have a mold or mildew problem in your home?",
+      "type":  "mcq",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "q": "*If yes, how big is the problem?",
+      "type":  "mcq",
+      "options": [
+        "Major problem",
+        "Minor problem"
+      ]
+    },
+    {
+      "q": "Where is it?",
+      "type":  "mcq",
+      "options": [
+        "bathroom",
+        "basement",
+        "kitchen",
+        "window sills",
+        "other"
+      ]
+    },
+    {
+      "q": "Are your symptoms:",
+      "type":  "mcq",
+      "options": [
+        "seasonal*",
+        "all year long",
+        "all year long, with seasonal worsening*"
+      ]
+    },
+    {
+      "q": "Indicate the worst months:",
+      "type":  "chekcbox",
+      "options": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
+    }
+  ],
+  "allergyQuestions": [
+    {
+      "q": "What is your main problem?",
+      "type": "mcq",
+      "options": [
+        "hives",
+        "swelling",
+        "hives and swelling"
+      ]
+    },
+    {
+      "q": "Which parts of your body are affected?",
+      "type":  "text"
+    },
+    {
+      "q": "When did your symptoms first begin?",
+      "type":  "text"
+    },
+    {
+      "q": "When was the last outbreak?",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "On average, how long does each outbreak last?",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "How often do outbreaks occur?",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "If you have hives, how long does each individual hive last?",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Check any symptoms you have hives:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Check all that apply:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Symptoms worse in the:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Symptoms worse in the:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Symptoms worse in the:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Symptoms worse during:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Are you aware of any specific triggers:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "If yes, please check all that apply:",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Exposure to",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Weather",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Allergens",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Location",
+      "type":  "mcq",
+      "options":  []
+    },
+    {
+      "q": "Others",
+      "type":  "mcq",
+      "options":  []
+    }
+  ]
+}

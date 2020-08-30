@@ -24,7 +24,7 @@ import Checkbox from 'react-native-check-box';
 
 import { theme } from "../../core/theme";
 
-const EnvironmentScreen = ({ navigation }) => {
+const EnvironmentF2Screen = ({ navigation }) => {
   const [q1, setQ1] = useState({value: false});
   const [q2, setQ2] = useState({value: false});
   const [q3, setQ3] = useState({value: false});
@@ -60,8 +60,6 @@ const EnvironmentScreen = ({ navigation }) => {
   const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6, setQ7, setQ8, setQ9, setQ10, setQ11, setQ12, setQ13, setQ14, setQ15, setQ16, setQ17, setQ18, setQ19, setQ20, setQ21, setQ22, setQ23, setQ24, setQ25, setQ26, setQ27, setQ28, setQ29, setQ30];
   const specifyValues = new Array(30).fill('');
 
-  const onComplete = navigation.getParam('onComplete', ()=>{});
-
   const validate = async () => {
     let vals = {};
     envItems.forEach((e, i) => {
@@ -71,10 +69,13 @@ const EnvironmentScreen = ({ navigation }) => {
         vals[e.item] = values[i].value;
       }
     });
-    
+
     const res = await record(vals, 'environment');
-    onComplete('environment');
     navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
+  };
+
+  const customQuestions = {
+    1: (<TextInput/>)
   };
 
   const allQuestions = questions.map((category, j) => (
@@ -125,7 +126,10 @@ const EnvironmentScreen = ({ navigation }) => {
 
       <WhiteContainer>
         <ScrollView style={{ alignSelf: 'stretch' }}>
-          {allQuestions}
+          {/********************************   Questions Start Here   *******************************/}
+
+
+          {/********************************   Questions End Here   *******************************/}
         </ScrollView>
 
       </WhiteContainer>
@@ -158,4 +162,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(EnvironmentScreen);
+export default memo(EnvironmentF2Screen);

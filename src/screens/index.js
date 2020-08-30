@@ -16,3 +16,6 @@ export { default as SymptomScreen } from './daily/SymptomScreen';
 export { default as DietScreen } from './daily/DietScreen';
 export { default as MSUScreen } from './daily/MSUScreen';
 export { default as EnvironmentScreen } from './daily/EnvironmentScreen';
+
+
+export { default as SymptomF2Screen } from './feature2/SymptomF2Screen';

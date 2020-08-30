@@ -19,7 +19,9 @@ import {
   SymptomScreen,
   DietScreen,
   MSUScreen,
-  EnvironmentScreen
+  EnvironmentScreen,
+
+  SymptomF2Screen
 } from './screens';
 
 const Router = createStackNavigator(
@@ -41,7 +43,9 @@ const Router = createStackNavigator(
     SymptomScreen,
     DietScreen,
     MSUScreen,
-    EnvironmentScreen
+    EnvironmentScreen,
+
+    SymptomF2Screen
   },
   {
     initialRouteName: 'HomeScreen',

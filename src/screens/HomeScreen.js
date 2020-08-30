@@ -22,6 +22,7 @@ const HomeScreen = ({ navigation }) => {
       if(user){
         user = JSON.parse(user);
         console.log("USER:", user);
+        setLoading(false);
         if(new Date() > new Date(user.tokens.refresh.expires))
           setLoading(false);
         else if(new Date() < new Date(user.tokens.access.expires))

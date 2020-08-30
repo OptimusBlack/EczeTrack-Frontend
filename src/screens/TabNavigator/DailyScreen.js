@@ -5,7 +5,7 @@ import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import RecordScreenButton from '../../components/RecordScreenButton';
 
-import { factorList } from '../dataItems/factorList';
+import { factorList } from '../../data/factorList';
 import {checkDaily} from '../../ApiManager'
 
 const DailyScreen = ({ route, navigation }) => {
@@ -41,7 +41,7 @@ const DailyScreen = ({ route, navigation }) => {
   }, []);
 
   const onComplete = label => {
-    update = {};
+    let update = {};
     update[label] = true;
     setCheck({...check, ...update});
   };
