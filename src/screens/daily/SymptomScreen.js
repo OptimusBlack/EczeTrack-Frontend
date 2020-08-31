@@ -147,6 +147,12 @@ const SymptomScreen = ({ navigation }) => {
       selection[showModal].back = currentBack;
     if (_bodyParts[showModal].bilateral)
       selection[showModal].bilateral = currentBilateral;
+
+    if(showModal === "Buttock")
+      selection[showModal].back = true;
+    if(showModal === "External Genitalia")
+      selection[showModal].front = true;
+
     hideModal();
   };
   const hideModal = ()=>{
