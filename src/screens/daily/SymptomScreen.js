@@ -128,11 +128,11 @@ const SymptomScreen = ({ navigation }) => {
           onValueChange={(itemValue) => {q.setter(itemValue); setShowPicker(-1)}}
           returnKeyType={'done'}
         >
-          <Picker.Item label="0" value={0} />
-          <Picker.Item label="1" value={1} />
-          <Picker.Item label="2" value={2} />
-          <Picker.Item label="3" value={3} />
-          <Picker.Item label="4" value={4} />
+          <Picker.Item label="Clear or Almost Clear" value={0} />
+          <Picker.Item label="Mild" value={1} />
+          <Picker.Item label="Moderate" value={2} />
+          <Picker.Item label="Severe" value={3} />
+          <Picker.Item label="Extremely Severe" value={4} />
         </Picker>}
       </View>
     </View>
