@@ -10,12 +10,12 @@ import {
   Modal,
   ScrollView,
   TouchableOpacity,
-  Picker
 } from 'react-native';
 import {theme} from "../../core/theme";
 import BackButton from "../../components/BackButton";
 import WhiteContainer from "../../components/WhiteContainer";
 import Checkbox from 'react-native-check-box';
+import {Picker} from '@react-native-community/picker';
 
 import _bodyParts from "../../data/bodyParts";
 

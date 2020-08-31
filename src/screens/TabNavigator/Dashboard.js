@@ -10,6 +10,8 @@ import { theme } from '../../core/theme';
 import { factorList } from '../../data/factorList';
 import { IconButton } from 'react-native-paper';
 
+import {getChartData} from '../../ApiManager'
+
 let DATA = {
   symptoms: [],
   msu: [],
@@ -26,12 +28,10 @@ const Dashboard = ({ navigation }) => {
   const [factor2, setFactor2] = useState(factorList[1].value);
   const [carouselItems, setCarouselItems] = useState([
     {
-      header: 'Case History',
-      timeframe: ['03-06', '04-06', '05-06', '06-06', '07-06', '08-06', '09-06', '10-06', '11-06'],
-      data: [[3, 0, 0.5, 1.5, 2, 0]],  //Make sure to have a 2D array even if 1 graph
+      timeframe: ['03-06', '05-06', '07-06', '09-06'],
+      data: [[3, 0, 0.5, 1.5, 2, 0, 1.5, 2, 1.5]],  //Make sure to have a 2D array even if 1 graph
     },
     {
-      header: 'Two-factor Comparison',
       timeframe: ['03-06', '04-06', '05-06', '06-06', '07-06', '08-06', '09-06', '10-06', '11-06'],
       data: [[3, 0, 0.5, 1.5, 2, 0], [1, 0, 0.5, 0.5, 3, 0]]
     }
@@ -51,12 +51,17 @@ const Dashboard = ({ navigation }) => {
     }, 2000)
   });
 
+  const updateChartData = async () => {
+    setLoading(true);
+    const res = getChartData()
+  };
+
 
   const _renderItem = ({item, index}) => {
     if (index === 0){
       return(
         <View style={styles.carouselItemContainer} >
-          <Header>{item.header}</Header>
+          <Header>{'Case History'}</Header>
           
           <DropDownPicker
             items={factorList}
@@ -82,7 +87,7 @@ const Dashboard = ({ navigation }) => {
 
     return(
       <View style={[styles.carouselItemContainer]} >
-        <Header>{item.header}</Header>
+        <Header>{'Two-factor Comparison'}</Header>
         <View style={[styles.container, styles.dualSelectorContainer]} >
           <DropDownPicker
             items={factorList}

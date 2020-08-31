@@ -1,8 +1,9 @@
 import React, { memo, useState, useEffect } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
-import { AsyncStorage, Text, View, StyleSheet, Picker, TouchableOpacity } from 'react-native';
+import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Button from '../../components/Button';
+import {Picker} from '@react-native-community/picker';
 
 import {theme} from '../../core/theme'
 

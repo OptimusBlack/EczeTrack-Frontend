@@ -23,6 +23,7 @@ const Chart = ({ xValues, yValues, legend }) => {
       height={220}
       yAxisInterval={1} // optional, defaults to 1
       withDots={false}
+      verticalLabelRotation={-20}
       chartConfig={{
         backgroundGradientFrom: '#FFFFFF',
         backgroundGradientTo: "#FFFFFF",

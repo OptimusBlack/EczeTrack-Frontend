@@ -97,6 +97,20 @@ const checkDaily = async () => {
     return null;
 };
 
+const getChartData = async (factor, duration) => {
+  const path = `get/${factor}`;
+  let user = await AsyncStorage.getItem('user', false);
+  if(user) {
+    user = JSON.parse(user);
+    return await request(getApiUrl(path), {
+      userId: user.user.id,
+      duration
+    });
+  }
+  else
+    return null;
+};
+
 export {
   login,
   register,
@@ -105,5 +119,6 @@ export {
   refreshToken,
   record,
   checkWeekly,
-  checkDaily
+  checkDaily,
+  getChartData
 }
