@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Button from '../../components/Button';
 import {
@@ -7,60 +7,89 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  ScrollView
+  FlatList,
+  Platform
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import {Picker} from '@react-native-community/picker';
+import { Picker } from '@react-native-community/picker';
 
-import {theme} from "../../core/theme";
+import { theme } from "../../core/theme";
 import WhiteContainer from "../../components/WhiteContainer";
 import BackButton from "../../components/BackButton";
 
-const FOOD_LIST = [
-  "apple",
-  "pear",
-  "lemon",
-  "pineapple",
-  "starfruit",
-  "watermelon",
-  "peach",
-  "banana",
-];
+import { getFoodList, record } from "../../ApiManager";
+
+let FOOD_LIST = [];
+
+const getItems = async () => {
+  FOOD_LIST = await getFoodList();
+}
+
+getItems();
 
 const DietScreen = ({ navigation }) => {
 
   const [query, setQuery] = useState('');
-  const [foodList, setFoodList] = useState(FOOD_LIST);
+  const [foodList, setFoodList] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const [foodItem, setFoodItem] = useState('');
   const [mealType, setMealType] = useState('Snack');
   const [show, setShow] = useState(false);
   const [isSelected, setIsSelected] = useState(-1);
 
+  const onComplete = navigation.getParam('onComplete', ()=>{});
+
   const _onChangeText = text => {
     setQuery(text);
-    const newList = FOOD_LIST.filter(food => food.includes(text.toLowerCase()));
-    setFoodList(newList);
+    if (text.length === 0) {
+      setFoodList([]);
+    }
+    else {
+      const newList = FOOD_LIST.filter(food => food.includes(text.toLowerCase()));
+      setFoodList(newList.splice(0, 100));
+    }
+
   };
 
-  const FoodList = foodList.map( (food, idx) => (
-    <TouchableOpacity
-      style={[styles.foodContainer, isSelected === idx && styles.isActive]}
-      onPress={()=> setIsSelected(idx)}
-      key={idx}
-    >
-      <MaterialCommunityIcons name="food-apple" size={24} color="#aaa" />
-      <Text style={styles.foodLabel}>{food.toUpperCase()}</Text>
-    </TouchableOpacity>
-  ));
+  const _selectFoodItem = (foodItem, index) => {
+    setIsSelected(index);
+    setFoodItem(foodItem);
+  }
+
+  const validate = async () => {
+    setQuantity(parseFloat(quantity));
+    const vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
+    const res = await record(vals, 'das');
+    onComplete('das')
+    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
+  }
+
+  const _renderFoodItem = ({ item, index }) => {
+    return (
+      <TouchableOpacity
+        style={[styles.foodContainer, isSelected === index && styles.isActive]}
+        onPress={() => _selectFoodItem(item, index)}
+        key={index}
+      >
+        <MaterialCommunityIcons name="food-apple" size={24} color="#aaa" />
+        <Text style={styles.foodLabel}>{item.toUpperCase()}</Text>
+      </TouchableOpacity>
+    )
+  };
 
   const _onChangeQuantity = text => {
     let qty = text.replace(/\D/g, '');
-    if(qty === '')
+    if (qty === '')
       qty = 0;
     else
       qty = parseInt(qty);
     setQuantity(qty);
+  };
+
+  const onChangeMealType = (itemValue) => {
+    setShow(Platform.OS === 'ios');
+    setMealType(itemValue);
   };
 
 
@@ -78,9 +107,12 @@ const DietScreen = ({ navigation }) => {
           placeholder={'SEARCH'}
         />
 
-        <ScrollView style={styles.scrollView}>
-          {FoodList}
-        </ScrollView>
+        <FlatList
+          style={styles.flatList}
+          data={query.length > 0 ? foodList : FOOD_LIST}
+          renderItem={_renderFoodItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
 
 
         <View style={styles.inputContainerRow}>
@@ -106,8 +138,8 @@ const DietScreen = ({ navigation }) => {
             {show &&
               <Picker
                 selectedValue={mealType}
-                onValueChange={(itemValue) => setMealType(itemValue)}
-                itemStyle={{color: theme.colors.secondary}}
+                onValueChange={onChangeMealType}
+                itemStyle={{ color: theme.colors.secondary }}
                 returnKeyType={'done'}
               >
                 <Picker.Item label="Snack" value="Snack" />
@@ -123,20 +155,19 @@ const DietScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained">Confirm</Button>
-
+      <Button mode="contained" onPress={validate}>Confirm</Button>
 
     </GreenBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  header:{
+  header: {
     fontSize: 15,
     color: 'white',
     marginBottom: 30
   },
-  container:{
+  container: {
     height: '70%',
     borderRadius: 10,
     alignSelf: 'stretch',
@@ -153,7 +184,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: '70%',
     alignSelf: 'center',
-
   },
   foodContainer: {
     flexDirection: 'row',
@@ -166,34 +196,33 @@ const styles = StyleSheet.create({
   isActive: {
     backgroundColor: theme.colors.surface
   },
-  foodDiaryHeader:{
+  foodDiaryHeader: {
     color: theme.colors.primary,
     textAlign: 'center',
     fontSize: 14,
     marginBottom: 20
   },
-  foodLabel:{
+  foodLabel: {
     color: '#555',
     marginLeft: 20,
     fontWeight: 'bold',
     fontSize: 12
   },
-  scrollView: {
+  flatList: {
     borderColor: theme.colors.primary,
     borderWidth: 1,
     borderRadius: 10,
-
   },
-  inputContainerRow:{
+  inputContainerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignSelf: 'stretch',
     marginVertical: 10
   },
-  inputContainerCol:{
+  inputContainerCol: {
     width: '48%',
   },
-  inputContainer:{
+  inputContainer: {
     borderWidth: 3,
     borderColor: theme.colors.primary,
     paddingVertical: 15,
@@ -207,7 +236,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center'
   },
-  inputLabel:{
+  inputLabel: {
     color: theme.colors.primary,
     fontSize: 10,
     marginTop: 5

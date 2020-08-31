@@ -97,6 +97,12 @@ const checkDaily = async () => {
     return null;
 };
 
+const getFoodList = async () => {
+  const path = '/get/food-list';
+  let res = await request(getApiUrl(path));
+  return res.data;
+};
+
 const getChartData = async (factor, duration) => {
   const path = `get/${factor}`;
   let user = await AsyncStorage.getItem('user', false);
@@ -111,6 +117,7 @@ const getChartData = async (factor, duration) => {
     return null;
 };
 
+
 export {
   login,
   register,
@@ -120,5 +127,6 @@ export {
   record,
   checkWeekly,
   checkDaily,
-  getChartData
+  getChartData,
+  getFoodList
 }

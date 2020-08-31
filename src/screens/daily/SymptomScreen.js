@@ -11,11 +11,11 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import { Picker } from '@react-native-community/picker';
 import {theme} from "../../core/theme";
 import BackButton from "../../components/BackButton";
 import WhiteContainer from "../../components/WhiteContainer";
 import Checkbox from 'react-native-check-box';
-import {Picker} from '@react-native-community/picker';
 
 import _bodyParts from "../../data/bodyParts";
 
