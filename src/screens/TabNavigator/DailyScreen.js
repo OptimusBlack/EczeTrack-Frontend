@@ -59,7 +59,7 @@ const DailyScreen = ({ route, navigation }) => {
             <RecordScreenButton
               key={idx}
               ticked={check[dailyCheckLabels[idx]]}
-              disabled={check[dailyCheckLabels[idx]]}
+              // disabled={check[dailyCheckLabels[idx]]}
               icon={icons[idx]}
               onPress={() => navigation.navigate(screenNavigation[idx], {onComplete})}
             >

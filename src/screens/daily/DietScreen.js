@@ -61,7 +61,7 @@ const DietScreen = ({ navigation }) => {
     setQuantity(parseFloat(quantity));
     const vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
     const res = await record(vals, 'das');
-    onComplete('das')
+    onComplete('das');
     navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
   }
 
