@@ -125,7 +125,7 @@ const Dashboard = ({ navigation }) => {
       <TimeRangeSelector/>
 
       <View style={styles.container}>
-        {loading ? <ActivityIndicator size={500}/> :
+        {loading ? <ActivityIndicator size={25} color={'white'} style={{height: 500}}/> :
           <Carousel
             layout={"default"}
             ref={carouselRef}
