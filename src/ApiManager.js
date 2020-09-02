@@ -104,14 +104,14 @@ const getFoodList = async () => {
 };
 
 const getChartData = async (factor, dateFrom, dateTo = new Date()) => {
-  const path = `get/${factor}`;
+  const path = `get/chart-data`;
   let user = await AsyncStorage.getItem('user', false);
 
   if(user) {
     user = JSON.parse(user);
     return await request(getApiUrl(path), {
       userId: user.user.id,
-      dateFrom, dateTo
+      dateFrom, dateTo, factor
     });
   }
   else
