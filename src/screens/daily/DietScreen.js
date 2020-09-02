@@ -13,6 +13,7 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Picker } from '@react-native-community/picker';
+import Counter from "react-native-counters";
 
 import { theme } from "../../core/theme";
 import WhiteContainer from "../../components/WhiteContainer";
@@ -24,7 +25,7 @@ let FOOD_LIST = [];
 
 const getItems = async () => {
   FOOD_LIST = await getFoodList();
-}
+};
 
 getItems();
 
@@ -37,6 +38,9 @@ const DietScreen = ({ navigation }) => {
   const [mealType, setMealType] = useState('Snack');
   const [show, setShow] = useState(false);
   const [isSelected, setIsSelected] = useState(-1);
+
+
+  const [colorQuantity, setColorQuantity] = useState(0);
 
   const onComplete = navigation.getParam('onComplete', ()=>{});
 
@@ -55,15 +59,19 @@ const DietScreen = ({ navigation }) => {
   const _selectFoodItem = (foodItem, index) => {
     setIsSelected(index);
     setFoodItem(foodItem);
-  }
+  };
 
   const validate = async () => {
-    setQuantity(parseFloat(quantity));
-    const vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
+    // setQuantity(parseFloat(quantity)); TODO Why are we doing this?
+    let vals;
+    if(colorQuantity === 0)
+      vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
+    else
+      vals = {'mealType': '', 'foodItem': 'colors', 'foodItemAmt': colorQuantity, 'foodItemAmtUnit': 'g'};
     const res = await record(vals, 'das');
     onComplete('das');
     navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
-  }
+  };
 
   const _renderFoodItem = ({ item, index }) => {
     return (
@@ -98,7 +106,7 @@ const DietScreen = ({ navigation }) => {
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Text style={styles.header}>Daily Diet Record</Text>
 
-      <WhiteContainer pointerEvents="none" >
+      <WhiteContainer pointerEvents={colorQuantity > 0 && "none"} >
         <Text style={styles.foodDiaryHeader}>Food Diary</Text>
         <TextInput
           style={styles.textInput}
@@ -153,7 +161,20 @@ const DietScreen = ({ navigation }) => {
 
         </View>
 
+        {colorQuantity > 0 && <Text style={{color: theme.colors.error, fontSize:12}}>Set Color input to 0 to enable food input.</Text>}
       </WhiteContainer>
+
+      <View style={styles.colorRow}>
+        <Text style={styles.colorLabel}>Colorful Vegetables and Fruits</Text>
+        <Counter
+          start={0}
+          max={3}
+          onChange={number => setColorQuantity(number)}
+          buttonStyle={{borderColor: theme.colors.primary}}
+          buttonTextStyle={{color: theme.colors.primary}}
+          countTextStyle={{color: theme.colors.primary}}
+        />
+      </View>
 
       <Button mode="contained" onPress={validate}>Confirm</Button>
 
@@ -240,6 +261,20 @@ const styles = StyleSheet.create({
     color: theme.colors.primary,
     fontSize: 10,
     marginTop: 5
+  },
+  colorRow: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderRadius: 5,
+    alignSelf: 'stretch',
+    padding: 10,
+    paddingVertical: 5,
+    marginVertical: 5
+  },
+  colorLabel:{
+    fontWeight: 'bold',
   }
 });
 
