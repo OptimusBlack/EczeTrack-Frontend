@@ -98,7 +98,7 @@ const DietScreen = ({ navigation }) => {
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Text style={styles.header}>Daily Diet Record</Text>
 
-      <WhiteContainer>
+      <WhiteContainer pointerEvents="none" >
         <Text style={styles.foodDiaryHeader}>Food Diary</Text>
         <TextInput
           style={styles.textInput}
