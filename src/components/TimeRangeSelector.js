@@ -1,15 +1,14 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-paper';
 import { theme } from '../core/theme';
 
-const TimeRangeSelector = () => {
-    const [isActive, setIsActive] = useState(0);
+const TimeRangeSelector = ({isActive, setIsActive}) => {
     return(
         <View
             style={styles.container}
         >
-            {['7 days', '1 Month', '3 Months', 'Custom'].map((e, i) =>
+            {['7 days', '1 Month','2 Months', '3 Months'].map((e, i) =>
                 <Button
                   style={[styles.button, isActive === i && styles.activeButton]}
                   mode='outlined'
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
         borderColor: theme.colors.primary
     },
     buttonText: {
-        fontSize: 11,
+        fontSize: 10,
         textTransform: 'capitalize',
     },
     button: {
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
         backgroundColor: theme.colors.surface,
-        borderColor: theme.colors.primary
+        borderColor: theme.colors.primary,
     },
   activeButton: {
         backgroundColor: theme.colors.primary

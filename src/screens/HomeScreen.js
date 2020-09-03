@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { WhiteBackground } from '../components/Background';
 import Logo from '../components/Logo';
 import Header from '../components/Header';
@@ -17,35 +17,38 @@ const HomeScreen = ({ navigation }) => {
   const getUser = AsyncStorage.getItem('user');
   const getURL = Linking.parseInitialURLAsync();
 
-  Promise.all([getUser, getURL])
-    .then(async ([user, { path, queryParams }]) => {
-      if(user){
-        user = JSON.parse(user);
-        console.log("USER:", user);
-        setLoading(false);
-        if(new Date() > new Date(user.tokens.refresh.expires))
+  useEffect(()=>{
+    Promise.all([getUser, getURL])
+      .then(async ([user, { path, queryParams }]) => {
+        if(user){
+          user = JSON.parse(user);
+          console.log("USER:", user);
           setLoading(false);
-        else if(new Date() < new Date(user.tokens.access.expires))
-          navigation.navigate('TabNavigator');
-        else{
-          const res = await refreshToken(user.tokens.refresh.token);
-          if(res.code)
+          if(new Date() > new Date(user.tokens.refresh.expires))
             setLoading(false);
-          else{
-            user.tokens = res;
-            AsyncStorage.setItem('user', JSON.stringify(user));
+          else if(new Date() < new Date(user.tokens.access.expires))
             navigation.navigate('TabNavigator');
+          else{
+            const res = await refreshToken(user.tokens.refresh.token);
+            if(res.code)
+              setLoading(false);
+            else{
+              user.tokens = res;
+              AsyncStorage.setItem('user', JSON.stringify(user));
+              navigation.navigate('TabNavigator');
+            }
           }
-        }
 
-      }
-      else {
-        if(queryParams && queryParams.token)
-          navigation.navigate('ResetPassword', {token: queryParams.token});
-        else
-          setLoading(false);
-      }
-  });
+        }
+        else {
+          if(queryParams && queryParams.token)
+            navigation.navigate('ResetPassword', {token: queryParams.token});
+          else
+            setLoading(false);
+        }
+      });
+  }, []);
+
 
   if(loading){
     return (

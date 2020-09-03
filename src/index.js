@@ -1,4 +1,4 @@
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import {
@@ -24,7 +24,7 @@ import {
   SymptomF2Screen
 } from './screens';
 
-const Router = createStackNavigator(
+const Router = createSwitchNavigator(
   {
     HomeScreen,
     LoginScreen,
