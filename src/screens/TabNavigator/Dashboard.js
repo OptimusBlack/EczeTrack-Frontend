@@ -4,38 +4,46 @@ import Header from '../../components/Header';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Chart from '../../components/Chart';
 import TimeRangeSelector from '../../components/TimeRangeSelector';
-import { ActivityIndicator, View, StyleSheet, Text, BackHandler } from 'react-native';
+import { View, StyleSheet, Text, BackHandler } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { theme } from '../../core/theme';
 import { factorList } from '../../data/factorList';
 import { IconButton } from 'react-native-paper';
 
-import {getChartData} from '../../ApiManager'
+import {getChartData} from '../../ApiManager';
 
-let DATA = {
-  symptoms: [],
-  msu: [],
-  das: [],
-  environment: [],
-  exercise: [],
-  stress: [],
-  sleep: []
+let twoFactorComparisionData = {
+  factor2:{
+    data: [[]],
+    dates: [],
+    legend: []
+  },
+  factor3:{
+    data: [[]],
+    dates: [],
+    legend: []
+  },
 };
 
 const Dashboard = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
+
+  // const [isActive, setIsActive] = useState(0);
+  const [timeRange, setTimeRange] = useState(0);
+
   const [factor, setFactor] = useState(factorList[0].value);
-  const [factor2, setFactor2] = useState(factorList[1].value);
-  const [carouselItems, setCarouselItems] = useState([
-    {
-      timeframe: ['03-06', '05-06', '07-06', '09-06'],
-      data: [[3, 0, 0.5, 1.5, 2, 0, 1.5, 2, 1.5]],  //Make sure to have a 2D array even if 1 graph
-    },
-    {
-      timeframe: ['03-06', '04-06', '05-06', '06-06', '07-06', '08-06', '09-06', '10-06', '11-06'],
-      data: [[3, 0, 0.5, 1.5, 2, 0], [1, 0, 0.5, 0.5, 3, 0]]
-    }
-  ]);
+  const [factor2, setFactor2] = useState(factorList[0].value);
+  const [factor3, setFactor3] = useState(factorList[1].value);
+  const [factor1ChartData, setFactor1ChartData] = useState({
+    dates: ['03-06', '05-06', '07-06', '09-06'],
+    data: [[3, 0, 0.5, 1.5, 2, 0, 1.5, 2, 1.5]],
+    legend: []
+  });
+  const [factor2ChartData, setFactor2ChartData] = useState({
+    dates: ['03-06', '05-06', '07-06', '09-06'],
+    data: [[3, 0, 0.5, 1.5, 2, 0], [1, 0, 0.5, 0.5, 3, 0]],
+    legend: []
+  });
   const carouselRef = useRef(null);
 
 
@@ -46,16 +54,99 @@ const Dashboard = ({ navigation }) => {
   BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
   useEffect(()=>{
-    setTimeout(()=>{
-      setLoading(false);
-    }, 2000)
-  });
+    updateFactor1();
+    updateFactor2();
+    updateFactor3();
+  }, []);
+  useEffect(()=>{
+    updateFactor1();
+  }, [factor]);
+  useEffect(()=>{
+    updateFactor2();
+  }, [factor2]);
+  useEffect(()=>{
+    updateFactor3();
+  }, [factor3]);
 
-  const updateChartData = async () => {
-    setLoading(true);
-    const res = getChartData()
+
+  const getDateFrom = ()=>{
+    const now = new Date();
+    const days = [7, 30, 61, 91];
+    return new Date(now.getTime() - (days[timeRange] * 24 * 60 * 60 * 1000));
   };
 
+  const updateFactor1 = async () => {
+    setLoading(true);
+    const dateFrom = getDateFrom();
+    const res = await getChartData(factor, dateFrom);
+    if(res && !res.code){
+      setFactor1ChartData(res.chartData);
+    }
+    setLoading(false);
+  };
+
+  const updateFactor2 = async () => {
+    setLoading(true);
+    const res = await getChartData(factor2, '1-1-2020', new Date());
+    if(res&& !res.code){
+      twoFactorComparisionData.factor2 = res.chartData;
+      updateTwoFactorComparisionChartData()
+    }
+    setLoading(false);
+  };
+
+  const updateFactor3 = async () => {
+    setLoading(true);
+    const res = await getChartData(factor3, '1-1-2020', new Date());
+    if(res&& !res.code){
+      twoFactorComparisionData.factor3 = res.chartData;
+      updateTwoFactorComparisionChartData()
+    }
+    setLoading(false);
+  };
+
+  const updateTwoFactorComparisionChartData = ()=>{
+    const data = twoFactorComparisionData.factor2.data.concat(twoFactorComparisionData.factor3.data);
+    const legend = twoFactorComparisionData.factor2.legend.concat(twoFactorComparisionData.factor3.legend);
+    const dates = mergeDates(twoFactorComparisionData.factor2.dates, twoFactorComparisionData.factor3.dates);
+    setFactor2ChartData({data, legend, dates});
+
+  };
+
+  const mergeDates = (date1, date2) => {
+    let mergedDates = [];
+    let i=0, j=0;
+    while(i<date1.length && j<date2.length){
+      if(date1[i] === date2[i]){
+        mergedDates.push(date1[i]);
+        i++;
+        j++;
+      }
+      else if(date1[i] < date2[i]){
+        mergedDates.push(date1[i]);
+        i++;
+      }
+      else{
+        mergedDates.push(date2[j]);
+        j++;
+      }
+    }
+
+    while(i<date1.length){
+      mergedDates.push(date1[i]);
+      i++;
+    }
+    while(j<date2.length){
+      mergedDates.push(date2[j]);
+      j++;
+    }
+    return mergedDates;
+
+  };
+
+  const _updateFactor = (item) => {
+    setFactor(item.value);
+  };
 
   const _renderItem = ({item, index}) => {
     if (index === 0){
@@ -68,10 +159,15 @@ const Dashboard = ({ navigation }) => {
             defaultValue={factor}
             containerStyle={{height: 40, alignSelf: 'stretch'}}
             style={styles.selector}
-            onChangeItem={(item) => setFactor(item.value)}
+            onChangeItem={_updateFactor}
           />
           
-          <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
+          <Chart
+            xValues={factor1ChartData.dates}
+            yValues={factor1ChartData.data}
+            legend={factor1ChartData.legend}
+            loading={loading}
+          />
           <View style={styles.navigationContainer}>
             <Text style={styles.navigationText}>Two-factor Comparison</Text>
           </View>
@@ -88,15 +184,9 @@ const Dashboard = ({ navigation }) => {
     return(
       <View style={[styles.carouselItemContainer]} >
         <Header>{'Two-factor Comparison'}</Header>
-        <View style={[styles.container, styles.dualSelectorContainer]} >
-          <DropDownPicker
-            items={factorList}
-            defaultValue={factor}
-            containerStyle={{height: 40, flex: 1}}
-            style={styles.selector}
-            onChangeItem={(item) => setFactor(item.value)}
-          />
-          <Text style={styles.vsText} >vs</Text>
+        <View style={[styles.container, styles.dualSelectorContainer, Platform.OS !== 'android' && {
+          zIndex: 10
+        }]} >
           <DropDownPicker
             items={factorList}
             defaultValue={factor2}
@@ -104,8 +194,21 @@ const Dashboard = ({ navigation }) => {
             style={styles.selector}
             onChangeItem={(item) => setFactor2(item.value)}
           />
+          <Text style={styles.vsText} >vs</Text>
+          <DropDownPicker
+            items={factorList}
+            defaultValue={factor3}
+            containerStyle={{height: 40, flex: 1}}
+            style={styles.selector}
+            onChangeItem={(item) => setFactor3(item.value)}
+          />
         </View>
-        <Chart xValues={item.timeframe} yValues={item.data} legend={item.legend}/>
+        <Chart
+          xValues={factor2ChartData.dates}
+          yValues={factor2ChartData.data}
+          legend={factor2ChartData.legend}
+          loading={loading}
+        />
         <View style={styles.navigationContainer}>
           <Text style={styles.navigationText}>Case History</Text>
         </View>
@@ -122,19 +225,18 @@ const Dashboard = ({ navigation }) => {
   return (
     <GreenBackground>
       <Header white >Insight</Header>
-      <TimeRangeSelector/>
+      <TimeRangeSelector isActive={timeRange} setIsActive={setTimeRange}/>
 
       <View style={styles.container}>
-        {loading ? <ActivityIndicator size={25} color={'white'} style={{height: 500}}/> :
           <Carousel
             layout={"default"}
             ref={carouselRef}
-            data={carouselItems}
+            data={[0,1]}
             sliderHeight={500}
             itemHeight={500}
             renderItem={_renderItem}
             vertical
-          />}
+          />
       </View>
 
     </GreenBackground>
@@ -188,6 +290,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     fontSize: 10,
   }
-})
+});
 
 export default memo(Dashboard);

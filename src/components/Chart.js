@@ -1,12 +1,30 @@
 import React, { memo } from 'react';
-import { Dimensions } from "react-native";
+import { ActivityIndicator, Dimensions, Text } from "react-native";
 import { LineChart } from 'react-native-chart-kit';
 
-const Chart = ({ xValues, yValues, legend }) => {
+let COLORS = [
+  "rgba(137, 203, 194,",
+  "rgba(50, 50, 204,",
+  "rgba(97, 48, 64,",
+  "rgba(134, 65, 244,",
+  "rgba(142, 107, 35,",
+  "rgba(105, 31, 1,",
+
+];
+
+const Chart = ({ xValues, yValues, legend, loading }) => {
+  if(loading)
+    return <ActivityIndicator size={25} color={'black'} style={{height: 270}}/>;
+
+  if(xValues.length === 0){
+    return <Text style={{paddingVertical: 130, color: '#1c1c1c'}}>No data to show</Text>
+  }
+
   let graphData = [];
-  yValues.forEach((graph) => {
+  yValues.forEach((graph, i) => {
     graphData.push({
-      data: graph
+      data: graph,
+      color: (opacity = 1) => `${COLORS[i]} ${opacity})`
     });
   });
 
@@ -22,7 +40,7 @@ const Chart = ({ xValues, yValues, legend }) => {
       width={Dimensions.get('window').width * 0.85} // from react-native
       height={220}
       yAxisInterval={1} // optional, defaults to 1
-      withDots={false}
+      withDots={true}
       verticalLabelRotation={-20}
       chartConfig={{
         backgroundGradientFrom: '#FFFFFF',
@@ -39,6 +57,6 @@ const Chart = ({ xValues, yValues, legend }) => {
       }}
     />
   );
-}
+};
 
 export default memo(Chart);
