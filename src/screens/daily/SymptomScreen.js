@@ -10,6 +10,7 @@ import {
   Modal,
   ScrollView,
   TouchableOpacity,
+  Platform
 } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import {theme} from "../../core/theme";
@@ -120,10 +121,10 @@ const SymptomScreen = ({ navigation }) => {
     <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}} key={i}>
       <Text style={{flex: 1}}>{q.label}:</Text>
       <View style={{flex:1, borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.3)'}}>
-        <TouchableOpacity onPress={() => setShowPicker(showPicker === i ? -1 : i)}>
+        {Platform.OS === 'ios' && <TouchableOpacity onPress={() => setShowPicker(showPicker === i ? -1 : i)}>
           <Text style={{textAlign: 'center', fontSize: 16}}>{q.value}</Text>
-        </TouchableOpacity>
-        {showPicker === i && <Picker
+        </TouchableOpacity>}
+        {(Platform.OS === 'android' || showPicker === i) && <Picker
           selectedValue={q.value}
           onValueChange={(itemValue) => {q.setter(itemValue); setShowPicker(-1)}}
           returnKeyType={'done'}
