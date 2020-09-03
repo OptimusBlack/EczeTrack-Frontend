@@ -67,7 +67,7 @@ const DietScreen = ({ navigation }) => {
     if(colorQuantity === 0)
       vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
     else
-      vals = {'mealType': '', 'foodItem': 'colors', 'foodItemAmt': colorQuantity, 'foodItemAmtUnit': 'g'};
+      vals = {'mealType': 'Fruits', 'foodItem': 'colors', 'foodItemAmt': colorQuantity, 'foodItemAmtUnit': 'g'};
     const res = await record(vals, 'das');
     onComplete('das');
     navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
