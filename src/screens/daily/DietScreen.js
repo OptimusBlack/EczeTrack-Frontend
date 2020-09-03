@@ -106,7 +106,7 @@ const DietScreen = ({ navigation }) => {
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Text style={styles.header}>Daily Diet Record</Text>
 
-      <WhiteContainer pointerEvents={colorQuantity > 0 && "none"} >
+      <WhiteContainer pointerEvents={colorQuantity > 0 ? "none" : "auto"} >
         <Text style={styles.foodDiaryHeader}>Food Diary</Text>
         <TextInput
           style={styles.textInput}
@@ -169,7 +169,11 @@ const DietScreen = ({ navigation }) => {
         <Counter
           start={0}
           max={3}
-          onChange={number => setColorQuantity(number)}
+          onChange={number => {
+            setColorQuantity(number);
+            if(number > 0)
+              setIsSelected(-1);
+          }}
           buttonStyle={{borderColor: theme.colors.primary}}
           buttonTextStyle={{color: theme.colors.primary}}
           countTextStyle={{color: theme.colors.primary}}
