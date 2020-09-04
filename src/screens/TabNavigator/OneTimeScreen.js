@@ -2,66 +2,69 @@ import React, { memo, useEffect } from 'react';
 import { StyleSheet, View, RefreshControl, ScrollView } from 'react-native';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
-import { factorList } from '../../data/factorList.js';
 import RecordScreenButton from '../../components/RecordScreenButton';
 
-import {checkWeekly} from '../../ApiManager'
+import {checkOneTime} from '../../ApiManager'
 
-const WeeklyScreen = ({ route, navigation }) => {
-  const icons = ['running', 'hand-point-down', 'bed'];
-  const screenNavigation = ['ExerciseScreen', 'StressScreen', 'SleepScreen'];
-  const weeklyCheckLabels = ['exercise', 'stress', 'sleep'];
+const factorList = [
+  {value: 'environmentOT', label: 'Environment (OT)', icon: 'globe', screen: 'EnvironmentOTScreen'},
+  {value: 'symptomOT', label: 'Symptoms', icon: 'hand-paper', screen: 'SymptomOTScreen'},
+  {value: 'stressOT', label: 'Stress', icon: 'hand-point-down', screen: 'StressOTScreen'},
+  {value: 'qualityOfLife', label: 'Quality of Life', icon: 'hand-point-down', screen: 'QualityOfLife'},
+];
+
+const OneTimeScreen = ({ navigation }) => {
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [check, setCheck] = React.useState({
-    exercise: false,
-    stress: false,
-    sleep: false
+    environmentOT: false,
+    symptomOT: false,
+    stressOT: false
   });
 
   const _onRefresh = async () => {
     setRefreshing(true);
-    const response = await checkWeekly();
+    const response = await checkOneTime();
     if(response && response.success){
-      setCheck(response.weeklyCheck);
+      setCheck(response.otCheck);
     }
     setRefreshing(false);
   };
 
   useEffect(() =>{
     async function fetchData(){
-      const response = await checkWeekly();
+      const response = await checkOneTime();
       if(response && response.success){
-        setCheck(response.weeklyCheck);
+        setCheck(response.otCheck); // TODO
       }
     }
     fetchData();
   }, []);
-  
+
   const onComplete = label => {
     let update = {};
     update[label] = true;
     setCheck({...check, ...update});
   };
 
-  
+
   return (
     <GreenBackground>
       <Header white style={styles.header}>
-        Your records for the week
+        Your records for the One Time Questionnaire
       </Header>
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView}>
 
           <RefreshControl refreshing={refreshing} onRefresh={_onRefresh} />
 
-          {factorList.slice(4, 7).map((e, idx) =>
+          {factorList.map((e, idx) =>
             <RecordScreenButton
               key={idx}
-              ticked={check[weeklyCheckLabels[idx]]}
-              // disabled={check[weeklyCheckLabels[idx]]}
-              icon={icons[idx]}
-              onPress={() => navigation.navigate(screenNavigation[idx], {onComplete})}
+              ticked={check[e.value]}
+              disabled={check[e.value]}
+              icon={e.icon}
+              onPress={() => navigation.navigate(e.screen, {onComplete})}
             >
               {e.label}
             </RecordScreenButton>
@@ -70,7 +73,7 @@ const WeeklyScreen = ({ route, navigation }) => {
       </View>
     </GreenBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -93,4 +96,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default memo(WeeklyScreen);
+export default memo(OneTimeScreen);

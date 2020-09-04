@@ -53,20 +53,20 @@ const Dashboard = ({ navigation }) => {
   };
   BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-  useEffect(()=>{
-    updateFactor1();
-    updateFactor2();
-    updateFactor3();
-  }, []);
-  useEffect(()=>{
-    updateFactor1();
-  }, [factor]);
-  useEffect(()=>{
-    updateFactor2();
-  }, [factor2]);
-  useEffect(()=>{
-    updateFactor3();
-  }, [factor3]);
+  // useEffect(()=>{
+  //   updateFactor1();
+  //   updateFactor2();
+  //   updateFactor3();
+  // }, []);
+  // useEffect(()=>{
+  //   updateFactor1();
+  // }, [factor]);
+  // useEffect(()=>{
+  //   updateFactor2();
+  // }, [factor2]);
+  // useEffect(()=>{
+  //   updateFactor3();
+  // }, [factor3]);
 
 
   const getDateFrom = ()=>{

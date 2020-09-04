@@ -24,7 +24,7 @@ import Checkbox from 'react-native-check-box';
 
 import { theme } from "../../core/theme";
 
-const EnvironmentF2Screen = ({ navigation }) => {
+const EnvironmentOTScreen = ({ navigation }) => {
   const [q1, setQ1] = useState({value: false});
   const [q2, setQ2] = useState({value: false});
   const [q3, setQ3] = useState({value: false});
@@ -71,7 +71,7 @@ const EnvironmentF2Screen = ({ navigation }) => {
     });
 
     const res = await record(vals, 'environment');
-    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
+    navigation.navigate('OneTimeScreen', {recordAdded: res.recordAdded});
   };
 
   const customQuestions = {
@@ -121,7 +121,7 @@ const EnvironmentF2Screen = ({ navigation }) => {
 
   return (
     <GreenBackground notAvoidingKeyboard={false}>
-      <BackButton goBack={() => navigation.navigate('TabNavigator')} />
+      <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
       <Header white>Environment</Header>
 
       <WhiteContainer>
@@ -162,4 +162,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(EnvironmentF2Screen);
+export default memo(EnvironmentOTScreen);

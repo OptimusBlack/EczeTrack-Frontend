@@ -18,4 +18,7 @@ export { default as MSUScreen } from './daily/MSUScreen';
 export { default as EnvironmentScreen } from './daily/EnvironmentScreen';
 
 
-export { default as SymptomF2Screen } from './feature2/SymptomF2Screen';
+export { default as EnvironmentOTScreen } from './onetime/EnvironmentOTScreen';
+export { default as SymptomOTScreen } from './onetime/SymptomOTScreen';
+export { default as StressOTScreen } from './onetime/StressOTScreen';
+export { default as QualityOfLife } from './onetime/QualityOfLife';

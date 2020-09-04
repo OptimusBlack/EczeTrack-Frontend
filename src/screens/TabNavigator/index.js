@@ -10,6 +10,7 @@ import {theme} from '../../core/theme';
 import Dashboard  from './Dashboard';
 import DailyScreen  from './DailyScreen';
 import WeeklyScreen  from './WeeklyScreen';
+import OneTimeScreen  from './OneTimeScreen';
 import SettingScreen  from './SettingScreen';
 
 const config = {
@@ -80,6 +81,24 @@ WeeklyScreenStack.path = '';
 
 
 
+// OneTime Screen
+const OneTimeStack = createStackNavigator(
+  {
+    OneTimeScreen,
+  },
+  config
+);
+
+OneTimeStack.navigationOptions = {
+  tabBarOptions,
+  tabBarIcon: ({ focused, tintColor }) => <MaterialCommunityIcons name="calendar-week" size={25} color={tintColor} />,
+  tabBarLabel: 'Once'
+};
+
+OneTimeStack.path = '';
+
+
+
 
 // Setting Screen
 const SettingScreenStack = createStackNavigator(
@@ -112,6 +131,7 @@ const TabNavigator = createMaterialTopTabNavigator({
   DashboardStack,
   DailyScreenStack,
   WeeklyScreenStack,
+  OneTimeStack,
   SettingScreenStack,
 }, {
   initialRouteName: 'DashboardStack',

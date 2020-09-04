@@ -26,7 +26,7 @@ import {theme} from "../../core/theme";
 
 
 
-const SymptomF2Screen = ({ navigation }) => {
+const SymptomOTScreen = ({ navigation }) => {
   const [q1, setQ1] = useState('');
   const [q2, setQ2] = useState('');
   const [q3, setQ3] = useState('');
@@ -50,9 +50,9 @@ const SymptomF2Screen = ({ navigation }) => {
       }
     }
     const vals = {0: q1, 1: q2, 2: q3, 3: q4, 4: q5, 5: q6, 6:q7};
-    const res = await record(vals, 'symptomF2'); //TODO Backend
-    onComplete('symptomF2');
-    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded})
+    const res = await record(vals, 'symptomOT'); //TODO Backend
+    onComplete('symptomOT');
+    navigation.navigate('OneTimeScreen', {recordAdded: res.recordAdded})
   };
 
   const allQuestions = questions.map( (q, i) => (
@@ -79,8 +79,8 @@ const SymptomF2Screen = ({ navigation }) => {
 
   return (
     <GreenBackground notAvoidingKeyboard={false}>
-      <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Header white>Weekly Exercise</Header>
+      <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
+      <Header white>Symptom</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(SymptomF2Screen);
+export default memo(SymptomOTScreen);
