@@ -10,7 +10,11 @@ import { theme } from '../../core/theme';
 import { emailValidator, passwordValidator } from '../../core/utils';
 import {login} from '../../ApiManager';
 
+import { useTranslation } from 'react-i18next';
+
 const LoginScreen = ({ navigation }) => {
+  const { t, i18n } = useTranslation();
+
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
@@ -19,14 +23,14 @@ const LoginScreen = ({ navigation }) => {
     const passwordError = passwordValidator(password.value);
 
     if (emailError || passwordError) {
-      setEmail({ ...email, error: emailError });
-      setPassword({ ...password, error: passwordError });
+      setEmail({ ...email, error: t(emailError) });
+      setPassword({ ...password, error: t(passwordError) });
       return;
     }
 
     const response = await login(email.value, password.value);
     if (response.code){
-        setPassword({...password, error: response.message });
+        setPassword({...password, error: t(response.message) });
     }
     else {
       AsyncStorage.setItem('user', JSON.stringify(response));
@@ -40,10 +44,10 @@ const LoginScreen = ({ navigation }) => {
 
       <Logo />
 
-      <Header>Welcome back.</Header>
+      <Header>{t('Welcome back')}</Header>
 
       <TextInput
-        label="Email"
+        label={t("Email")}
         returnKeyType="next"
         value={email.value}
         onChangeText={text => setEmail({ value: text, error: '' })}
@@ -56,7 +60,7 @@ const LoginScreen = ({ navigation }) => {
       />
 
       <TextInput
-        label="Password"
+        label={t("Password")}
         returnKeyType="done"
         value={password.value}
         onChangeText={text => setPassword({ value: text, error: '' })}
@@ -69,18 +73,24 @@ const LoginScreen = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgotPasswordScreen')}
         >
-          <Text style={styles.label}>Forgot your password?</Text>
+          <Text style={styles.label}>{t('Forgot your password?')}</Text>
         </TouchableOpacity>
       </View>
 
       <Button mode="contained" onPress={_onLoginPressed}>
-        Login
+        {t('Login')}
       </Button>
 
       <View style={styles.row}>
-        <Text style={styles.label}>Don’t have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('MedicalDisclaimer')}>
-          <Text style={styles.link}>Sign up</Text>
+        <Text style={styles.label}>{t('Dont have an account?') + ' '}</Text>
+        <TouchableOpacity onPress={() => {
+          if (i18n.language == "en") {
+            navigation.navigate('MedicalDisclaimer');
+          } else {
+            navigation.navigate('MedicalDisclaimerZH');
+          }
+        }}>
+          <Text style={styles.link}>{t('Sign up')}</Text>
         </TouchableOpacity>
       </View>
     </WhiteBackground>

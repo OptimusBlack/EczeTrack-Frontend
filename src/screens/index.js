@@ -3,8 +3,11 @@ export { default as LoginScreen } from './auth/LoginScreen';
 export { default as RegisterScreen } from './auth/RegisterScreen';
 export { default as ForgotPasswordScreen } from './auth/ForgotPasswordScreen';
 export { default as MedicalDisclaimer } from './auth/MedicalDisclaimer';
+export { default as MedicalDisclaimerZH } from './auth/MedicalDisclaimerZH';
 export { default as TermsAndConditions } from './auth/TermsAndConditions';
+export { default as TermsAndConditionsZH } from './auth/TermsAndConditionsZH';
 export { default as PersonalInformationCollectionStatement } from './auth/PersonalInformationCollectionStatement';
+export { default as PersonalInformationCollectionStatementZH } from './auth/PersonalInformationCollectionStatementZH';
 export { default as ResetPassword } from './auth/ResetPassword';
 export { default as TabNavigator } from './TabNavigator';
 

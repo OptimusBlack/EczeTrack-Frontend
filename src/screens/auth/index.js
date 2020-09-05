@@ -7,8 +7,11 @@ import {
   RegisterScreen,
   ForgotPasswordScreen,
   MedicalDisclaimer,
+  MedicalDisclaimerZH,
   TermsAndConditions,
+  TermsAndConditionsZH,
   PersonalInformationCollectionStatement,
+  PersonalInformationCollectionStatementZH,
   ResetPassword,
 } from '../';
 
@@ -19,8 +22,11 @@ const Router = createStackNavigator(
     RegisterScreen,
     ForgotPasswordScreen,
     MedicalDisclaimer,
+    MedicalDisclaimerZH,
     TermsAndConditions,
+    TermsAndConditionsZH,
     PersonalInformationCollectionStatement,
+    PersonalInformationCollectionStatementZH,
     ResetPassword,
   },
   {

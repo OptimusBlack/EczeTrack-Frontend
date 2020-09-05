@@ -1,20 +1,18 @@
 import React, { memo, useState } from 'react';
 import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import {Picker} from '@react-native-community/picker';
+import { Picker } from '@react-native-community/picker';
 
-import {theme} from '../core/theme';
+import { theme } from '../core/theme';
 
 import { useTranslation } from 'react-i18next';
-import {changeLanguage} from '../translation'
+import { changeLanguage } from '../translation'
 import { factorList } from "../data/factorList";
 
-const LanguagePicker = ({ navigation }) => {
+const LanguagePicker = ({ navigation, blackText }) => {
   const { t, i18n } = useTranslation();
 
   const [showPicker, setShowPicker] = useState(false);
-  const [currentLang, setCurrentLang] = useState({label: 'English', value: 'en'});
-
-
+  const [currentLang, setCurrentLang] = useState({ label: 'English', value: 'en' });
 
   const _onLanguageChange = async (itemValue) => {
     let newLang = {
@@ -24,7 +22,7 @@ const LanguagePicker = ({ navigation }) => {
     await AsyncStorage.setItem('lang', itemValue);
     await changeLanguage(itemValue);
     // Translating factorList
-    for(let i=0; i<factorList.length; i++){
+    for (let i = 0; i < factorList.length; i++) {
       factorList[i].label = t(factorList[i].label);
     }
     setCurrentLang(newLang);
@@ -33,37 +31,31 @@ const LanguagePicker = ({ navigation }) => {
 
 
   return (
-        <View style={{width: '50%'}}>
-          <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
-            <Text style={[styles.textLabel, {textAlign: 'right'}]}>{currentLang.label}</Text>
-          </TouchableOpacity>
-          {showPicker && <Picker
-            selectedValue={currentLang}
-            onValueChange={_onLanguageChange}
-            returnKeyType={'done'}
-          >
-            <Picker.Item label="English" value={'en'} />
-            <Picker.Item label="Chinese" value={'zh'} />
-          </Picker>}
-        </View>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
+        <Text style={[styles.textLabel, { textAlign: 'right', color: blackText ? 'black' : 'white' }]}>{currentLang.label}</Text>
+      </TouchableOpacity>
+      {showPicker && <Picker
+        selectedValue={currentLang}
+        onValueChange={_onLanguageChange}
+        returnKeyType={'done'}
+      // style={{color: blackText ? 'black' : 'white'}}
+      >
+        <Picker.Item label="English" value={'en'} />
+        <Picker.Item label="Chinese" value={'zh'} />
+      </Picker>}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header:{
+  header: {
     fontSize: 20
   },
-  textContainer: {
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    alignSelf: 'stretch',
-    paddingVertical: 5,
-    borderBottomColor: theme.colors.primary,
-    borderBottomWidth: 1,
-    marginBottom: 10,
-    flexDirection: 'row',
+  container: {
+    width: '50%'
   },
-  textLabel:{
+  textLabel: {
     fontSize: 16,
     color: 'white',
   }

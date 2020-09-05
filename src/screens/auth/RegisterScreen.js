@@ -14,7 +14,11 @@ import {
 } from '../../core/utils';
 import {register} from '../../ApiManager';
 
+import { useTranslation } from 'react-i18next';
+
 const RegisterScreen = ({ navigation }) => {
+  const { t, i18n } = useTranslation();
+
   const [name, setName] = useState({ value: '', error: '' });
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
@@ -25,18 +29,18 @@ const RegisterScreen = ({ navigation }) => {
     const passwordError = passwordValidator(password.value);
 
     if (emailError || passwordError || nameError) {
-      setName({ ...name, error: nameError });
-      setEmail({ ...email, error: emailError });
-      setPassword({ ...password, error: passwordError });
+      setName({ ...name, error: t(nameError) });
+      setEmail({ ...email, error: t(emailError) });
+      setPassword({ ...password, error: t(passwordError) });
       return;
     }
 
     const response = await register(name.value, email.value, password.value);
     if (response.code){
       if (response.message === "Email already taken"){
-        setEmail({ ...email, error: response.message });
+        setEmail({ ...email, error: t(response.message) });
       } else {
-        setPassword({ ...password, error: response.message });
+        setPassword({ ...password, error: t(response.message) });
       }
     }
     else {
@@ -51,10 +55,10 @@ const RegisterScreen = ({ navigation }) => {
 
       <Logo />
 
-      <Header>Create Account</Header>
+      <Header>{t('Create Account')}</Header>
 
       <TextInput
-        label="Name"
+        label={t("Name")}
         returnKeyType="next"
         value={name.value}
         onChangeText={text => setName({ value: text, error: '' })}
@@ -63,7 +67,7 @@ const RegisterScreen = ({ navigation }) => {
       />
 
       <TextInput
-        label="Email"
+        label={t("Email")}
         returnKeyType="next"
         value={email.value}
         onChangeText={text => setEmail({ value: text, error: '' })}
@@ -76,7 +80,7 @@ const RegisterScreen = ({ navigation }) => {
       />
 
       <TextInput
-        label="Password"
+        label={t("Password")}
         returnKeyType="done"
         value={password.value}
         onChangeText={text => setPassword({ value: text, error: '' })}
@@ -86,13 +90,13 @@ const RegisterScreen = ({ navigation }) => {
       />
 
       <Button mode="contained" onPress={_onSignUpPressed} style={styles.button}>
-        Sign Up
+        {t('Sign up')}
       </Button>
 
       <View style={styles.row}>
-        <Text style={styles.label}>Already have an account? </Text>
+        <Text style={styles.label}>{t('Already have an account?') + ' '}</Text>
         <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
-          <Text style={styles.link}>Login</Text>
+          <Text style={styles.link}>{t('Login')}</Text>
         </TouchableOpacity>
       </View>
     </WhiteBackground>
