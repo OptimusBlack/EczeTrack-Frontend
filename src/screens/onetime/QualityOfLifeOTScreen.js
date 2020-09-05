@@ -21,8 +21,6 @@ import {record} from '../../ApiManager'
 
 import {theme} from "../../core/theme";
 
-
-
 const QualityOfLifeOTScreen = ({ navigation }) => {
   const [q1, setQ1] = useState(0);
   const [q2, setQ2] = useState(0);
@@ -54,8 +52,8 @@ const QualityOfLifeOTScreen = ({ navigation }) => {
     for(let i=0; i<values.length; i++){
       vals[i] = values[i]-1;
     }
-    const res = await record(vals, 'qualityOfLife');
-    onComplete('qualityOfLife');
+    const res = await record(vals, 'qualityOfLifeOT');
+    onComplete('qualityOfLifeOT');
     navigation.navigate('OneTimeScreen', {recordAdded: res.recordAdded});
   };
 
@@ -102,7 +100,7 @@ const QualityOfLifeOTScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
-      <Header white>Stress</Header>
+      <Header white>Quality of Life</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
