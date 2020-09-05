@@ -14,4 +14,6 @@ module.exports = {
   'Sleep': 'Sleep',
   'Two-factor Comparison': 'Two-factor Comparison',
   'vs': 'vs',
+  'Your records for': 'Your records for',
+
 };

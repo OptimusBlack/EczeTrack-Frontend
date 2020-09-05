@@ -7,8 +7,11 @@ import RecordScreenButton from '../../components/RecordScreenButton';
 
 import { factorList } from '../../data/factorList';
 import {checkDaily} from '../../ApiManager'
+import { useTranslation } from 'react-i18next';
 
 const DailyScreen = ({ route, navigation }) => {
+  const { t } = useTranslation();
+
   const icons = ['hand-paper', 'pills', 'apple-alt', 'globe'];
   const screenNavigation = ['SymptomScreen', 'MSUScreen', 'DietScreen', 'EnvironmentScreen'];
   const dailyCheckLabels = ['symptom', 'msu', 'das', 'environment'];
@@ -50,7 +53,7 @@ const DailyScreen = ({ route, navigation }) => {
   return (
     <GreenBackground>
       <Header white style={styles.header}>
-        Your records for {(new Date()).toDateString()}
+        {t('Your records for')} {(new Date()).toDateString()}
       </Header>
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView}>

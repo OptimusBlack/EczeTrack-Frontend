@@ -14,4 +14,5 @@ module.exports = {
   'Sleep': '睡眠',
   'Two-factor Comparison': '相關性分析',
   'vs': '與',
+  'Your records for': '您今天的記錄:',
 };

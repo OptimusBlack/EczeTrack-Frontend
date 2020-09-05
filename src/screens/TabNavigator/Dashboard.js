@@ -34,11 +34,6 @@ const WEEKLY = factorList.slice(4);
 const Dashboard = ({ navigation }) => {
   const { t } = useTranslation();
 
-  // Translating factorList
-  for(let i=0; i<factorList.length; i++){
-    factorList[i].label = t(factorList[i].label);
-  }
-
 
   const [loading, setLoading] = useState(true);
 
