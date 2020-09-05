@@ -44,6 +44,7 @@ const Dashboard = ({ navigation }) => {
     data: [[3, 0, 0.5, 1.5, 2, 0], [1, 0, 0.5, 0.5, 3, 0]],
     legend: []
   });
+
   const carouselRef = useRef(null);
 
 
@@ -58,15 +59,17 @@ const Dashboard = ({ navigation }) => {
   //   updateFactor2();
   //   updateFactor3();
   // }, []);
-  // useEffect(()=>{
-  //   updateFactor1();
-  // }, [factor]);
-  // useEffect(()=>{
-  //   updateFactor2();
-  // }, [factor2]);
-  // useEffect(()=>{
-  //   updateFactor3();
-  // }, [factor3]);
+
+
+  useEffect(()=>{
+    updateFactor1();
+  }, [factor]);
+  useEffect(()=>{
+    updateFactor2();
+  }, [factor2]);
+  useEffect(()=>{
+    updateFactor3();
+  }, [factor3]);
 
 
   const getDateFrom = ()=>{
@@ -79,6 +82,7 @@ const Dashboard = ({ navigation }) => {
     setLoading(true);
     const dateFrom = getDateFrom();
     const res = await getChartData(factor, dateFrom);
+    console.log(res.chartData.data);
     if(res && !res.code){
       setFactor1ChartData(res.chartData);
     }
@@ -106,12 +110,46 @@ const Dashboard = ({ navigation }) => {
   };
 
   const updateTwoFactorComparisionChartData = ()=>{
-    const data = twoFactorComparisionData.factor2.data.concat(twoFactorComparisionData.factor3.data);
-    const legend = twoFactorComparisionData.factor2.legend.concat(twoFactorComparisionData.factor3.legend);
-    const dates = mergeDates(twoFactorComparisionData.factor2.dates, twoFactorComparisionData.factor3.dates);
-    setFactor2ChartData({data, legend, dates});
+    let f2 = {...twoFactorComparisionData.factor2};
+    let f3 = {...twoFactorComparisionData.factor3};
+    f2 = filterChartData(f2);
+    f3 = filterChartData(f3);
+    const data = f2.data.concat(f3.data);
+    const legend = f2.legend.concat(f3.legend);
+    const dates = mergeDates(f2.dates, f3.dates);
+    console.log({data, legend, dates});
+    if(twoFactorComparisionData.factor2.legend.length > 0 && twoFactorComparisionData.factor3.legend.length > 0)
+      setFactor2ChartData({data, legend, dates});
 
   };
+
+  const filterChartData = chartData => {
+    if(chartData.data.length === 1){ // Not MSU
+      if(chartData.data[0].length === 0){ //Empty data array
+        chartData.data = [];
+        chartData.dates = [];
+        chartData.legend = [];
+      }
+      return chartData;
+    }
+
+    // MSU
+    if(chartData.data[0].length === 0 && chartData.data[1].length === 0){ // Both empty
+      chartData.data = [];
+      chartData.dates = [];
+      chartData.legend = [];
+    }
+    if(chartData.data[0].length === 0){ // First empty
+      chartData.data = [chartData.data[1]];
+      chartData.legend = [chartData.legend[1]];
+    }
+    else if(chartData.data[1].length === 0){ // Second empty
+      chartData.data = [chartData.data[0]];
+      chartData.legend = [chartData.legend[0]];
+    }
+    return chartData;
+  };
+
 
   const mergeDates = (date1, date2) => {
     let mergedDates = [];
