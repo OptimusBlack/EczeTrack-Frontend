@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 import { ActivityIndicator, Dimensions, Text } from "react-native";
 import { LineChart } from 'react-native-chart-kit';
 
+import { useTranslation } from 'react-i18next';
+
 let COLORS = [
   "rgba(137, 203, 194,",
   "rgba(50, 50, 204,",
@@ -13,6 +15,8 @@ let COLORS = [
 ];
 
 const Chart = ({ xValues, yValues, legend, loading }) => {
+  const { t } = useTranslation();
+
   if(loading)
     return <ActivityIndicator size={25} color={'black'} style={{height: 270}}/>;
 
@@ -31,7 +35,7 @@ const Chart = ({ xValues, yValues, legend, loading }) => {
   const data = {
     labels: xValues,
     datasets: graphData,
-    legend: legend
+    legend: legend.map((item) => t(item))
   };
 
   return (

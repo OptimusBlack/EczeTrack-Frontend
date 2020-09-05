@@ -1,12 +1,9 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
-import { theme } from '../core/theme';
-
 import { useTranslation } from 'react-i18next';
-import { changeLanguage } from '../translation'
-import { factorList } from "../data/factorList";
+import { changeLanguage } from '../translation';
 
 const LanguagePicker = ({ navigation, blackText }) => {
   const { t, i18n } = useTranslation();
@@ -16,19 +13,24 @@ const LanguagePicker = ({ navigation, blackText }) => {
 
   const _onLanguageChange = async (itemValue) => {
     let newLang = {
-      label: itemValue === 'en' ? 'English' : 'Chinese',
+      label: itemValue === 'en' ? 'English' : '中文（繁體）',
       value: itemValue
     };
     await AsyncStorage.setItem('lang', itemValue);
     await changeLanguage(itemValue);
+    console.log('Item Value: ', itemValue);
     // Translating factorList
-    for (let i = 0; i < factorList.length; i++) {
-      factorList[i].label = t(factorList[i].label);
-    }
     setCurrentLang(newLang);
     setShowPicker(false)
   };
 
+  useEffect(() => {
+    if (i18n.language == 'en') {
+      setCurrentLang({ label: 'English', value: 'en' });
+    } else {
+      setCurrentLang({ label: '中文（繁體）', value: 'zh' });
+    }
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -36,13 +38,13 @@ const LanguagePicker = ({ navigation, blackText }) => {
         <Text style={[styles.textLabel, { textAlign: 'right', color: blackText ? 'black' : 'white' }]}>{currentLang.label}</Text>
       </TouchableOpacity>
       {showPicker && <Picker
-        selectedValue={currentLang}
+        selectedValue={currentLang.value}
         onValueChange={_onLanguageChange}
         returnKeyType={'done'}
-      // style={{color: blackText ? 'black' : 'white'}}
+        style={{ color: blackText ? 'black' : 'white' }}
       >
         <Picker.Item label="English" value={'en'} />
-        <Picker.Item label="Chinese" value={'zh'} />
+        <Picker.Item label="中文（繁體）" value={'zh'} />
       </Picker>}
     </View>
   );

@@ -87,7 +87,7 @@ const HomeScreen = ({ navigation }) => {
       </Button>
 
       <View style={{flexDirection: 'row'}} >
-        <Text>{t('Select Language') + ': '}</Text>
+        <Text>Language/語言:</Text>
         <LanguagePicker blackText />
       </View>
 

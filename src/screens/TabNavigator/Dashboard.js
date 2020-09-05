@@ -34,7 +34,6 @@ const WEEKLY = factorList.slice(4);
 const Dashboard = ({ navigation }) => {
   const { t } = useTranslation();
 
-
   const [loading, setLoading] = useState(true);
 
   // const [isActive, setIsActive] = useState(0);
@@ -190,13 +189,14 @@ const Dashboard = ({ navigation }) => {
   };
 
   const _updateFactorList = (item, index) => {
-    setFactor2(item.value)
+    setFactor2(item.value);
+    console.log(item.value);
     if (DAILY.includes(factorList[index])) {
-      const factorsArray = DAILY.filter((elem) => elem != item);
+      const factorsArray = DAILY.filter((elem) => elem.value != item.value);
       setFactorList3(factorsArray);
       setFactor3(factorsArray[0].value);
     } else {
-      const factorsArray = WEEKLY.filter((elem) => elem != item);
+      const factorsArray = WEEKLY.filter((elem) => elem.value != item.value);
       setFactorList3(factorsArray);
       setFactor3(factorsArray[0].value);
     }
@@ -209,8 +209,8 @@ const Dashboard = ({ navigation }) => {
           <Header>{t('Case History')}</Header>
           
           <DropDownPicker
-            items={factorList}
-            defaultValue={factor}
+            items={factorList.map((item) => {return {'value': item.value, 'label': t(item.label)} })}
+            defaultValue={t(factor)}
             containerStyle={{height: 40, alignSelf: 'stretch'}}
             style={styles.selector}
             onChangeItem={_updateFactor}
@@ -242,16 +242,16 @@ const Dashboard = ({ navigation }) => {
           zIndex: 10
         }]} >
           <DropDownPicker
-            items={factorList2}
-            defaultValue={factor2}
+            items={factorList2.map((item) => {return {'value': item.value, 'label': t(item.label)} })}
+            defaultValue={t(factor2)}
             containerStyle={{height: 40, flex: 1}}
             style={styles.selector}
             onChangeItem={_updateFactorList}
           />
           <Text style={styles.vsText} >{t('vs')}</Text>
           <DropDownPicker
-            items={factorList3}
-            defaultValue={factor3}
+            items={factorList3.map((item) => {return {'value': item.value, 'label': t(item.label)} })}
+            defaultValue={t(factor3)}
             containerStyle={{height: 40, flex: 1}}
             style={styles.selector}
             onChangeItem={(item, index) => setFactor3(item.value)}

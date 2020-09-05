@@ -12,7 +12,6 @@ import { useTranslation } from 'react-i18next';
 const SettingScreen = ({ navigation }) => {
   const { t } = useTranslation();
 
-
   const [user, setUser] = useState(false);
 
   const getUser = async ()=>{
@@ -30,22 +29,19 @@ const SettingScreen = ({ navigation }) => {
     AsyncStorage.removeItem('user', () => navigation.navigate('HomeScreen'));
   };
 
-
-
-
   return (
     <GreenBackground>
       <Header white style={styles.header}>{t('Settings')}</Header>
       <View style={styles.textContainer}>
-        <Text style={styles.textLabel}>Name:</Text>
+        <Text style={styles.textLabel}>{t('Name')}:</Text>
         <Text style={styles.textLabel}>{user.name}</Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textLabel}>Email:</Text>
+        <Text style={styles.textLabel}>{t('Email')}:</Text>
         <Text style={styles.textLabel}>{user.email}</Text>
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textLabel}>Language:</Text>
+        <Text style={styles.textLabel}>Language/語言:</Text>
         <LanguagePicker/>
       </View>
 
