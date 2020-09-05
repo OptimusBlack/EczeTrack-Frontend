@@ -6,8 +6,7 @@ import Button from '../components/Button';
 import Paragraph from '../components/Paragraph';
 import { theme } from '../core/theme';
 
-import { init } from '../translation'
-
+import { useTranslation } from 'react-i18next';
 
 import {refreshToken} from '../ApiManager.js'
 
@@ -19,12 +18,11 @@ const HomeScreen = ({ navigation }) => {
 
   const getUser = AsyncStorage.getItem('user');
   const getURL = Linking.parseInitialURLAsync();
-  const translationInit = init();
-
+  const { t } = useTranslation();
 
   useEffect(()=>{
-    Promise.all([getUser, getURL, translationInit])
-      .then(async ([user, { path, queryParams }, translation]) => {
+    Promise.all([getUser, getURL])
+      .then(async ([user, { path, queryParams }]) => {
         if(user){
           user = JSON.parse(user);
           console.log("USER:", user);
@@ -32,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
           if(new Date() > new Date(user.tokens.refresh.expires))
             setLoading(false);
           else if(new Date() < new Date(user.tokens.access.expires))
-            navigation.navigate('TabNavigator', {translation});
+            navigation.navigate('TabNavigator');
           else{
             const res = await refreshToken(user.tokens.refresh.token);
             if(res.code)
@@ -40,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
             else{
               user.tokens = res;
               AsyncStorage.setItem('user', JSON.stringify(user));
-              navigation.navigate('TabNavigator', {translation});
+              navigation.navigate('TabNavigator');
             }
           }
 
@@ -66,19 +64,19 @@ const HomeScreen = ({ navigation }) => {
   return (
     <WhiteBackground>
       <Logo />
-      <Header>EczeTrack</Header>
+      <Header>{t('EczeTrack')}</Header>
 
       <Paragraph>
-        Smart Eczema Symptom Tracker
+        {t('Smart Eczema Symptom Tracker')}
       </Paragraph>
       <Button mode="contained" onPress={() => navigation.navigate('LoginScreen')}>
-        Login
+        {t('LOGIN')}
       </Button>
       <Button
         mode="outlined"
         onPress={() => navigation.navigate('MedicalDisclaimer')}
       >
-        Sign Up
+        {t('SIGN UP')}
       </Button>
     </WhiteBackground>
 )};

@@ -1,4 +1,8 @@
 module.exports = {
+  'EczeTrack': 'EczeTrack',
+  'Smart Eczema Symptom Tracker': 'Smart Eczema Symptom Tracker',
+  'LOGIN': 'LOGIN',
+  'SIGN UP': 'SIGN UP',
   'Insight': 'Insight',
   '7D': '7D',
   '30D': '30D',

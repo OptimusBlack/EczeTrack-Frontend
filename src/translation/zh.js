@@ -1,4 +1,8 @@
 module.exports = {
+  'EczeTrack': 'EczeTrack',
+  'Smart Eczema Symptom Tracker': '濕疹健康日記',
+  'LOGIN': '登入',
+  'SIGN UP': '註冊',
   'Insight': '分析',
   '7D': '週',
   '30D': '月',
