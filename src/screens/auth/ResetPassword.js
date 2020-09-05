@@ -8,7 +8,11 @@ import BackButton from '../../components/BackButton';
 import { passwordValidator } from '../../core/utils';
 import {resetPassword} from '../../ApiManager';
 
+import { useTranslation } from 'react-i18next';
+
 const ResetPassword = ({route,  navigation }) => {
+  const { t, i18n } = useTranslation();
+
   // const [token, setToken] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [password2, setPassword2] = useState({ value: '', error: '' });
@@ -20,19 +24,19 @@ const ResetPassword = ({route,  navigation }) => {
     const password2Error = passwordValidator(password2.value);
 
     if (passwordError || password2Error) {
-      setPassword({ ...password, error: passwordError });
-      setPassword2({ ...password2, error: password2Error });
+      setPassword({ ...password, error: t(passwordError) });
+      setPassword2({ ...password2, error: t(password2Error) });
       return;
     }
 
     if (password.value !== password2.value) {
-      setPassword2({ ...password2, error: "The passwords don't match" });
+      setPassword2({ ...password2, error: t("The passwords dont match") });
       return;
     }
 
     const response = await resetPassword(token, password.value);
     if (response && response.code){
-      setPassword({ error: response.message });
+      setPassword({ error: t(response.message) });
     }
     else {
       navigation.navigate('TabNavigator');
@@ -45,7 +49,7 @@ const ResetPassword = ({route,  navigation }) => {
 
       <Logo />
 
-      <Header>Reset your password</Header>
+      <Header>{t('Reset password')}</Header>
 
 {/*
       <TextInput
@@ -63,7 +67,7 @@ const ResetPassword = ({route,  navigation }) => {
 */}
 
       <TextInput
-        label="Password"
+        label={t("Password")}
         returnKeyType="next"
         value={password.value}
         onChangeText={text => setPassword({ value: text, error: '' })}
@@ -73,7 +77,7 @@ const ResetPassword = ({route,  navigation }) => {
       />
 
       <TextInput
-        label="Confirm Password"
+        label={t("Confirm Password")}
         returnKeyType="done"
         value={password2.value}
         onChangeText={text => setPassword2({ value: text, error: '' })}
@@ -83,7 +87,7 @@ const ResetPassword = ({route,  navigation }) => {
       />
 
       <Button mode="contained" onPress={_onLoginPressed}>
-        Reset Password
+        {t('Reset Password')}
       </Button>
 
     </WhiteBackground>

@@ -15,7 +15,11 @@ import { theme } from '../../core/theme';
 import Button from '../../components/Button';
 import {forgotPassword} from '../../ApiManager';
 
+import { useTranslation } from 'react-i18next';
+
 const ForgotPasswordScreen = ({ navigation }) => {
+  const { t, i18n } = useTranslation();
+
   const [email, setEmail] = useState({ value: '', error: '' });
   const [timer, setTimer] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -26,14 +30,14 @@ const ForgotPasswordScreen = ({ navigation }) => {
     const emailError = emailValidator(email.value);
 
     if (emailError) {
-      setEmail({...email, error: emailError});
+      setEmail({...email, error: t(emailError)});
       return;
     }
     setLoading(true);
     const response = await forgotPassword(email.value);
     setLoading(false);
     if(response && response.code)
-      setEmail({...email, error: response.message});
+      setEmail({...email, error: t(response.message)});
     else{
       setTimer(60);
     }
@@ -64,10 +68,10 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
       <Logo />
 
-      <Header>Restore Password</Header>
+      <Header>{t('Reset Password')}</Header>
 
       <TextInput
-        label="E-mail address"
+        label={t("Email")}
         returnKeyType="done"
         value={email.value}
         onChangeText={text => setEmail({ value: text, error: '' })}
@@ -84,14 +88,14 @@ const ForgotPasswordScreen = ({ navigation }) => {
         onPress={_onSendPressed}
         style={styles.button}
         disabled={timer>0 || loading}>
-        {loading ? <ActivityIndicator color={theme.colors.primary}/> : timer ? 'Resend instructions in ' + timer + 's' : 'Send Reset Instructions'}
+        {loading ? <ActivityIndicator color={theme.colors.primary}/> : timer ? 'Resend instructions in ' + timer + 's' : t('Send Reset Instructions')}
       </Button>
 
       <TouchableOpacity
         style={styles.back}
         onPress={() => navigation.navigate('LoginScreen')}
       >
-        <Text style={styles.label}>← Back to login</Text>
+        <Text style={styles.label}>← {t('Back to login')}</Text>
       </TouchableOpacity>
     </WhiteBackground>
   );
