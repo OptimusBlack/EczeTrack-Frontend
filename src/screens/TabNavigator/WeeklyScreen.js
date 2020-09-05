@@ -6,8 +6,11 @@ import { factorList } from '../../data/factorList.js';
 import RecordScreenButton from '../../components/RecordScreenButton';
 
 import {checkWeekly} from '../../ApiManager'
+import { useTranslation } from 'react-i18next';
+
 
 const WeeklyScreen = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const icons = ['running', 'hand-point-down', 'bed'];
   const screenNavigation = ['ExerciseScreen', 'StressScreen', 'SleepScreen'];
   const weeklyCheckLabels = ['exercise', 'stress', 'sleep'];
@@ -48,7 +51,7 @@ const WeeklyScreen = ({ route, navigation }) => {
   return (
     <GreenBackground>
       <Header white style={styles.header}>
-        Your records for the week
+        {t('Your records for the past week')}
       </Header>
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView}>
@@ -63,7 +66,7 @@ const WeeklyScreen = ({ route, navigation }) => {
               icon={icons[idx]}
               onPress={() => navigation.navigate(screenNavigation[idx], {onComplete})}
             >
-              {e.label}
+              {t(e.label)}
             </RecordScreenButton>
           )}
         </ScrollView>
