@@ -23,10 +23,14 @@ import {
 
 
 import {theme} from "../../core/theme";
+import { useTranslation } from 'react-i18next';
 
 
 
 const ExerciseScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
+
   const [q1, setQ1] = useState('');
   const [q2, setQ2] = useState('');
   const [q3, setQ3] = useState('');
@@ -57,7 +61,7 @@ const ExerciseScreen = ({ navigation }) => {
   
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
-      <QuestionText>{q.question}</QuestionText>
+      <QuestionText>{t(q.question)}</QuestionText>
       <View style={styles.answerContainer}>
         <TextInput
           style={styles.inputBox}
@@ -69,8 +73,8 @@ const ExerciseScreen = ({ navigation }) => {
           onSubmitEditing={() => { i< questions.length - 1 ? refs[i+1].focus() : validate() }}
           blurOnSubmit={false}
         />
-        <Text>{q.unit}</Text>
-        {error === i && <Text style={styles.error}>Enter a valid value</Text>}
+        <Text>{t(q.unit)}</Text>
+        {error === i && <Text style={styles.error}>{t('Enter a valid value')}</Text>}
       </View>
     </QuestionContainer>
   ));
@@ -80,7 +84,7 @@ const ExerciseScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Header white>Weekly Exercise</Header>
+      <Header white>{t('Weekly Exercise')}</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
@@ -89,7 +93,7 @@ const ExerciseScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
+      <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
 
 
     </GreenBackground>

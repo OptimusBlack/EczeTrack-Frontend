@@ -66,7 +66,7 @@ const DailyScreen = ({ route, navigation }) => {
               icon={icons[idx]}
               onPress={() => navigation.navigate(screenNavigation[idx], {onComplete})}
             >
-              {e.label}
+              {t(e.label)}
             </RecordScreenButton>
           )}
         </ScrollView>

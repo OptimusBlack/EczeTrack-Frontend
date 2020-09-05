@@ -21,10 +21,12 @@ import {
 import {record} from '../../ApiManager'
 
 import {theme} from "../../core/theme";
-
+import { useTranslation } from 'react-i18next';
 
 
 const SleepScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const [q1, setQ1] = useState(0);
   const [q2, setQ2] = useState(0);
   const [q3, setQ3] = useState(0);
@@ -56,28 +58,28 @@ const SleepScreen = ({ navigation }) => {
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
-      <QuestionText>{q}</QuestionText>
+      <QuestionText>{t(q)}</QuestionText>
       <View style={styles.answerContainer}>
 
         <RadioButton
           value={values[i]}
           checked={ values[i] === 1}
           onPress={() => setters[i](1)}
-          label={i === 5 ? 'Bad' : 'Rarely'}
+          label={i === 5 ? t('Bad') : t('Rarely')}
           error={error === i}
         />
         <RadioButton
           value={values[i]}
           checked={ values[i] === 2}
           onPress={() => setters[i](2)}
-          label={i === 5 ? 'Fair' : 'Sometimes'}
+          label={i === 5 ? t('Fair') : t('Sometimes')}
           error={error === i}
         />
         <RadioButton
           value={values[i]}
           checked={ values[i] === 3}
           onPress={() => setters[i](3)}
-          label={i === 5 ? 'Good' : 'Often'}
+          label={i === 5 ? t('Good') : t('Often')}
           error={error === i}
         />
 
@@ -90,22 +92,22 @@ const SleepScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Header white>Weekly Sleep</Header>
+      <Header white>{t('Weekly Sleep')}</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
           {allQuestions}
 
           <View style={styles.hintBox}>
-            <Text style={styles.hintLabel}>{'* Rarely: \t\tLess than 3 times a month'}</Text>
-            <Text style={styles.hintLabel}>{'* Sometimes: \t(<50%) 1-3 times a week'}</Text>
-            <Text style={styles.hintLabel}>{'* Rarely: \t\tLess than 3 times a month'}</Text>
+            <Text style={styles.hintLabel}>{'* '+t('Rarely')+': ' + t('Less than 3 times a month')}</Text>
+            <Text style={styles.hintLabel}>{'* '+t('Sometimes')+': (<50%) '+ t('1-3 times a week')}</Text>
+            <Text style={styles.hintLabel}>{'* '+t('Often')+': '+t('4-7 times a week')}</Text>
           </View>
         </ScrollView>
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
+      <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
 
 
     </GreenBackground>
