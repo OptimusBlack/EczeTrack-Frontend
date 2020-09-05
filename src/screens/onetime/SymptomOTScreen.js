@@ -38,7 +38,7 @@ const SymptomOTScreen = ({ navigation }) => {
 
   const values = [q1, q2, q3, q4, q5, q6, q7];
   const setters = [setQ1, setQ2, setQ3, setQ4, setQ5, setQ6, setQ7];
-  const refs = [0,0,0,0,0,0,0];
+  const refs = new Array(values.length);
 
   const onComplete = navigation.getParam('onComplete', ()=>{});
 
