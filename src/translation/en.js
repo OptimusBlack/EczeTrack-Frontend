@@ -1,0 +1,17 @@
+module.exports = {
+  'Insight': 'Insight',
+  '7D': '7D',
+  '30D': '30D',
+  '90D': '90D',
+  'Custom': 'Custom',
+  'Case History': 'Case History',
+  'Symptoms': 'Symptoms',
+  'Moisturizer & Steroid Usage': 'Moisturizer & Steroid Usage',
+  'Diet Adherence Score': 'Diet Adherence Score',
+  'Environment': 'Environment',
+  'Exercise': 'Exercise',
+  'Stress': 'Stress',
+  'Sleep': 'Sleep',
+  'Two-factor Comparison': 'Two-factor Comparison',
+  'vs': 'vs',
+};

@@ -1,0 +1,17 @@
+module.exports = {
+  'Insight': '分析',
+  '7D': '週',
+  '30D': '月',
+  '90D': '3個月',
+  'Custom': '自訂',
+  'Case History': '日誌',
+  'Symptoms': '症狀',
+  'Moisturizer & Steroid Usage': '保濕霜和類固醇用量',
+  'Diet Adherence Score': '飲食分數',
+  'Environment': '環境致敏原',
+  'Exercise': '運動',
+  'Stress': '壓力',
+  'Sleep': '睡眠',
+  'Two-factor Comparison': '相關性分析',
+  'vs': '與',
+};

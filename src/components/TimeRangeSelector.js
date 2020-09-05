@@ -3,12 +3,16 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-paper';
 import { theme } from '../core/theme';
 
+import { useTranslation } from 'react-i18next';
+
+
 const TimeRangeSelector = ({isActive, setIsActive}) => {
+  const { t } = useTranslation();
     return(
         <View
             style={styles.container}
         >
-            {['7 days', '1 Month','2 Months', '3 Months'].map((e, i) =>
+            {[t('7D'), t('30D'), t('60D'), t('90D')].map((e, i) =>
                 <Button
                   style={[styles.button, isActive === i && styles.activeButton]}
                   mode='outlined'
@@ -18,7 +22,7 @@ const TimeRangeSelector = ({isActive, setIsActive}) => {
             )}
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

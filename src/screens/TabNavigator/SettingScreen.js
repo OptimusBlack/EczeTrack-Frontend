@@ -5,9 +5,15 @@ import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity } from 'react-na
 import Button from '../../components/Button';
 import {Picker} from '@react-native-community/picker';
 
-import {theme} from '../../core/theme'
+import {theme} from '../../core/theme';
+
+import { useTranslation } from 'react-i18next';
+import {changeLanguage} from '../../translation'
 
 const SettingScreen = ({ navigation }) => {
+  const { t, i18n } = useTranslation();
+
+
   const [user, setUser] = useState(false);
 
   const [showPicker, setShowPicker] = useState(false);
@@ -28,11 +34,14 @@ const SettingScreen = ({ navigation }) => {
     AsyncStorage.removeItem('user', () => navigation.navigate('HomeScreen'));
   };
 
-  const _onLanguageChange = (itemValue) => {
+
+  const _onLanguageChange = async (itemValue) => {
     let newLang = {
       label: itemValue === 'en' ? 'English' : 'Chinese',
       value: itemValue
     };
+    await AsyncStorage.setItem('lang', itemValue);
+    await changeLanguage(itemValue);
     setCurrentLang(newLang);
     setShowPicker(false)
   };
@@ -61,7 +70,7 @@ const SettingScreen = ({ navigation }) => {
             returnKeyType={'done'}
           >
             <Picker.Item label="English" value={'en'} />
-            <Picker.Item label="Chinese" value={'cn'} />
+            <Picker.Item label="Chinese" value={'zh'} />
           </Picker>}
         </View>
       </View>

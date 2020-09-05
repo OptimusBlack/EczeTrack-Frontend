@@ -6,6 +6,9 @@ import Button from '../components/Button';
 import Paragraph from '../components/Paragraph';
 import { theme } from '../core/theme';
 
+import { init } from '../translation'
+
+
 import {refreshToken} from '../ApiManager.js'
 
 import { ActivityIndicator, AsyncStorage } from 'react-native';
@@ -16,10 +19,12 @@ const HomeScreen = ({ navigation }) => {
 
   const getUser = AsyncStorage.getItem('user');
   const getURL = Linking.parseInitialURLAsync();
+  const translationInit = init();
+
 
   useEffect(()=>{
-    Promise.all([getUser, getURL])
-      .then(async ([user, { path, queryParams }]) => {
+    Promise.all([getUser, getURL, translationInit])
+      .then(async ([user, { path, queryParams }, translation]) => {
         if(user){
           user = JSON.parse(user);
           console.log("USER:", user);
@@ -27,7 +32,7 @@ const HomeScreen = ({ navigation }) => {
           if(new Date() > new Date(user.tokens.refresh.expires))
             setLoading(false);
           else if(new Date() < new Date(user.tokens.access.expires))
-            navigation.navigate('TabNavigator');
+            navigation.navigate('TabNavigator', {translation});
           else{
             const res = await refreshToken(user.tokens.refresh.token);
             if(res.code)
@@ -35,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
             else{
               user.tokens = res;
               AsyncStorage.setItem('user', JSON.stringify(user));
-              navigation.navigate('TabNavigator');
+              navigation.navigate('TabNavigator', {translation});
             }
           }
 

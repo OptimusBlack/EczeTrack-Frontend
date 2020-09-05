@@ -6,6 +6,8 @@ import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
 import { setCustomText } from 'react-native-global-props';
 
+import './src/translation'
+
 import Notifications from './src/NotificationManager'
 
 const Main = () => {

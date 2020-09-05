@@ -10,6 +10,9 @@ import { theme } from '../../core/theme';
 import { factorList } from '../../data/factorList';
 import { IconButton } from 'react-native-paper';
 
+import { useTranslation } from 'react-i18next';
+
+
 import {getChartData} from '../../ApiManager';
 
 let twoFactorComparisionData = {
@@ -26,6 +29,14 @@ let twoFactorComparisionData = {
 };
 
 const Dashboard = ({ navigation }) => {
+  const { t } = useTranslation();
+
+  // Translating factorList
+  for(let i=0; i<factorList.length; i++){
+    factorList[i].label = t(factorList[i].label);
+  }
+
+
   const [loading, setLoading] = useState(true);
 
   // const [isActive, setIsActive] = useState(0);
@@ -54,12 +65,6 @@ const Dashboard = ({ navigation }) => {
   };
   BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-  // useEffect(()=>{
-  //   updateFactor1();
-  //   updateFactor2();
-  //   updateFactor3();
-  // }, []);
-
 
   useEffect(()=>{
     updateFactor1();
@@ -82,7 +87,6 @@ const Dashboard = ({ navigation }) => {
     setLoading(true);
     const dateFrom = getDateFrom();
     const res = await getChartData(factor, dateFrom);
-    console.log(res.chartData.data);
     if(res && !res.code){
       setFactor1ChartData(res.chartData);
     }
@@ -117,7 +121,6 @@ const Dashboard = ({ navigation }) => {
     const data = f2.data.concat(f3.data);
     const legend = f2.legend.concat(f3.legend);
     const dates = mergeDates(f2.dates, f3.dates);
-    console.log({data, legend, dates});
     if(twoFactorComparisionData.factor2.legend.length > 0 && twoFactorComparisionData.factor3.legend.length > 0)
       setFactor2ChartData({data, legend, dates});
 
@@ -149,7 +152,6 @@ const Dashboard = ({ navigation }) => {
     }
     return chartData;
   };
-
 
   const mergeDates = (date1, date2) => {
     let mergedDates = [];
@@ -190,7 +192,7 @@ const Dashboard = ({ navigation }) => {
     if (index === 0){
       return(
         <View style={styles.carouselItemContainer} >
-          <Header>{'Case History'}</Header>
+          <Header>{t('Case History')}</Header>
           
           <DropDownPicker
             items={factorList}
@@ -207,7 +209,7 @@ const Dashboard = ({ navigation }) => {
             loading={loading}
           />
           <View style={styles.navigationContainer}>
-            <Text style={styles.navigationText}>Two-factor Comparison</Text>
+            <Text style={styles.navigationText}>{t('Two-factor Comparison')}</Text>
           </View>
           <IconButton 
             icon="transfer-down"
@@ -221,7 +223,7 @@ const Dashboard = ({ navigation }) => {
 
     return(
       <View style={[styles.carouselItemContainer]} >
-        <Header>{'Two-factor Comparison'}</Header>
+        <Header>{t('Two-factor Comparison')}</Header>
         <View style={[styles.container, styles.dualSelectorContainer, Platform.OS !== 'android' && {
           zIndex: 10
         }]} >
@@ -232,7 +234,7 @@ const Dashboard = ({ navigation }) => {
             style={styles.selector}
             onChangeItem={(item) => setFactor2(item.value)}
           />
-          <Text style={styles.vsText} >vs</Text>
+          <Text style={styles.vsText} >{t('vs')}</Text>
           <DropDownPicker
             items={factorList}
             defaultValue={factor3}
@@ -248,7 +250,7 @@ const Dashboard = ({ navigation }) => {
           loading={loading}
         />
         <View style={styles.navigationContainer}>
-          <Text style={styles.navigationText}>Case History</Text>
+          <Text style={styles.navigationText}>{t('Case History')}</Text>
         </View>
         <IconButton 
             icon="transfer-up"
@@ -262,7 +264,7 @@ const Dashboard = ({ navigation }) => {
 
   return (
     <GreenBackground>
-      <Header white >Insight</Header>
+      <Header white >{t('Insight')}</Header>
       <TimeRangeSelector isActive={timeRange} setIsActive={setTimeRange}/>
 
       <View style={styles.container}>
