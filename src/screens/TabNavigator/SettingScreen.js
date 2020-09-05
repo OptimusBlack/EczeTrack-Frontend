@@ -3,12 +3,14 @@ import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Button from '../../components/Button';
+import LanguagePicker from '../../components/LanguagePicker';
 import {Picker} from '@react-native-community/picker';
 
 import {theme} from '../../core/theme';
 
 import { useTranslation } from 'react-i18next';
 import {changeLanguage} from '../../translation'
+import { factorList } from "../../data/factorList";
 
 const SettingScreen = ({ navigation }) => {
   const { t, i18n } = useTranslation();
@@ -42,6 +44,10 @@ const SettingScreen = ({ navigation }) => {
     };
     await AsyncStorage.setItem('lang', itemValue);
     await changeLanguage(itemValue);
+    // Translating factorList
+    for(let i=0; i<factorList.length; i++){
+      factorList[i].label = t(factorList[i].label);
+    }
     setCurrentLang(newLang);
     setShowPicker(false)
   };
@@ -60,19 +66,7 @@ const SettingScreen = ({ navigation }) => {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.textLabel}>Language:</Text>
-        <View style={{width: '50%'}}>
-          <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
-            <Text style={[styles.textLabel, {textAlign: 'right'}]}>{currentLang.label}</Text>
-          </TouchableOpacity>
-          {showPicker && <Picker
-            selectedValue={currentLang}
-            onValueChange={_onLanguageChange}
-            returnKeyType={'done'}
-          >
-            <Picker.Item label="English" value={'en'} />
-            <Picker.Item label="Chinese" value={'zh'} />
-          </Picker>}
-        </View>
+        <LanguagePicker/>
       </View>
 
       <Button mode="outlined" onPress={onLogout}>
