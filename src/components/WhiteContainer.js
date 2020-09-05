@@ -3,7 +3,6 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import { theme } from '../core/theme';
 
 const WhiteContainer = ({ navigation, style, children, pointerEvents }) =>
   <View style={[styles.container, pointerEvents === "none" && styles.grayOut, style]} children={children} pointerEvents={pointerEvents} />;

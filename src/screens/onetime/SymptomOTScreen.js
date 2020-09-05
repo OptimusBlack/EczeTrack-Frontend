@@ -21,10 +21,7 @@ import {
   Platform
 } from 'react-native';
 
-
 import {theme} from "../../core/theme";
-
-
 
 const SymptomOTScreen = ({ navigation }) => {
   const [q1, setQ1] = useState('');

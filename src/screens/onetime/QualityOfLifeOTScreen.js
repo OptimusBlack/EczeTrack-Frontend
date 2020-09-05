@@ -23,7 +23,7 @@ import {theme} from "../../core/theme";
 
 
 
-const QualityOfLifeScreen = ({ navigation }) => {
+const QualityOfLifeOTScreen = ({ navigation }) => {
   const [q1, setQ1] = useState(0);
   const [q2, setQ2] = useState(0);
   const [q3, setQ3] = useState(0);
@@ -209,4 +209,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default memo(QualityOfLifeScreen);
+export default memo(QualityOfLifeOTScreen);

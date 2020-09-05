@@ -16,7 +16,7 @@ import {
   SymptomOTScreen,
   EnvironmentOTScreen,
   StressOTScreen,
-  QualityOfLife
+  QualityOfLifeOTScreen
 } from './';
 
 const Router = createStackNavigator(
@@ -35,10 +35,10 @@ const Router = createStackNavigator(
     SymptomOTScreen,
     EnvironmentOTScreen,
     StressOTScreen,
-    QualityOfLife
+    QualityOfLifeOTScreen
   },
   {
-    initialRouteName: 'QualityOfLife',
+    initialRouteName: 'TabNavigator',
     headerMode: 'none',
   }
 );
