@@ -25,37 +25,37 @@ const TimeRangeSelector = ({isActive, setIsActive}) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        borderRadius: 9,
-        borderWidth: 2,
-        overflow: 'hidden',
-        height: 50,
-        width: '100%',
-        margin: 15,
-        borderColor: theme.colors.primary
-    },
-    buttonText: {
-        fontSize: 10,
-        textTransform: 'capitalize',
-    },
-    button: {
-        borderRadius: 0,
-        borderBottomWidth: 0,
-        borderTopWidth: 0,
-        borderWidth: 1,
-        justifyContent: 'center',
-        flex: 1,
-        backgroundColor: theme.colors.surface,
-        borderColor: theme.colors.primary,
-    },
+  container: {
+    flexDirection: 'row',
+    borderRadius: 9,
+    borderWidth: 2,
+    overflow: 'hidden',
+    height: 50,
+    width: '100%',
+    margin: 15,
+    borderColor: theme.colors.primary
+  },
+  buttonText: {
+    fontSize: 10,
+    textTransform: 'capitalize',
+  },
+  button: {
+    borderRadius: 0,
+    borderBottomWidth: 0,
+    borderTopWidth: 0,
+    borderWidth: 1,
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: theme.colors.surface,
+    borderColor: theme.colors.primary,
+  },
   activeButton: {
-        backgroundColor: theme.colors.primary
+    backgroundColor: theme.colors.primary
 
   },
-  activeText:{
-        color: theme.colors.surface
-    }
+  activeText: {
+    color: theme.colors.surface
+  }
 });
 
 export default memo(TimeRangeSelector);

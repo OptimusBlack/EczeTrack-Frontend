@@ -28,6 +28,9 @@ let twoFactorComparisionData = {
   },
 };
 
+const DAILY = factorList.slice(0, 4);
+const WEEKLY = factorList.slice(4);
+
 const Dashboard = ({ navigation }) => {
   const { t } = useTranslation();
 
@@ -45,6 +48,9 @@ const Dashboard = ({ navigation }) => {
   const [factor, setFactor] = useState(factorList[0].value);
   const [factor2, setFactor2] = useState(factorList[0].value);
   const [factor3, setFactor3] = useState(factorList[1].value);
+  const [factorList2, setFactorList2] = useState(factorList);
+  const [factorList3, setFactorList3] = useState(factorList.slice(1, 4));
+
   const [factor1ChartData, setFactor1ChartData] = useState({
     dates: ['03-06', '05-06', '07-06', '09-06'],
     data: [[3, 0, 0.5, 1.5, 2, 0, 1.5, 2, 1.5]],
@@ -57,7 +63,6 @@ const Dashboard = ({ navigation }) => {
   });
 
   const carouselRef = useRef(null);
-
 
   const onBackPress = ()=>{
     BackHandler.removeEventListener('hardwareBackPress', onBackPress);
@@ -117,7 +122,8 @@ const Dashboard = ({ navigation }) => {
     let f2 = {...twoFactorComparisionData.factor2};
     let f3 = {...twoFactorComparisionData.factor3};
     f2 = filterChartData(f2);
-    f3 = filterChartData(f3);
+    f3 = filterChartData(f3);const DAILY = factorList.slice(0, 4);
+    const WEEKLY = factorList.slice(4);
     const data = f2.data.concat(f3.data);
     const legend = f2.legend.concat(f3.legend);
     const dates = mergeDates(f2.dates, f3.dates);
@@ -188,6 +194,19 @@ const Dashboard = ({ navigation }) => {
     setFactor(item.value);
   };
 
+  const _updateFactorList = (item, index) => {
+    setFactor2(item.value)
+    if (DAILY.includes(factorList[index])) {
+      const factorsArray = DAILY.filter((elem) => elem != item);
+      setFactorList3(factorsArray);
+      setFactor3(factorsArray[0].value);
+    } else {
+      const factorsArray = WEEKLY.filter((elem) => elem != item);
+      setFactorList3(factorsArray);
+      setFactor3(factorsArray[0].value);
+    }
+  };
+
   const _renderItem = ({item, index}) => {
     if (index === 0){
       return(
@@ -228,19 +247,19 @@ const Dashboard = ({ navigation }) => {
           zIndex: 10
         }]} >
           <DropDownPicker
-            items={factorList}
+            items={factorList2}
             defaultValue={factor2}
             containerStyle={{height: 40, flex: 1}}
             style={styles.selector}
-            onChangeItem={(item) => setFactor2(item.value)}
+            onChangeItem={_updateFactorList}
           />
           <Text style={styles.vsText} >{t('vs')}</Text>
           <DropDownPicker
-            items={factorList}
+            items={factorList3}
             defaultValue={factor3}
             containerStyle={{height: 40, flex: 1}}
             style={styles.selector}
-            onChangeItem={(item) => setFactor3(item.value)}
+            onChangeItem={(item, index) => setFactor3(item.value)}
           />
         </View>
         <Chart

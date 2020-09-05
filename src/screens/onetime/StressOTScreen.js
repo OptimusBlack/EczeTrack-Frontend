@@ -21,8 +21,6 @@ import {record} from '../../ApiManager'
 
 import {theme} from "../../core/theme";
 
-
-
 const StressOTScreen = ({ navigation }) => {
   const [q1, setQ1] = useState(0);
   const [q2, setQ2] = useState(0);
@@ -95,8 +93,6 @@ const StressOTScreen = ({ navigation }) => {
       </View>
     </QuestionContainer>
   ));
-
-
 
   return (
     <GreenBackground notAvoidingKeyboard={false}>

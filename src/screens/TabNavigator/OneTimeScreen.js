@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, View, RefreshControl, ScrollView } from 'react-native';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
@@ -15,11 +15,12 @@ const factorList = [
 
 const OneTimeScreen = ({ navigation }) => {
 
-  const [refreshing, setRefreshing] = React.useState(false);
-  const [check, setCheck] = React.useState({
+  const [refreshing, setRefreshing] = useState(false);
+  const [check, setCheck] = useState({
     environmentOT: false,
     symptomOT: false,
-    stressOT: false
+    stressOT: false,
+    qualityOfLifeOT: false
   });
 
   const _onRefresh = async () => {
