@@ -20,6 +20,7 @@ import WhiteContainer from "../../components/WhiteContainer";
 import BackButton from "../../components/BackButton";
 
 import { getFoodList, record } from "../../ApiManager";
+import { useTranslation } from 'react-i18next';
 
 let FOOD_LIST = [];
 
@@ -30,6 +31,7 @@ const getItems = async () => {
 getItems();
 
 const DietScreen = ({ navigation }) => {
+  const { t } = useTranslation();
 
   const [query, setQuery] = useState('');
   const [foodList, setFoodList] = useState([]);
@@ -62,7 +64,6 @@ const DietScreen = ({ navigation }) => {
   };
 
   const validate = async () => {
-    // setQuantity(parseFloat(quantity)); TODO Why are we doing this?
     let vals;
     if(colorQuantity === 0)
       vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
@@ -104,15 +105,15 @@ const DietScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={true}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Text style={styles.header}>Daily Diet Record</Text>
+      <Text style={styles.header}>{t('Daily Diet Record')}</Text>
 
       <WhiteContainer pointerEvents={colorQuantity > 0 ? "none" : "auto"} >
-        <Text style={styles.foodDiaryHeader}>Food Diary</Text>
+        <Text style={styles.foodDiaryHeader}>{t('Food Diary')}</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={_onChangeText}
           value={query}
-          placeholder={'SEARCH'}
+          placeholder={t('SEARCH')}
         />
 
         <FlatList
@@ -136,12 +137,12 @@ const DietScreen = ({ navigation }) => {
 
               />
             </View>
-            <Text style={styles.inputLabel}>Quantity</Text>
+            <Text style={styles.inputLabel}>{t('Quantity')}</Text>
           </View>
 
           <TouchableOpacity style={styles.inputContainerCol} onPress={() => setShow(s => !s)}>
             <View style={styles.inputContainer}>
-              <Text style={styles.textInput2}>{mealType}</Text>
+              <Text style={styles.textInput2}>{t(mealType)}</Text>
             </View>
             {show &&
               <Picker
@@ -150,22 +151,22 @@ const DietScreen = ({ navigation }) => {
                 itemStyle={{ color: theme.colors.secondary }}
                 returnKeyType={'done'}
               >
-                <Picker.Item label="Snack" value="Snack" />
-                <Picker.Item label="Breakfast" value="Breakfast" />
-                <Picker.Item label="Lunch" value="Lunch" />
-                <Picker.Item label="Dinner" value="Dinner" />
+                <Picker.Item label={t("Snack")} value="Snack" />
+                <Picker.Item label={t("Breakfast")} value="Breakfast" />
+                <Picker.Item label={t("Lunch")} value="Lunch" />
+                <Picker.Item label={t("Dinner")} value="Dinner" />
               </Picker>
             }
-            {!show && <Text style={styles.inputLabel}>Meal Type</Text>}
+            {!show && <Text style={styles.inputLabel}>{t("Meal Type")}</Text>}
           </TouchableOpacity>
 
         </View>
 
-        {colorQuantity > 0 && <Text style={{color: theme.colors.error, fontSize:12}}>Set Color input to 0 to enable food input.</Text>}
+        {colorQuantity > 0 && <Text style={{color: theme.colors.error, fontSize:12}}>{t('Set Color input to 0 to enable food input.')}</Text>}
       </WhiteContainer>
 
       <View style={styles.colorRow}>
-        <Text style={styles.colorLabel}>Colorful Vegetables and Fruits</Text>
+        <Text style={styles.colorLabel}>{t('Colorful Vegetables and Fruits')}</Text>
         <Counter
           start={0}
           max={3}
@@ -180,7 +181,7 @@ const DietScreen = ({ navigation }) => {
         />
       </View>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
+      <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
 
     </GreenBackground>
   );

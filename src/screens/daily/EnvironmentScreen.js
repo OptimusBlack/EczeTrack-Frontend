@@ -23,8 +23,11 @@ import {
 import Checkbox from 'react-native-check-box';
 
 import { theme } from "../../core/theme";
+import { useTranslation } from 'react-i18next';
 
 const EnvironmentScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const [q1, setQ1] = useState({value: false});
   const [q2, setQ2] = useState({value: false});
   const [q3, setQ3] = useState({value: false});
@@ -79,12 +82,12 @@ const EnvironmentScreen = ({ navigation }) => {
 
   const allQuestions = questions.map((category, j) => (
     <View key={j}>
-      <Header>{category.category}</Header>
+      <Header>{t(category.category)}</Header>
 
       {
         category.questions.map((q, i) => (
           <QuestionContainer questionNumber={i + 1} key={category.prev + i}>
-            <QuestionText>{q.question}</QuestionText>
+            <QuestionText>{t(q.question)}</QuestionText>
 
             <View style={styles.answerContainer}>
               <Checkbox
@@ -103,7 +106,7 @@ const EnvironmentScreen = ({ navigation }) => {
                 values[category.prev + i].value && q.isSpecify &&
                 <TextInput
                   style={styles.inputBox}
-                  placeholder='If so, Specify'
+                  placeholder={t('If so, Specify')}
                   onChangeText={(value) => setters[category.prev + i]({...values[category.prev + i], other: value})}
                 />
               }
@@ -121,7 +124,7 @@ const EnvironmentScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Header white>Environment</Header>
+      <Header white>{t('Environment')}</Header>
 
       <WhiteContainer>
         <ScrollView style={{ alignSelf: 'stretch' }}>
@@ -130,7 +133,7 @@ const EnvironmentScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
+      <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
 
     </GreenBackground>
   );
