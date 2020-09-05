@@ -24,7 +24,7 @@ const RadioButton = ({checked, onPress, label, size, error, value}) => {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   radioContainer: {
     height: SIZE,
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
   },
   radioLabel: {
-    marginTop: 5
+    marginTop: 5,
+    textAlign: 'center'
   },
   errorRadioContainer:{
     borderColor: theme.colors.error

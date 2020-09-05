@@ -97,6 +97,18 @@ const checkDaily = async () => {
     return null;
 };
 
+const checkOneTime = async () => {
+  const path = `record/check-onetime`;
+  let user = await AsyncStorage.getItem('user', false);
+  if(user) {
+    user = JSON.parse(user);
+    return await request(getApiUrl(path), {userId: user.user.id});
+  }
+  else
+    return null;
+};
+
+
 const getFoodList = async () => {
   const path = '/get/food-list';
   let res = await request(getApiUrl(path));
@@ -128,6 +140,7 @@ export {
   record,
   checkWeekly,
   checkDaily,
+  checkOneTime,
   getChartData,
   getFoodList
 }
