@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, SafeAreaView, View } from 'react-native';
+import { Platform, SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator, MaterialTopTabBar } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Ionicons } from '@expo/vector-icons'; // 6.2.2
@@ -12,6 +12,7 @@ import DailyScreen  from './DailyScreen';
 import WeeklyScreen  from './WeeklyScreen';
 import OneTimeScreen  from './OneTimeScreen';
 import SettingScreen  from './SettingScreen';
+import { Translation } from 'react-i18next';
 
 const config = {
   headerMode: 'none',
@@ -29,6 +30,12 @@ const tabBarOptions = {
   labelStyle: { fontSize: 10 }
 };
 
+const styles = StyleSheet.create({
+  text: {
+    color: 'white',
+    fontSize: 11
+  }
+});
 
 // Dashboard
 const DashboardStack = createStackNavigator(
@@ -41,7 +48,7 @@ const DashboardStack = createStackNavigator(
 DashboardStack.navigationOptions = {
   tabBarOptions,
   tabBarIcon: ({ focused, tintColor }) => <Ionicons name="md-analytics" size={25} color={tintColor} />,
-  tabBarLabel: 'Dashboard'
+  tabBarLabel: <Translation>{(t) => <Text style={styles.text} >{t('Dashboard')}</Text>}</Translation>
 };
 
 DashboardStack.path = '';
@@ -57,7 +64,7 @@ const DailyScreenStack = createStackNavigator(
 DailyScreenStack.navigationOptions = {
   tabBarOptions,
   tabBarIcon: ({ focused, tintColor }) => <MaterialIcons name="today" size={25} color={tintColor} />,
-  tabBarLabel: 'Daily'
+  tabBarLabel: <Translation>{(t) => <Text style={styles.text} >{t('Daily')}</Text>}</Translation>
 };
 
 DailyScreenStack.path = '';
@@ -74,7 +81,7 @@ const WeeklyScreenStack = createStackNavigator(
 WeeklyScreenStack.navigationOptions = {
   tabBarOptions,
   tabBarIcon: ({ focused, tintColor }) => <MaterialCommunityIcons name="calendar-week" size={25} color={tintColor} />,
-  tabBarLabel: 'Weekly'
+  tabBarLabel: <Translation>{(t) => <Text style={styles.text} >{t('Weekly')}</Text>}</Translation>
 };
 
 WeeklyScreenStack.path = '';
@@ -92,7 +99,7 @@ const OneTimeStack = createStackNavigator(
 OneTimeStack.navigationOptions = {
   tabBarOptions,
   tabBarIcon: ({ focused, tintColor }) => <MaterialCommunityIcons name="calendar-week" size={25} color={tintColor} />,
-  tabBarLabel: 'Once'
+  tabBarLabel: <Translation>{(t) => <Text style={styles.text} >{t('Once')}</Text>}</Translation>
 };
 
 OneTimeStack.path = '';
@@ -111,7 +118,7 @@ const SettingScreenStack = createStackNavigator(
 SettingScreenStack.navigationOptions = {
   tabBarOptions,
   tabBarIcon: ({ focused, tintColor }) => <Ionicons name={`ios-options`} size={25} color={tintColor} />,
-  tabBarLabel: 'Settings'
+  tabBarLabel: <Translation>{(t) => <Text style={styles.text} >{t('Settings')}</Text>}</Translation>
 };
 
 SettingScreenStack.path = '';

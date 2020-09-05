@@ -161,4 +161,5 @@ module.exports = {
   'Bad': 'Bad',
   'Fair': 'Fair',
   'Good': 'Good',
+  'Settings': 'Settings',
 };

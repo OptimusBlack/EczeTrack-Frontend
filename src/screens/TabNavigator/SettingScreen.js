@@ -46,7 +46,7 @@ const SettingScreen = ({ navigation }) => {
       </View>
 
       <Button mode="outlined" onPress={onLogout}>
-        Logout
+        {t('Logout')}
       </Button>
     </GreenBackground>
   );

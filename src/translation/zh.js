@@ -158,4 +158,5 @@ module.exports = {
   'Bad': '差',
   'Fair': '還好',
   'Good': '好',
+  'Settings': '設定',
 };
