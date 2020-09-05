@@ -54,7 +54,7 @@
         "isSpecify": false
       },
       {
-        "question": "Rapid Temperature Change (e.g. from cold indoor to hot outdoor)",
+        "question": "Rapid Temperature Change",
         "isSpecify": false
       },
       {
@@ -102,7 +102,7 @@
     ]
   },
   {
-    "category": "Location: Outdoors",
+    "category": "Location Outdoors",
     "prev": 21,
     "questions": [
       {
@@ -116,7 +116,7 @@
     ]
   },
   {
-    "category": "Location: Indoors",
+    "category": "Location Indoors",
     "prev": 23,
     "questions": [
       {

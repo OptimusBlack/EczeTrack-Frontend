@@ -22,10 +22,15 @@ import _bodyParts from "../../data/bodyParts";
 
 import {record} from '../../ApiManager';
 
+import { useTranslation } from 'react-i18next';
+
+
 
 let selection = {};
 
 const SymptomScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
 
   const [showModal, setShowModal] = useState('');
 
@@ -95,7 +100,7 @@ const SymptomScreen = ({ navigation }) => {
       style={[styles.bodyBtn, isSelected && styles.isSelected]}
       key={idx}
     >
-      <Text>{part}</Text>
+      <Text>{t(part)}</Text>
     </TouchableOpacity>
   )
   });
@@ -119,21 +124,25 @@ const SymptomScreen = ({ navigation }) => {
 
   const AllQuestions = questions.map((q, i) => (
     <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}} key={i}>
-      <Text style={{flex: 1}}>{q.label}:</Text>
+      <Text style={{flex: 1}}>{t(q.label)}:</Text>
       <View style={{flex:1, borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.3)'}}>
-        {Platform.OS === 'ios' && <TouchableOpacity onPress={() => setShowPicker(showPicker === i ? -1 : i)}>
+
+        {Platform.OS === 'ios' &&
+        <TouchableOpacity onPress={() => setShowPicker(showPicker === i ? -1 : i)}>
           <Text style={{textAlign: 'center', fontSize: 16}}>{q.value}</Text>
         </TouchableOpacity>}
-        {(Platform.OS === 'android' || showPicker === i) && <Picker
+
+        {(Platform.OS === 'android' || showPicker === i) &&
+        <Picker
           selectedValue={q.value}
           onValueChange={(itemValue) => {q.setter(itemValue); setShowPicker(-1)}}
           returnKeyType={'done'}
         >
-          <Picker.Item label="Clear or Almost Clear" value={0} />
-          <Picker.Item label="Mild" value={1} />
-          <Picker.Item label="Moderate" value={2} />
-          <Picker.Item label="Severe" value={3} />
-          <Picker.Item label="Extremely Severe" value={4} />
+          <Picker.Item label={t("Clear or Almost Clear")} value={0} />
+          <Picker.Item label={t("Mild")} value={1} />
+          <Picker.Item label={t("Moderate")} value={2} />
+          <Picker.Item label={t("Severe")} value={3} />
+          <Picker.Item label={t("Extremely Severe")} value={4} />
         </Picker>}
       </View>
     </View>
@@ -149,9 +158,9 @@ const SymptomScreen = ({ navigation }) => {
     if (_bodyParts[showModal].bilateral)
       selection[showModal].bilateral = currentBilateral;
 
-    if(showModal === "Buttock")
+    if(showModal === t("Buttock"))
       selection[showModal].back = true;
-    if(showModal === "External Genitalia")
+    if(showModal === t("External Genitalia"))
       selection[showModal].front = true;
 
     hideModal();
@@ -190,11 +199,11 @@ const SymptomScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={true} containerStyle={styles.bgContainer}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Text style={styles.header}>Daily Dermatology</Text>
+      <Text style={styles.header}>{t('Daily Dermatology')}</Text>
 
       <WhiteContainer style={{padding: 0, alignItems: 'center'}}>
         <View style={styles.header2Container}>
-          <Text style={styles.header2}>Skin</Text>
+          <Text style={styles.header2}>{t('Skin')}</Text>
         </View>
 
         <Image
@@ -204,7 +213,7 @@ const SymptomScreen = ({ navigation }) => {
         />
 
         <View style={styles.verticalLine}/>
-        <Header style={styles.subheading}>Select a body part</Header>
+        <Header style={styles.subheading}>{t('Select a body part')}</Header>
         <View style={styles.verticalLine}/>
         <ScrollView style={{alignSelf: 'stretch', flex: 1}} contentContainerStyle={styles.scrollContainer}>
           {options}
@@ -219,8 +228,8 @@ const SymptomScreen = ({ navigation }) => {
           color={'white'}
           style={styles.btn}
           onPress={() => navigation.navigate('DailyScreen')}
-        >Cancel</Button>
-        <Button mode="contained" style={styles.btn} onPress={_onConfirm}>Confirm</Button>
+        >{t('CANCEL')}</Button>
+        <Button mode="contained" style={styles.btn} onPress={_onConfirm}>{t('CONFIRM')}</Button>
       </View>
 
 
@@ -237,21 +246,21 @@ const SymptomScreen = ({ navigation }) => {
               isChecked={currentFront}
               onClick={() => setCurrentFront(!currentFront)}
               checkBoxColor={theme.colors.primary}
-              rightTextView={<Text>{' Front'}</Text>}
+              rightTextView={<Text>{' '+ t('Front')}</Text>}
               isIndeterminate={false}
             />}
             {_bodyParts[showModal].front && _bodyParts[showModal].back && <Checkbox
               isChecked={currentBack}
               onClick={() => setCurrentBack(!currentBack)}
               checkBoxColor={theme.colors.primary}
-              rightTextView={<Text>{' Back'}</Text>}
+              rightTextView={<Text>{' '+t('Back')}</Text>}
               isIndeterminate={false}
             />}
             {_bodyParts[showModal].bilateral && <Checkbox
               isChecked={currentBilateral}
               onClick={() => setCurrentBilateral(!currentBilateral)}
               checkBoxColor={theme.colors.primary}
-              rightTextView={<Text>{' Bilateral'}</Text>}
+              rightTextView={<Text>{' '+t('Bilateral')}</Text>}
               isIndeterminate={false}
             />}
 
@@ -264,14 +273,14 @@ const SymptomScreen = ({ navigation }) => {
                 style={{flex:1}}
                 onPress={isCurrentModalSelected ? removeCurrentModal: hideModal }
               >
-                {isCurrentModalSelected ? 'Remove' : 'Cancel'}
+                {isCurrentModalSelected ? t('REMOVE') : t('CANCEL')}
               </Button>
               <Button
                 mode="contained"
                 style={{flex:1}}
                 onPress={onAdd}
               >
-                Add
+                {t('ADD')}
               </Button>
             </View>
           </View>

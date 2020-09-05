@@ -22,8 +22,12 @@ import {
 } from 'react-native';
 
 import { theme } from "../../core/theme";
+import { useTranslation } from 'react-i18next';
+
 
 const MSUScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const [q1, setQ1] = useState('');
   const [q2, setQ2] = useState(0);
   const [q3, setQ3] = useState('');
@@ -37,7 +41,6 @@ const MSUScreen = ({ navigation }) => {
   const onComplete = navigation.getParam('onComplete', ()=>{});
   const validate = async () => {
     for (let i=0; i<values.length; i++){
-      console.log(values[i])
       if (i%2 === 0){
         if (values[i] === ''){
           setError(i);
@@ -59,7 +62,7 @@ const MSUScreen = ({ navigation }) => {
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
-      <QuestionText>{q.question}</QuestionText>
+      <QuestionText>{t(q.question)}</QuestionText>
       <View style={styles.answerContainer}>
         <TextInput
           style={styles.inputBox}
@@ -70,7 +73,7 @@ const MSUScreen = ({ navigation }) => {
           ref={(input) => { refs[i] = input }}
           blurOnSubmit={false}
         />
-        {error === i && <Text style={styles.error}>Enter a valid value</Text>}
+        {error === i && <Text style={styles.error}>{t('Enter a valid value')}</Text>}
       </View>
     </QuestionContainer>
   ));
@@ -80,7 +83,7 @@ const MSUScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
-      <Header white>Moisturizer & Stedroid Usage</Header>
+      <Header white>{t('Moisturizer & Steroid Usage')}</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
@@ -89,7 +92,7 @@ const MSUScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate} >Confirm</Button>
+      <Button mode="contained" onPress={validate} >{t('CONFIRM')}</Button>
 
     </GreenBackground>
   );

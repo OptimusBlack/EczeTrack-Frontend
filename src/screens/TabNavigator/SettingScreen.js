@@ -4,22 +4,16 @@ import Header from '../../components/Header';
 import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import Button from '../../components/Button';
 import LanguagePicker from '../../components/LanguagePicker';
-import {Picker} from '@react-native-community/picker';
 
 import {theme} from '../../core/theme';
 
 import { useTranslation } from 'react-i18next';
-import {changeLanguage} from '../../translation'
-import { factorList } from "../../data/factorList";
 
 const SettingScreen = ({ navigation }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
 
   const [user, setUser] = useState(false);
-
-  const [showPicker, setShowPicker] = useState(false);
-  const [currentLang, setCurrentLang] = useState({label: 'English', value: 'en'});
 
   const getUser = async ()=>{
     let res = await AsyncStorage.getItem('user');
@@ -37,25 +31,11 @@ const SettingScreen = ({ navigation }) => {
   };
 
 
-  const _onLanguageChange = async (itemValue) => {
-    let newLang = {
-      label: itemValue === 'en' ? 'English' : 'Chinese',
-      value: itemValue
-    };
-    await AsyncStorage.setItem('lang', itemValue);
-    await changeLanguage(itemValue);
-    // Translating factorList
-    for(let i=0; i<factorList.length; i++){
-      factorList[i].label = t(factorList[i].label);
-    }
-    setCurrentLang(newLang);
-    setShowPicker(false)
-  };
 
 
   return (
     <GreenBackground>
-      <Header white style={styles.header}>Settings</Header>
+      <Header white style={styles.header}>{t('Settings')}</Header>
       <View style={styles.textContainer}>
         <Text style={styles.textLabel}>Name:</Text>
         <Text style={styles.textLabel}>{user.name}</Text>
