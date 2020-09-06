@@ -22,8 +22,10 @@ import {
 } from 'react-native';
 
 import {theme} from "../../core/theme";
+import { useTranslation } from 'react-i18next';
 
 const SymptomOTScreen = ({ navigation }) => {
+  const { t } = useTranslation();
   const [q1, setQ1] = useState('');
   const [q2, setQ2] = useState('');
   const [q3, setQ3] = useState('');
@@ -54,7 +56,7 @@ const SymptomOTScreen = ({ navigation }) => {
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
-      <QuestionText>{q}</QuestionText>
+      <QuestionText>{t(q)}</QuestionText>
       <View style={styles.answerContainer}>
         <TextInput
           style={styles.inputBox}
@@ -66,8 +68,8 @@ const SymptomOTScreen = ({ navigation }) => {
           onSubmitEditing={() => { i< questions.length - 1 ? refs[i+1].focus() : validate() }}
           blurOnSubmit={false}
         />
-        <Text>days</Text>
-        {error === i && <Text style={styles.error}>Enter a valid value</Text>}
+        <Text>{t('days')}</Text>
+        {error === i && <Text style={styles.error}>{t('Enter a valid value')}</Text>}
       </View>
     </QuestionContainer>
   ));
@@ -77,7 +79,7 @@ const SymptomOTScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
-      <Header white>Symptom</Header>
+      <Header white>{t('Symptoms')}</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
@@ -86,7 +88,7 @@ const SymptomOTScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
+      <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
 
 
     </GreenBackground>

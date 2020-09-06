@@ -20,8 +20,10 @@ import {
 import {record} from '../../ApiManager'
 
 import {theme} from "../../core/theme";
+import { useTranslation } from 'react-i18next';
 
 const QualityOfLifeOTScreen = ({ navigation }) => {
+  const { t } = useTranslation();
   const [q1, setQ1] = useState(0);
   const [q2, setQ2] = useState(0);
   const [q3, setQ3] = useState(0);
@@ -59,35 +61,35 @@ const QualityOfLifeOTScreen = ({ navigation }) => {
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
-      <QuestionText>{q}</QuestionText>
+      <QuestionText>{t(q)}</QuestionText>
       <View style={styles.answerContainer}>
 
         <RadioButton
           value={values[i]}
           checked={ values[i] === 1}
           onPress={() => setters[i](1)}
-          label={'Not at\nall'}
+          label={t('Not at all')}
           error={error === i}
         />
         <RadioButton
           value={values[i]}
           checked={ values[i] === 2}
           onPress={() => setters[i](2)}
-          label={'A little'}
+          label={t('A little')}
           error={error === i}
         />
         <RadioButton
           value={values[i]}
           checked={ values[i] === 3}
           onPress={() => setters[i](3)}
-          label={'A lot'}
+          label={t('A lot')}
           error={error === i}
         />
         <RadioButton
           value={values[i]}
           checked={ values[i] === 4}
           onPress={() => setters[i](4)}
-          label={'Very Much'}
+          label={t('Very Much')}
           error={error === i}
         />
 
@@ -100,35 +102,35 @@ const QualityOfLifeOTScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
-      <Header white>Quality of Life</Header>
+      <Header white>{t('Quality of Life')}</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
           {allQuestions}
 
           <QuestionContainer questionNumber={'10'}>
-            <QuestionText>Over the last week, has your skin prevented you from working or studying?</QuestionText>
+            <QuestionText>{t('DLQI Q10')}</QuestionText>
             <View style={styles.answerContainer}>
 
               <RadioButton
                 value={q11}
                 checked={ q11 === 1}
                 onPress={() => {setQ11(1); setQ10(1)}}
-                label={'Yes'}
+                label={t('Yes')}
                 error={error === 9}
               />
               <RadioButton
                 value={q11}
                 checked={ q11 === 2}
                 onPress={() => {setQ11(2)}}
-                label={'No'}
+                label={t('No')}
                 error={error === 9}
               />
               <RadioButton
                 value={q11}
                 checked={ q11 === 3}
                 onPress={() => {setQ11(3); setQ10(1)}}
-                label={'Not relevant'}
+                label={t('Not relevant')}
                 error={error === 9}
               />
             </View>
@@ -136,35 +138,35 @@ const QualityOfLifeOTScreen = ({ navigation }) => {
 
             {q11 === 2 &&
             <View>
-              <QuestionText>If "No", over the last week how much has your skin been a problem at work or studying?</QuestionText>
+              <QuestionText>{t('DLQI Q10a')}</QuestionText>
               <View style={styles.answerContainer}>
 
                 <RadioButton
                   value={values[9]}
                   checked={ values[9] === 1}
                   onPress={() => setters[9](1)}
-                  label={'Not at\nall'}
+                  label={t('Not at all')}
                   error={error === 9}
                 />
                 <RadioButton
                   value={values[9]}
                   checked={ values[9] === 2}
                   onPress={() => setters[9](2)}
-                  label={'A little'}
+                  label={t('A little')}
                   error={error === 9}
                 />
                 <RadioButton
                   value={values[9]}
                   checked={ values[9] === 3}
                   onPress={() => setters[9](3)}
-                  label={'A lot'}
+                  label={t('A lot')}
                   error={error === 9}
                 />
                 <RadioButton
                   value={values[9]}
                   checked={ values[9] === 4}
                   onPress={() => setters[9](4)}
-                  label={'Very Much'}
+                  label={t('Very Much')}
                   error={error === 9}
                 />
                 </View>
@@ -177,7 +179,7 @@ const QualityOfLifeOTScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
+      <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
 
 
     </GreenBackground>
