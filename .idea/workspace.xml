@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0ffb349-1a24-4a16-8fc5-495ec42a9711" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.expo-shared/assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/splash2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LanguagePicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LanguagePicker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/TabNavigator/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/daily/DietScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/daily/DietScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/onetime/EnvironmentOTScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/onetime/EnvironmentOTScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/translation/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/translation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/translation/zh.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/translation/zh.js" afterDir="false" />
-    </list>
+    <list default="true" id="c0ffb349-1a24-4a16-8fc5-495ec42a9711" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -240,6 +225,11 @@
             <path>
               <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -327,16 +317,15 @@
       <workItem from="1599287060805" duration="30281000" />
       <workItem from="1599378414467" duration="289000" />
       <workItem from="1599379029924" duration="2499000" />
-      <workItem from="1599386403114" duration="1990000" />
+      <workItem from="1599386403114" duration="2158000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228393000" />
+    <option name="totallyTimeSpent" value="228561000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="399" y="23" width="1041" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.222668" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
