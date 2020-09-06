@@ -4,16 +4,19 @@ import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import RecordScreenButton from '../../components/RecordScreenButton';
 
-import {checkOneTime} from '../../ApiManager'
+import {checkOneTime} from '../../ApiManager';
+
+import { useTranslation } from 'react-i18next';
 
 const factorList = [
-  {value: 'environmentOT', label: 'Environment (OT)', icon: 'globe', screen: 'EnvironmentOTScreen'},
+  {value: 'environmentOT', label: 'Environment', icon: 'globe', screen: 'EnvironmentOTScreen'},
   {value: 'symptomOT', label: 'Symptoms', icon: 'hand-paper', screen: 'SymptomOTScreen'},
   {value: 'stressOT', label: 'Stress', icon: 'hand-point-down', screen: 'StressOTScreen'},
   {value: 'qualityOfLifeOT', label: 'Quality of Life', icon: 'hand-point-down', screen: 'QualityOfLifeOTScreen'},
 ];
 
 const OneTimeScreen = ({ navigation }) => {
+  const { t, i18n } = useTranslation();
 
   const [refreshing, setRefreshing] = useState(false);
   const [check, setCheck] = useState({
@@ -52,7 +55,7 @@ const OneTimeScreen = ({ navigation }) => {
   return (
     <GreenBackground>
       <Header white style={styles.header}>
-        Your records for the One Time Questionnaire
+        {t('Your records for the Bootcamp')}
       </Header>
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView}>
@@ -67,7 +70,7 @@ const OneTimeScreen = ({ navigation }) => {
               icon={e.icon}
               onPress={() => navigation.navigate(e.screen, {onComplete})}
             >
-              {e.label}
+              {t(e.label)}
             </RecordScreenButton>
           )}
         </ScrollView>
