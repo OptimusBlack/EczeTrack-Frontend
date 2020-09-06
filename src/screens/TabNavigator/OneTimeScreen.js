@@ -12,7 +12,7 @@ const factorList = [
   {value: 'environmentOT', label: 'Environment', icon: 'globe', screen: 'EnvironmentOTScreen'},
   {value: 'symptomOT', label: 'Symptoms', icon: 'hand-paper', screen: 'SymptomOTScreen'},
   {value: 'stressOT', label: 'Stress', icon: 'hand-point-down', screen: 'StressOTScreen'},
-  {value: 'qualityOfLifeOT', label: 'Quality of Life', icon: 'hand-point-down', screen: 'QualityOfLifeOTScreen'},
+  {value: 'qualityOfLifeOT', label: 'Quality of Life', icon: 'tree', screen: 'QualityOfLifeOTScreen'},
 ];
 
 const OneTimeScreen = ({ navigation }) => {
