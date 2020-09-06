@@ -94,7 +94,8 @@ const Dashboard = ({ navigation }) => {
 
   const updateFactor2 = async () => {
     setLoading(true);
-    const res = await getChartData(factor2, '1-1-2020', new Date());
+    const dateFrom = getDateFrom();
+    const res = await getChartData(factor2, dateFrom, new Date());
     if(res&& !res.code){
       twoFactorComparisionData.factor2 = res.chartData;
       updateTwoFactorComparisionChartData()
@@ -104,7 +105,8 @@ const Dashboard = ({ navigation }) => {
 
   const updateFactor3 = async () => {
     setLoading(true);
-    const res = await getChartData(factor3, '1-1-2020', new Date());
+    const dateFrom = getDateFrom();
+    const res = await getChartData(factor3, dateFrom, new Date());
     if(res&& !res.code){
       twoFactorComparisionData.factor3 = res.chartData;
       updateTwoFactorComparisionChartData()

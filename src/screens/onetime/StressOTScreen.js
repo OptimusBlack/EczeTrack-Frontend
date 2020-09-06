@@ -20,8 +20,11 @@ import {
 import {record} from '../../ApiManager'
 
 import {theme} from "../../core/theme";
+import { useTranslation } from 'react-i18next';
 
 const StressOTScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const [q1, setQ1] = useState(0);
   const [q2, setQ2] = useState(0);
   const [q3, setQ3] = useState(0);
@@ -65,28 +68,28 @@ const StressOTScreen = ({ navigation }) => {
 
   const allQuestions = questions.map( (q, i) => (
     <QuestionContainer questionNumber={i+1} key={i}>
-      <QuestionText>{q}</QuestionText>
+      <QuestionText>{t(q)}</QuestionText>
       <View style={styles.answerContainer}>
 
         <RadioButton
           value={values[i]}
           checked={ values[i] === 1}
           onPress={() => setters[i](1)}
-          label={'Never'}
+          label={t('Never')}
           error={error === i}
         />
         <RadioButton
           value={values[i]}
           checked={ values[i] === 2}
           onPress={() => setters[i](2)}
-          label={'Sometimes'}
+          label={t('Sometimes')}
           error={error === i}
         />
         <RadioButton
           value={values[i]}
           checked={ values[i] === 3}
           onPress={() => setters[i](3)}
-          label={'Often'}
+          label={t('Often')}
           error={error === i}
         />
 
@@ -97,7 +100,7 @@ const StressOTScreen = ({ navigation }) => {
   return (
     <GreenBackground notAvoidingKeyboard={false}>
       <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
-      <Header white>Stress</Header>
+      <Header white>{t('Stress')}</Header>
 
       <WhiteContainer>
         <ScrollView style={{alignSelf: 'stretch'}}>
@@ -106,7 +109,7 @@ const StressOTScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
-      <Button mode="contained" onPress={validate}>Confirm</Button>
+      <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
 
 
     </GreenBackground>
