@@ -217,4 +217,13 @@ module.exports = {
   'Moisturizer': '保濕霜',
   'No data to show': '沒有數據可顯示',
   'Enter a a valid value': '請輸入一個有效值',
+  'Dashboard': '概覽',
+  'Daily': '每日',
+  'Weekly': '每周',
+  'Select a body part': '選擇患處',
+  'Clear or Almost Clear': '沒有或接近沒有',
+  'Mild': '輕微',
+  'Moderate': '中等',
+  'Severe': '嚴重',
+  'Extremely Severe': '非常嚴重',
 };

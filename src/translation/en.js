@@ -220,4 +220,13 @@ module.exports = {
   'Moisturizer': 'Moisturizer',
   'No data to show': 'No data to show',
   'Enter a a valid value': 'Enter a a valid value',
+  'Dashboard': 'Dashboard',
+  'Daily': 'Daily',
+  'Weekly': 'Weekly',
+  'Select a body part': 'Select a body part',
+  'Clear or Almost Clear': 'Clear or Almost Clear',
+  'Mild': 'Mild',
+  'Moderate': 'Moderate',
+  'Severe': 'Severe',
+  'Extremely Severe': 'Extremely Severe',
 };
