@@ -173,7 +173,7 @@ module.exports = {
   'DLQI Q9': 'Over the last week, how much of a problem has the treatment for your skin been, for example by making your home messy, or by taking up time?',
   'DLQI Q10': 'Over the last week, has your skin prevented you from working or studying?',
   'DLQI Q10b': 'If "No", over the last week how much has your skin been a problem at work or studying?',
-  'Quality of Life': 'Quality of Life (Before, During, After Bootcamp)',
+  'Quality of Life': 'Quality of Life',
   'Yes': 'Yes',
   'No': 'No',
   'Very Much': 'Very Much',

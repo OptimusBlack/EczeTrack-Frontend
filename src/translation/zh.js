@@ -177,7 +177,7 @@ module.exports = {
   'Yes': '有',
   'No': '沒有',
   'Not relevant': '不適用於我',
-  'Quality of Life': '生活質素（訓練營前、期間、後）',
+  'Quality of Life': '生活質素',
   'StressOT Q1': '覺得手上工作太多，無法應付。',
   'StressOT Q2': '覺得時間不夠，所以要分秒必爭。例如過馬路時衝紅燈，走路和說話的節奏很快速。',
   'StressOT Q3': '覺得沒有時間消遣，終日記掛著工作。',
