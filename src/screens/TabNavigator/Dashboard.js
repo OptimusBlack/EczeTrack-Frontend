@@ -58,11 +58,11 @@ const Dashboard = ({ navigation }) => {
 
   const carouselRef = useRef(null);
 
-  const onBackPress = ()=>{
-    BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    BackHandler.exitApp();
-  };
-  BackHandler.addEventListener('hardwareBackPress', onBackPress);
+  // const onBackPress = ()=>{
+  //   BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+  //   BackHandler.exitApp();
+  // };
+  // BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
 
   useEffect(()=>{
@@ -118,13 +118,13 @@ const Dashboard = ({ navigation }) => {
     let f2 = {...twoFactorComparisionData.factor2};
     let f3 = {...twoFactorComparisionData.factor3};
     f2 = filterChartData(f2);
-    f3 = filterChartData(f3);const DAILY = factorList.slice(0, 4);
-    const WEEKLY = factorList.slice(4);
+    f3 = filterChartData(f3);
+    // const DAILY = factorList.slice(0, 4);
+    // const WEEKLY = factorList.slice(4);
     const data = f2.data.concat(f3.data);
     const legend = f2.legend.concat(f3.legend);
     const dates = mergeDates(f2.dates, f3.dates);
-    if(twoFactorComparisionData.factor2.legend.length > 0 && twoFactorComparisionData.factor3.legend.length > 0)
-      setFactor2ChartData({data, legend, dates});
+    setFactor2ChartData({data, legend, dates});
 
   };
 
@@ -137,14 +137,13 @@ const Dashboard = ({ navigation }) => {
       }
       return chartData;
     }
-
     // MSU
     if(chartData.data[0].length === 0 && chartData.data[1].length === 0){ // Both empty
       chartData.data = [];
       chartData.dates = [];
       chartData.legend = [];
     }
-    if(chartData.data[0].length === 0){ // First empty
+    else if(chartData.data[0].length === 0){ // First empty
       chartData.data = [chartData.data[1]];
       chartData.legend = [chartData.legend[1]];
     }
@@ -192,7 +191,6 @@ const Dashboard = ({ navigation }) => {
 
   const _updateFactorList = (item, index) => {
     setFactor2(item.value);
-    console.log(item.value);
     if (DAILY.includes(factorList[index])) {
       const factorsArray = DAILY.filter((elem) => elem.value != item.value);
       setFactorList3(factorsArray);

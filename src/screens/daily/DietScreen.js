@@ -37,12 +37,13 @@ const DietScreen = ({ navigation }) => {
   const [foodList, setFoodList] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [foodItem, setFoodItem] = useState('');
-  const [mealType, setMealType] = useState('Snack');
+  const [mealType, setMealType] = useState('Lunch');
   const [show, setShow] = useState(false);
   const [isSelected, setIsSelected] = useState(-1);
 
 
   const [colorQuantity, setColorQuantity] = useState(0);
+  const [snackQuantity, setSnackQuantity] = useState(0);
 
   const onComplete = navigation.getParam('onComplete', ()=>{});
 
@@ -52,7 +53,7 @@ const DietScreen = ({ navigation }) => {
       setFoodList([]);
     }
     else {
-      const newList = FOOD_LIST.filter(food => food.includes(text.toLowerCase()));
+      const newList = FOOD_LIST.filter(food => food.toLowerCase().replace(/\W/g, '').includes(text.toLowerCase().replace(/\W/g, '')));
       setFoodList(newList.splice(0, 100));
     }
 
@@ -65,10 +66,13 @@ const DietScreen = ({ navigation }) => {
 
   const validate = async () => {
     let vals;
-    if(colorQuantity === 0)
-      vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
-    else
+    if(colorQuantity > 0)
       vals = {'mealType': 'Fruits', 'foodItem': 'colors', 'foodItemAmt': colorQuantity, 'foodItemAmtUnit': 'g'};
+    else if(snackQuantity > 0)
+      vals = {'mealType': 'Snack', 'foodItem': 'snack', 'foodItemAmt': snackQuantity, 'foodItemAmtUnit': 'g'};
+    else
+      vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
+
     const res = await record(vals, 'das');
     onComplete('das');
     navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
@@ -107,7 +111,7 @@ const DietScreen = ({ navigation }) => {
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Text style={styles.header}>{t('Daily Diet Record')}</Text>
 
-      <WhiteContainer pointerEvents={colorQuantity > 0 ? "none" : "auto"} >
+      <WhiteContainer style={{height: '60%'}} pointerEvents={colorQuantity > 0 || snackQuantity > 0 ? "none" : "auto"} >
         <Text style={styles.foodDiaryHeader}>{t('Food Diary')}</Text>
         <TextInput
           style={styles.textInput}
@@ -137,7 +141,7 @@ const DietScreen = ({ navigation }) => {
 
               />
             </View>
-            <Text style={styles.inputLabel}>{t('Quantity')}</Text>
+            <Text style={styles.inputLabel}>{t('Quantity')} in g/ml</Text>
           </View>
 
           <TouchableOpacity style={styles.inputContainerCol} onPress={() => setShow(s => !s)}>
@@ -151,7 +155,6 @@ const DietScreen = ({ navigation }) => {
                 itemStyle={{ color: theme.colors.secondary }}
                 returnKeyType={'done'}
               >
-                <Picker.Item label={t("Snack")} value="Snack" />
                 <Picker.Item label={t("Breakfast")} value="Breakfast" />
                 <Picker.Item label={t("Lunch")} value="Lunch" />
                 <Picker.Item label={t("Dinner")} value="Dinner" />
@@ -162,16 +165,32 @@ const DietScreen = ({ navigation }) => {
 
         </View>
 
-        {colorQuantity > 0 && <Text style={{color: theme.colors.error, fontSize:12}}>{t('Set Color input to 0 to enable food input.')}</Text>}
+        {(colorQuantity > 0 || snackQuantity > 0) && <Text style={{color: theme.colors.error, fontSize:12}}>{t('Set Color and Snack inputs to 0 to enable food input.')}</Text>}
       </WhiteContainer>
 
-      <View style={styles.colorRow}>
+      <View style={[styles.colorRow, snackQuantity > 0 && styles.grayOut]} pointerEvents={snackQuantity > 0 ? "none" : "auto"}>
         <Text style={styles.colorLabel}>{t('Colorful Vegetables and Fruits')}</Text>
         <Counter
           start={0}
           max={3}
           onChange={number => {
             setColorQuantity(number);
+            if(number > 0)
+              setIsSelected(-1);
+          }}
+          buttonStyle={{borderColor: theme.colors.primary}}
+          buttonTextStyle={{color: theme.colors.primary}}
+          countTextStyle={{color: theme.colors.primary}}
+        />
+      </View>
+
+      <View style={[styles.colorRow, colorQuantity > 0 && styles.grayOut]} pointerEvents={colorQuantity > 0 ? "none" : "auto"}>
+        <Text style={styles.colorLabel}>{t('Snacks')}</Text>
+        <Counter
+          start={0}
+          max={3}
+          onChange={number => {
+            setSnackQuantity(number);
             if(number > 0)
               setIsSelected(-1);
           }}
@@ -280,6 +299,9 @@ const styles = StyleSheet.create({
   },
   colorLabel:{
     fontWeight: 'bold',
+  },
+  grayOut: {
+    backgroundColor: 'lightgray'
   }
 });
 

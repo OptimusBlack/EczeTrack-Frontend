@@ -98,7 +98,7 @@ const OneTimeStack = createStackNavigator(
 
 OneTimeStack.navigationOptions = {
   tabBarOptions,
-  tabBarIcon: ({ focused, tintColor }) => <MaterialCommunityIcons name="calendar-week" size={25} color={tintColor} />,
+  tabBarIcon: ({ focused, tintColor }) => <MaterialIcons name="today" size={25} color={tintColor} />,
   tabBarLabel: <Translation>{(t) => <Text style={styles.text} >{t('Bootcamp')}</Text>}</Translation>
 };
 

@@ -23,7 +23,7 @@ const init = async ()=>{
       resources,
       fallbackLng: 'en',
       lng,
-      debug: true,
+      debug: false,
 
       interpolation: {
         escapeValue: false, // not needed for react as it escapes by default

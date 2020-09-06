@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect } from 'react';
-import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { AsyncStorage, Text, View, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
 import { useTranslation } from 'react-i18next';
@@ -34,10 +34,11 @@ const LanguagePicker = ({ navigation, blackText }) => {
 
   return (
     <View style={styles.container}>
+      {Platform.OS === 'ios' &&
       <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
         <Text style={[styles.textLabel, { textAlign: 'right', color: blackText ? 'black' : 'white' }]}>{currentLang.label}</Text>
-      </TouchableOpacity>
-      {showPicker && <Picker
+      </TouchableOpacity>}
+      {(showPicker || Platform.OS !== 'ios') && <Picker
         selectedValue={currentLang.value}
         onValueChange={_onLanguageChange}
         returnKeyType={'done'}

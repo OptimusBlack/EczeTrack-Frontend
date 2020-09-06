@@ -24,7 +24,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wederm.eczetrack",
+      "buildNumber": "1.0.0"
+
     },
     "android": {
       "package": "com.wederm.eczetrack",
@@ -32,6 +35,6 @@
       "useNextNotificationsApi": true
     },
     "description": "",
-    "githubUrl": "https://github.com/venits/react-native-login-template"
+    "githubUrl": "https://github.com/alifarooqi/EczeTrack-Frontend"
   }
 }

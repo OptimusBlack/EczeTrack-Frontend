@@ -5,25 +5,14 @@ import Button from '../../components/Button';
 import WhiteContainer from "../../components/WhiteContainer";
 import BackButton from "../../components/BackButton";
 import Header from "../../components/Header";
-import QuestionContainer from "../../components/QuestionContainer";
-import QuestionText from "../../components/QuestionText";
-
-import questions from '../../data/envQuestions';
-import envItems from '../../data/envItems';
-
-import {record} from '../../ApiManager';
 
 import {
-  View,
   StyleSheet,
-  TextInput,
-  ScrollView,
 
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 
-import Checkbox from 'react-native-check-box';
 
 import { theme } from "../../core/theme";
 
@@ -108,17 +97,17 @@ const EnvironmentOTScreen = ({ navigation }) => {
   // ));
 
   const validate = async () => {
-    let vals = {};
-    envItems.forEach((e, i) => {
-      if (e.other){
-        vals[e.item] = {value: values[i].value, other: values[i].other};
-      } else {
-        vals[e.item] = values[i].value;
-      }
-    });
-
-    const res = await record(vals, 'environment');
-    navigation.navigate('OneTimeScreen', {recordAdded: res.recordAdded});
+    // let vals = {};
+    // envItems.forEach((e, i) => {
+    //   if (e.other){
+    //     vals[e.item] = {value: values[i].value, other: values[i].other};
+    //   } else {
+    //     vals[e.item] = values[i].value;
+    //   }
+    // });
+    //
+    // const res = await record({}, 'environmentOT');
+    navigation.navigate('OneTimeScreen', {recordAdded: 'environmentOT'});
   };
 
   const uri = "https://forms.zohopublic.com/wederm/form/EczeTrackBootcampEnvironmentQuestionnare/formperma/HaM8kxSECZQeIjxsSi2vNG7zlDiGR_NZSTVFDf8gznc";
@@ -129,7 +118,7 @@ const EnvironmentOTScreen = ({ navigation }) => {
       <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
       <Header white>Environment</Header>
 
-      <WhiteContainer style={{height: '85%'}}>
+      <WhiteContainer>
         <WebView
           originWhitelist={['*']}
           source={{ uri }}
@@ -138,6 +127,7 @@ const EnvironmentOTScreen = ({ navigation }) => {
 
       </WhiteContainer>
 
+      <Button mode="contained" onPress={validate}>Confirm</Button>
 
     </GreenBackground>
   );
