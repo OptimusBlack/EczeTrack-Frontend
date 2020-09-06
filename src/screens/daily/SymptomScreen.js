@@ -240,7 +240,7 @@ const SymptomScreen = ({ navigation }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>{showModal}</Text>
+            <Text style={styles.modalText}>{t(showModal)}</Text>
 
             {_bodyParts[showModal].front && _bodyParts[showModal].back && <Checkbox
               isChecked={currentFront}

@@ -21,7 +21,7 @@ const Chart = ({ xValues, yValues, legend, loading }) => {
     return <ActivityIndicator size={25} color={'black'} style={{height: 270}}/>;
 
   if(xValues.length === 0){
-    return <Text style={{paddingVertical: 130, color: '#1c1c1c'}}>No data to show</Text>
+    return <Text style={{paddingVertical: 130, color: '#1c1c1c'}}>{t('No data to show')}</Text>
   }
 
   let graphData = [];
