@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react';
+import SearchableDropdown from 'react-native-searchable-dropdown';
 
 import { GreenBackground } from '../../components/Background';
 import Button from '../../components/Button';
@@ -9,8 +10,9 @@ import QuestionContainer from "../../components/QuestionContainer";
 import QuestionText from "../../components/QuestionText";
 
 import questions from '../../data/msuQuestions';
+import { steroidNames } from '../../data/steroidNames';
 
-import {record} from '../../ApiManager';
+import { record } from '../../ApiManager';
 
 import {
   View,
@@ -18,11 +20,14 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  Platform
+  Platform,
+  FlatList,
+  Button as bt
 } from 'react-native';
 
 import { theme } from "../../core/theme";
 import { useTranslation } from 'react-i18next';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const MSUScreen = ({ navigation }) => {
@@ -33,46 +38,80 @@ const MSUScreen = ({ navigation }) => {
   const [q3, setQ3] = useState('');
   const [q4, setQ4] = useState(0);
   const [error, setError] = useState(-1);
+  const [list, setList] = useState(steroidNames);
+  const [showList, setShowList] = useState(false);
 
   const values = [q1, q2, q3, q4];
   const setters = [setQ1, setQ2, setQ3, setQ4];
-  const refs = [0,0,0,0];
+  const refs = [0, 0, 0, 0];
 
-  const onComplete = navigation.getParam('onComplete', ()=>{});
+  const onComplete = navigation.getParam('onComplete', () => { });
   const validate = async () => {
-    for (let i=0; i<values.length; i++){
-      if (i%2 === 0){
-        if (values[i] === ''){
+    for (let i = 0; i < values.length; i++) {
+      if (i % 2 === 0) {
+        if (values[i] === '') {
           setError(i);
           return
         }
       } else {
-        if (isNaN(values[i])){
+        if (isNaN(values[i])) {
           setError(i);
           return;
         }
       }
     }
 
-    const vals = {steroid: q1, steroidUse: q2, moisturizer: q3, moisturizerUse: q4};
+    const vals = { steroid: q1, steroidUse: q2, moisturizer: q3, moisturizerUse: q4 };
     const res = await record(vals, 'msu');
     onComplete('msu');
-    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
+    navigation.navigate('TabNavigator', { recordAdded: res.recordAdded });
   };
 
-  const allQuestions = questions.map( (q, i) => (
-    <QuestionContainer questionNumber={i+1} key={i}>
+  const _listItem = ({ item }) => (
+    <TouchableOpacity
+      key={item}
+      style={styles.listItem}
+      onPress={() => setQ1(item)}
+    >
+      <Text style={styles.listItemText} >{item}</Text>
+    </TouchableOpacity>
+  );
+
+  const _onChangeText = (text) => {
+    setQ1(text);
+    setList(steroidNames.filter(name => name.toLowerCase().replace(/\W/g, '').includes(text.toLowerCase().replace(/\W/g, ''))));
+  }
+
+  const allQuestions = questions.map((q, i) => (
+    <QuestionContainer questionNumber={i + 1} key={i}>
       <QuestionText>{t(q.question)}</QuestionText>
       <View style={styles.answerContainer}>
-        <TextInput
+        {i == 0 && <TextInput
           style={styles.inputBox}
-          keyboardType = {q.isNumber ? 'numeric' : 'default'}
+          keyboardType={q.isNumber ? 'numeric' : 'default'}
           value={values[i].toString()}
-          returnKeyType={Platform.OS === 'ios' ? 'done' : i< questions.length - 1 ? 'next' : 'submit'}
+          returnKeyType={Platform.OS === 'ios' ? 'done' : i < questions.length - 1 ? 'next' : 'submit'}
+          onChangeText={_onChangeText}
+          onFocus={() => setShowList(true)}
+          onEndEditing={() => setShowList(false)}
+          ref={(input) => { refs[i] = input }}
+          blurOnSubmit={false}
+        />}
+        {i == 0 && showList && <FlatList
+          data={list}
+          renderItem={_listItem}
+          keyExtractor={item => item.title}
+          style={{ maxHeight: 140 }}
+        />}
+        {i != 0 && <TextInput
+          style={styles.inputBox}
+          keyboardType={q.isNumber ? 'numeric' : 'default'}
+          value={values[i].toString()}
+          returnKeyType={Platform.OS === 'ios' ? 'done' : i < questions.length - 1 ? 'next' : 'submit'}
           onChangeText={val => setters[i](val)}
           ref={(input) => { refs[i] = input }}
           blurOnSubmit={false}
-        />
+        />}
         {error === i && <Text style={styles.error}>{t('Enter a valid value')}</Text>}
       </View>
     </QuestionContainer>
@@ -86,7 +125,7 @@ const MSUScreen = ({ navigation }) => {
       <Header white>{t('Moisturizer & Steroid Usage')}</Header>
 
       <WhiteContainer>
-        <ScrollView style={{alignSelf: 'stretch'}}>
+        <ScrollView style={{ alignSelf: 'stretch' }}>
           {allQuestions}
         </ScrollView>
 
@@ -99,17 +138,24 @@ const MSUScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  answerContainer:{
-    flexDirection: 'row',
-    alignItems: 'flex-end'
+  answerContainer: {
+    // flexDirection: 'row',
+    // alignItems: 'flex-end'
   },
-  inputBox:{
+  inputBox: {
     width: '50%',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.3)',
     paddingHorizontal: 5,
     paddingVertical: 2,
     marginRight: 5
+  },
+  listItem: {
+    paddingTop: 4,
+    paddingBottom: 4,
+  },
+  listItemText: {
+    fontSize: 16
   },
   error: {
     color: theme.colors.error,
