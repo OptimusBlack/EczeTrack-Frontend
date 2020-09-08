@@ -55,6 +55,12 @@ const Dashboard = ({ navigation }) => {
 
   const carouselRef = useRef(null);
 
+  const temp = {
+    dates: ['09-6', '09-7', '09-8', '09-9'],
+    data: [[3, 0, 0.5, 1.5, 2, 0, 7, 2, 5, 4, 3], [1, 0.5, 0.5, 3, 0]],
+    legend: []
+  };
+
   // const onBackPress = ()=>{
   //   BackHandler.removeEventListener('hardwareBackPress', onBackPress);
   //   BackHandler.exitApp();
@@ -115,12 +121,27 @@ const Dashboard = ({ navigation }) => {
     let f3 = {...twoFactorComparisionData.factor3};
     f2 = filterChartData(f2);
     f3 = filterChartData(f3);
-    const data = f2.data.concat(f3.data);
+
     const legend = f2.legend.concat(f3.legend);
     const dates = mergeDates(f2.dates, f3.dates);
+    const f3Data = adjustStart(dates, f3.dates[0], f3.data);
+    const data = f2.data.concat(f3Data);
     setFactor2ChartData({data, legend, dates});
-
   };
+
+  const adjustStart = (dates, startDate, data) => {
+    const padding = dates.indexOf(startDate);
+
+    if (padding > 0){
+      let finalArray = [];
+      data.forEach((dataArray) => {
+        let paddedArray = (new Array(padding)).fill(dataArray[0]);
+        finalArray.push(paddedArray.concat(dataArray));
+      });
+      return finalArray;
+    }
+    return data;
+  }
 
   const filterChartData = chartData => {
     if(chartData.data.length === 1){ // Not MSU
@@ -149,34 +170,16 @@ const Dashboard = ({ navigation }) => {
   };
 
   const mergeDates = (date1, date2) => {
-    let mergedDates = [];
-    let i=0, j=0;
-    while(i<date1.length && j<date2.length){
-      if(date1[i] === date2[i]){
-        mergedDates.push(date1[i]);
-        i++;
-        j++;
+    let mergedDates = date1;
+    let tempArray = [];
+    date2.forEach((item) => {
+      if (!mergedDates.includes(item)){
+        tempArray.push(item);
       }
-      else if(date1[i] < date2[i]){
-        mergedDates.push(date1[i]);
-        i++;
-      }
-      else{
-        mergedDates.push(date2[j]);
-        j++;
-      }
-    }
+    });
+    mergedDates = mergedDates.concat(tempArray);
 
-    while(i<date1.length){
-      mergedDates.push(date1[i]);
-      i++;
-    }
-    while(j<date2.length){
-      mergedDates.push(date2[j]);
-      j++;
-    }
-    return mergedDates;
-
+    return mergedDates.sort();
   };
 
   const _updateFactor = (item) => {
