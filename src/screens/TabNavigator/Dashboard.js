@@ -28,9 +28,6 @@ let twoFactorComparisionData = {
   },
 };
 
-const DAILY = factorList.slice(0, 4);
-const WEEKLY = factorList.slice(4);
-
 const Dashboard = ({ navigation }) => {
   const { t } = useTranslation();
 
@@ -63,7 +60,6 @@ const Dashboard = ({ navigation }) => {
   //   BackHandler.exitApp();
   // };
   // BackHandler.addEventListener('hardwareBackPress', onBackPress);
-
 
   useEffect(()=>{
     updateFactor1();
@@ -119,8 +115,6 @@ const Dashboard = ({ navigation }) => {
     let f3 = {...twoFactorComparisionData.factor3};
     f2 = filterChartData(f2);
     f3 = filterChartData(f3);
-    // const DAILY = factorList.slice(0, 4);
-    // const WEEKLY = factorList.slice(4);
     const data = f2.data.concat(f3.data);
     const legend = f2.legend.concat(f3.legend);
     const dates = mergeDates(f2.dates, f3.dates);
@@ -191,15 +185,11 @@ const Dashboard = ({ navigation }) => {
 
   const _updateFactorList = (item, index) => {
     setFactor2(item.value);
-    if (DAILY.includes(factorList[index])) {
-      const factorsArray = DAILY.filter((elem) => elem.value != item.value);
-      setFactorList3(factorsArray);
+    const factorsArray = factorList.filter((elem) => elem.value != item.value);
+    setFactorList3(factorsArray);
+
+    if (factor3 == item.value)
       setFactor3(factorsArray[0].value);
-    } else {
-      const factorsArray = WEEKLY.filter((elem) => elem.value != item.value);
-      setFactorList3(factorsArray);
-      setFactor3(factorsArray[0].value);
-    }
   };
 
   const _renderItem = ({item, index}) => {
