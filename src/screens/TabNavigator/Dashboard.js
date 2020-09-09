@@ -34,7 +34,7 @@ const WEEKLY = factorList.slice(4);
 const Dashboard = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // const [isActive, setIsActive] = useState(0);
   const [timeRange, setTimeRange] = useState(0);
@@ -52,7 +52,7 @@ const Dashboard = ({ navigation }) => {
   });
   const [factor2ChartData, setFactor2ChartData] = useState({
     dates: ['03-06', '05-06', '07-06', '09-06'],
-    data: [[3, 0, 0.5, 1.5, 2, 0], [1, 0, 0.5, 0.5, 3, 0]],
+    data: [[3, 0, 0.5], [1, 0, 0.5, 0.5, 3, 0,5,6,7,8,9,5,4,3,2,1,3,4,5,7,5,4,3]],
     legend: []
   });
 
@@ -65,15 +65,15 @@ const Dashboard = ({ navigation }) => {
   // BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
 
-  useEffect(()=>{
-    updateFactor1();
-  }, [factor]);
-  useEffect(()=>{
-    updateFactor2();
-  }, [factor2]);
-  useEffect(()=>{
-    updateFactor3();
-  }, [factor3]);
+  // useEffect(()=>{
+  //   updateFactor1();
+  // }, [factor]);
+  // useEffect(()=>{
+  //   updateFactor2();
+  // }, [factor2]);
+  // useEffect(()=>{
+  //   updateFactor3();
+  // }, [factor3]);
 
 
   const getDateFrom = ()=>{

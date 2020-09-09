@@ -28,7 +28,6 @@ const LanguagePicker = ({ navigation, blackText }) => {
   };
 
   useEffect(() => {
-    console.log("Running use effect...");
     if (i18n.language == "en") {
       setCurrentLang({ label: "English", value: "en" });
     } else {

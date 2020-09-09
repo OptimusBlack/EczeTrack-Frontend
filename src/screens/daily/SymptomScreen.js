@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { GreenBackground } from '../../components/Background';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -20,13 +20,12 @@ import Checkbox from 'react-native-check-box';
 
 import _bodyParts from "../../data/bodyParts";
 
-import {record} from '../../ApiManager';
+import {record, getDaySymptoms} from '../../ApiManager';
 
 import { useTranslation } from 'react-i18next';
 
 
 
-let selection = {};
 
 const SymptomScreen = ({ navigation }) => {
   const { t } = useTranslation();
@@ -37,6 +36,18 @@ const SymptomScreen = ({ navigation }) => {
   const [currentFront, setCurrentFront] = useState(false);
   const [currentBack, setCurrentBack] = useState(false);
   const [currentBilateral, setCurrentBilateral] = useState(false);
+
+  const [selection, setSelection] = useState({});
+
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      const response = await getDaySymptoms();
+      if(response.symptom)
+        setSelection(response.symptom);
+    };
+
+    fetchData();
+  }, []);
 
 
   const [q1, setQ1] = useState(0);
@@ -189,7 +200,7 @@ const SymptomScreen = ({ navigation }) => {
     const res = await record(selection, 'symptom');
     if(res && res.success){
       onComplete('symptom');
-      selection = {};
+      // selection = {};
     }
     navigation.navigate('DailyScreen');
   };

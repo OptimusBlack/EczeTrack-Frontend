@@ -114,7 +114,7 @@ const EnvironmentOTScreen = ({ navigation }) => {
 
 
   return (
-    <GreenBackground notAvoidingKeyboard={false}>
+    <GreenBackground notAvoidingKeyboard={true}>
       <BackButton goBack={() => navigation.navigate('OneTimeScreen')} />
       <Header white>Environment</Header>
 

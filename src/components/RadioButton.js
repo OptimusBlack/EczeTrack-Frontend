@@ -8,16 +8,16 @@ let SIZE = 18;
 const RadioButton = ({checked, onPress, label, size, error, value}) => {
   SIZE = size ? size : SIZE;
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
+      {/*<TouchableOpacity onPress={onPress}>*/}
         <View style={[styles.radioContainer, error && value === 0 && styles.errorRadioContainer]}>
           { checked &&
             <View style={styles.innerRadio}/>
           }
         </View>
-      </TouchableOpacity>
+      {/*</TouchableOpacity>*/}
       <Text style={[styles.radioLabel, error && value === 0 && styles.errorLabel]}>{label}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

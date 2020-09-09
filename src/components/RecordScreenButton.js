@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { TouchableOpacity, StyleSheet, Text, ImageBackground } from 'react-native';
-import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { theme } from '../core/theme';
 
-const RecordScreenButton = ({ children, ticked, icon, onPress, disabled }) => (
+const RecordScreenButton = ({ children, ticked, icon, onPress, disabled, value }) => (
   <TouchableOpacity
     style={styles.button}
     onPress={onPress}
@@ -25,12 +25,19 @@ const RecordScreenButton = ({ children, ticked, icon, onPress, disabled }) => (
         {children}
       </Text>
 
-      <FontAwesome
-        name={ticked ? 'check-circle' : 'exclamation-circle'}
-        size={24}
-        color={ticked ? '#15342f' : '#4f2020'}
-        style={styles.icon}
-      />
+      {isNaN(value)?
+        <FontAwesome
+          name={ticked ? 'check-circle' : 'exclamation-circle'}
+          size={24}
+          color={ticked ? '#15342f' : '#4f2020'}
+          style={styles.icon}
+        /> :
+        <MaterialCommunityIcons
+          name={"numeric-"+value+"-box"}
+          size={24}
+          color={'#15342f'}
+          style={styles.icon}
+        />}
 
     </ImageBackground>
   </TouchableOpacity>

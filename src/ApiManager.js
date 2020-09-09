@@ -1,8 +1,8 @@
 import Constants from 'expo-constants';
-import {AsyncStorage} from 'react-native'
+import {AsyncStorage, BackHandler} from 'react-native'
 
-const BACKEND_HOST = 'heroku';
-// const BACKEND_HOST = 'local';
+// const BACKEND_HOST = 'heroku';
+const BACKEND_HOST = 'local';
 
 let BASE_URL;
 
@@ -35,6 +35,8 @@ let request = async (url, data) => {
     console.error('Error in fetching data',url);
     console.warn(config);
     console.warn(error);
+    alert("Network Error! Cannot connect to server");
+    BackHandler.exitApp();
   }
 };
 
@@ -130,6 +132,18 @@ const getChartData = async (factor, dateFrom, dateTo = new Date()) => {
     return null;
 };
 
+const getDaySymptoms = async () =>  {
+  const path = `get/day-symptoms`;
+  let user = await AsyncStorage.getItem('user', false);
+
+  if(user) {
+    user = JSON.parse(user);
+    return await request(getApiUrl(path), { userId: user.user.id });
+  }
+  else
+    return null;
+};
+
 
 export {
   login,
@@ -142,5 +156,6 @@ export {
   checkDaily,
   checkOneTime,
   getChartData,
-  getFoodList
+  getFoodList,
+  getDaySymptoms
 }

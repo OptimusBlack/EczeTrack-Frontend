@@ -47,11 +47,22 @@ const WeeklyScreen = ({ route, navigation }) => {
     setCheck({...check, ...update});
   };
 
+  const getWeekDates = ()=>{
+    let now = new Date();
+    const day = now.getDay();
+    let prevSunday = new Date(now - day*24*60*60*1000);
+    let prevMonday = new Date(prevSunday - 6*24*60*60*1000);
+    prevMonday = prevMonday.toDateString();
+    prevSunday = prevSunday.toDateString();
+
+    return prevMonday + ' - ' + prevSunday;
+  };
   
   return (
     <GreenBackground>
       <Header white style={styles.header}>
-        {t('Your records for the past week')}
+        {t('Your records for the past week\n')}
+        {getWeekDates()}
       </Header>
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView}>

@@ -20,10 +20,10 @@ const OneTimeScreen = ({ navigation }) => {
 
   const [refreshing, setRefreshing] = useState(false);
   const [check, setCheck] = useState({
-    environmentOT: false,
-    symptomOT: false,
-    stressOT: false,
-    qualityOfLifeOT: false
+    environmentOT: -1,
+    symptomOT: 0,
+    stressOT: 0,
+    qualityOfLifeOT: 0
   });
 
   const _onRefresh = async () => {
@@ -46,9 +46,11 @@ const OneTimeScreen = ({ navigation }) => {
   }, []);
 
   const onComplete = label => {
-    let update = {};
-    update[label] = true;
-    setCheck({...check, ...update});
+    if(label !== 'environmentOT'){
+      let update = {};
+      update[label] = check[label] + 1;
+      setCheck({...check, ...update});
+    }
   };
 
 
@@ -65,8 +67,8 @@ const OneTimeScreen = ({ navigation }) => {
           {factorList.map((e, idx) =>
             <RecordScreenButton
               key={idx}
-              ticked={check[e.value]}
-              disabled={check[e.value]}
+              value={check[e.value]}
+              disabled={check[e.value] >= 3}
               icon={e.icon}
               onPress={() => navigation.navigate(e.screen, {onComplete})}
             >
