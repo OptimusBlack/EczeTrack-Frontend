@@ -14,7 +14,7 @@ let COLORS = [
 
 ];
 
-const Chart = ({ xValues, yValues, legend, loading }) => {
+const Chart = ({ xValues, yValues, legend, loading, twoFactor }) => {
   const { t } = useTranslation();
 
   if(loading)
@@ -35,6 +35,7 @@ const Chart = ({ xValues, yValues, legend, loading }) => {
 
   const data = {
     labels: xValues,
+    labels: xValues,
     datasets: graphData,
     legend: legend.map((item) => t(item))
   };
@@ -53,7 +54,7 @@ const Chart = ({ xValues, yValues, legend, loading }) => {
         color: (opacity = 1) => `rgba(95, 184, 169, ${opacity})`,
         fillShadowGradientOpacity: 0, //opacity of the colour of area under the graph
         strokeWidth: 4, // optional, default 3
-        decimalPlaces: 0,
+        decimalPlaces: twoFactor ? 2 : 0,
         labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
       }}
       bezier
