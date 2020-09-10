@@ -12,7 +12,6 @@ import { IconButton } from 'react-native-paper';
 
 import { useTranslation } from 'react-i18next';
 
-
 import {getChartData} from '../../ApiManager';
 
 let twoFactorComparisionData = {
@@ -40,7 +39,7 @@ const Dashboard = ({ navigation }) => {
   const [factor2, setFactor2] = useState(factorList[0].value);
   const [factor3, setFactor3] = useState(factorList[1].value);
   const [factorList2, setFactorList2] = useState(factorList);
-  const [factorList3, setFactorList3] = useState(factorList.slice(1, 4));
+  const [factorList3, setFactorList3] = useState(factorList);
 
   const [factor1ChartData, setFactor1ChartData] = useState({
     dates: ['03-06', '05-06', '07-06', '09-06'],
@@ -124,8 +123,15 @@ const Dashboard = ({ navigation }) => {
 
     const legend = f2.legend.concat(f3.legend);
     const dates = mergeDates(f2.dates, f3.dates);
-    const f3Data = adjustStart(dates, f3.dates[0], f3.data);
-    const data = f2.data.concat(f3Data);
+    let data;
+    
+    if (f3.dates[0] < f2.dates[0]){
+      const f2Data = adjustStart(dates, f2.dates[0], f2.data);
+      data = f3.data.concat(f2Data);
+    } else {
+      const f3Data = adjustStart(dates, f3.dates[0], f3.data);
+      data = f2.data.concat(f3Data);
+    }
     setFactor2ChartData({data, legend, dates});
   };
 
