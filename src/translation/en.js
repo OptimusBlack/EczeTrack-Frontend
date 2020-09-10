@@ -61,6 +61,7 @@ module.exports = {
   'Confirm': 'CONFIRM',
   'Front': 'Front',
   'Back': 'Back',
+  'Bilateral': 'Bilateral',
   'Itching': 'Itching',
   'Bleeding': 'Bleeding',
   'Oozing': 'Oozing',

@@ -39,7 +39,7 @@ const Dashboard = ({ navigation }) => {
   const [factor2, setFactor2] = useState(factorList[0].value);
   const [factor3, setFactor3] = useState(factorList[1].value);
   const [factorList2, setFactorList2] = useState(factorList);
-  const [factorList3, setFactorList3] = useState(factorList);
+  const [factorList3, setFactorList3] = useState(factorList.slice(1));
 
   const [factor1ChartData, setFactor1ChartData] = useState({
     dates: ['03-06', '05-06', '07-06', '09-06'],

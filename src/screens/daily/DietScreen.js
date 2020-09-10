@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
-  Platform
+  Platform,
+  Modal
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -19,8 +20,10 @@ import { theme } from "../../core/theme";
 import WhiteContainer from "../../components/WhiteContainer";
 import BackButton from "../../components/BackButton";
 
-import { getFoodList, record } from "../../ApiManager";
+import { getFoodList, record, getDayDAS } from "../../ApiManager";
 import { useTranslation } from 'react-i18next';
+
+import { Button as RNPButton } from 'react-native-paper';
 
 let FOOD_LIST = [];
 
@@ -40,12 +43,13 @@ const DietScreen = ({ navigation }) => {
   const [mealType, setMealType] = useState('Lunch');
   const [show, setShow] = useState(false);
   const [isSelected, setIsSelected] = useState(-1);
-
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [colorQuantity, setColorQuantity] = useState(0);
   const [snackQuantity, setSnackQuantity] = useState(0);
+  const [dietToday, setDietToday] = useState([]);
 
-  const onComplete = navigation.getParam('onComplete', ()=>{});
+  const onComplete = navigation.getParam('onComplete', () => { });
 
   const _onChangeText = text => {
     setQuery(text);
@@ -66,16 +70,16 @@ const DietScreen = ({ navigation }) => {
 
   const validate = async () => {
     let vals;
-    if(colorQuantity > 0)
-      vals = {'mealType': 'Fruits', 'foodItem': 'colors', 'foodItemAmt': colorQuantity, 'foodItemAmtUnit': 'g'};
-    else if(snackQuantity > 0)
-      vals = {'mealType': 'Snack', 'foodItem': 'snack', 'foodItemAmt': snackQuantity, 'foodItemAmtUnit': 'g'};
+    if (colorQuantity > 0)
+      vals = { 'mealType': 'Fruits', 'foodItem': 'colors', 'foodItemAmt': colorQuantity, 'foodItemAmtUnit': 'g' };
+    else if (snackQuantity > 0)
+      vals = { 'mealType': 'Snack', 'foodItem': 'snack', 'foodItemAmt': snackQuantity, 'foodItemAmtUnit': 'g' };
     else
-      vals = {'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g'};
+      vals = { 'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g' };
 
     const res = await record(vals, 'das');
     onComplete('das');
-    navigation.navigate('TabNavigator', {recordAdded: res.recordAdded});
+    navigation.navigate('TabNavigator', { recordAdded: res.recordAdded });
   };
 
   const _renderFoodItem = ({ item, index }) => {
@@ -105,14 +109,69 @@ const DietScreen = ({ navigation }) => {
     setMealType(itemValue);
   };
 
+  const dietForTheDay = dietToday.map((item, idx) => (
+    <View>
+      {item.mealType != "Snack" && item.mealType != "Fruits" && <Text
+        key={idx}
+      >
+        {item.foodItem}, {item.mealType}, {item.foodItemAmt}g
+      </Text>}
+
+      {item.mealType == "Snack" && <Text
+        key={idx}
+        style={{fontFamily: 'Avenir-Bold', fontSize: 16}}
+      >
+        {item.mealType}s: {item.foodItemAmt}
+      </Text>}
+
+      {item.mealType == "Fruits" && <Text
+        key={idx}
+        style={{fontFamily: 'Avenir-Bold', fontSize: 16}}
+      >
+        {item.mealType}: {item.foodItemAmt}
+      </Text>}
+      {}
+    </View>
+  ));
+
+  const _showDietForTheDay = async () => {
+    const response = await getDayDAS();
+    if (response.das) {
+      console.log(response.das);
+      setDietToday(response.das);
+    }
+    setModalVisible(true)
+  }
 
   return (
     <GreenBackground notAvoidingKeyboard={true}>
       <BackButton goBack={() => navigation.navigate('TabNavigator')} />
       <Text style={styles.header}>{t('Daily Diet Record')}</Text>
 
-      <WhiteContainer style={{height: '60%'}} pointerEvents={colorQuantity > 0 || snackQuantity > 0 ? "none" : "auto"} >
-        <Text style={styles.foodDiaryHeader}>{t('Food Diary')}</Text>
+      <RNPButton
+        onPress={_showDietForTheDay}
+        style={{ alignSelf: 'stretch', backgroundColor: 'white', marginBottom: 5 }}
+      >
+        {t('Show diet for today')}
+      </RNPButton>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={[styles.header, {color: 'black', fontFamily: 'Avenir-Bold', fontSize: 20}]} >{t('Food items for the day')}</Text>
+            {dietForTheDay}
+            <Button
+              onPress={() => setModalVisible(false)}
+            >{t('close')}</Button>
+          </View>
+        </View>
+      </Modal>
+
+      <WhiteContainer style={{ height: '55%' }} pointerEvents={colorQuantity > 0 || snackQuantity > 0 ? "none" : "auto"} >
         <TextInput
           style={styles.textInput}
           onChangeText={_onChangeText}
@@ -165,7 +224,7 @@ const DietScreen = ({ navigation }) => {
 
         </View>
 
-        {(colorQuantity > 0 || snackQuantity > 0) && <Text style={{color: theme.colors.error, fontSize:12}}>{t('Set Color and Snack inputs to 0 to enable food input.')}</Text>}
+        {(colorQuantity > 0 || snackQuantity > 0) && <Text style={{ color: theme.colors.error, fontSize: 12 }}>{t('Set Color and Snack inputs to 0 to enable food input.')}</Text>}
       </WhiteContainer>
 
       <View style={[styles.colorRow, snackQuantity > 0 && styles.grayOut]} pointerEvents={snackQuantity > 0 ? "none" : "auto"}>
@@ -175,12 +234,12 @@ const DietScreen = ({ navigation }) => {
           max={3}
           onChange={number => {
             setColorQuantity(number);
-            if(number > 0)
+            if (number > 0)
               setIsSelected(-1);
           }}
-          buttonStyle={{borderColor: theme.colors.primary}}
-          buttonTextStyle={{color: theme.colors.primary}}
-          countTextStyle={{color: theme.colors.primary}}
+          buttonStyle={{ borderColor: theme.colors.primary }}
+          buttonTextStyle={{ color: theme.colors.primary }}
+          countTextStyle={{ color: theme.colors.primary }}
         />
       </View>
 
@@ -191,12 +250,12 @@ const DietScreen = ({ navigation }) => {
           max={3}
           onChange={number => {
             setSnackQuantity(number);
-            if(number > 0)
+            if (number > 0)
               setIsSelected(-1);
           }}
-          buttonStyle={{borderColor: theme.colors.primary}}
-          buttonTextStyle={{color: theme.colors.primary}}
-          countTextStyle={{color: theme.colors.primary}}
+          buttonStyle={{ borderColor: theme.colors.primary }}
+          buttonTextStyle={{ color: theme.colors.primary }}
+          countTextStyle={{ color: theme.colors.primary }}
         />
       </View>
 
@@ -297,11 +356,32 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     marginVertical: 5
   },
-  colorLabel:{
+  colorLabel: {
     fontWeight: 'bold',
   },
   grayOut: {
     backgroundColor: 'lightgray'
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "flex-start",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
   }
 });
 

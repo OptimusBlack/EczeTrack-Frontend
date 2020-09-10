@@ -144,6 +144,17 @@ const getDaySymptoms = async () =>  {
     return null;
 };
 
+const getDayDAS = async () =>  {
+  const path = `get/day-das`;
+  let user = await AsyncStorage.getItem('user', false);
+
+  if(user) {
+    user = JSON.parse(user);
+    return await request(getApiUrl(path), { userId: user.user.id });
+  }
+  else
+    return null;
+};
 
 export {
   login,
@@ -157,5 +168,6 @@ export {
   checkOneTime,
   getChartData,
   getFoodList,
-  getDaySymptoms
+  getDaySymptoms,
+  getDayDAS
 }
