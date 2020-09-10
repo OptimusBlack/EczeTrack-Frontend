@@ -126,6 +126,15 @@ const Dashboard = ({ navigation }) => {
     const dates = mergeDates(f2.dates, f3.dates);
     const f3Data = adjustStart(dates, f3.dates[0], f3.data);
     const data = f2.data.concat(f3Data);
+    for(let i=0; i<data.length; i++){
+      let max = Math.max(...data[i]);
+      if(max === 0)
+        max = 1;
+
+      for (let j=0; j<data[i].length; j++){
+        data[i][j] /= max;
+      }
+    }
     setFactor2ChartData({data, legend, dates});
   };
 
