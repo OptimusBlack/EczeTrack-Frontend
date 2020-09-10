@@ -132,6 +132,16 @@ const Dashboard = ({ navigation }) => {
       const f3Data = adjustStart(dates, f3.dates[0], f3.data);
       data = f2.data.concat(f3Data);
     }
+    
+    for(let i=0; i<data.length; i++){
+      let max = Math.max(...data[i]);
+      if(max === 0)
+        max = 1;
+
+      for (let j=0; j<data[i].length; j++){
+        data[i][j] /= max;
+      }
+    }
     setFactor2ChartData({data, legend, dates});
   };
 
