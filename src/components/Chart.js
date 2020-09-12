@@ -29,12 +29,12 @@ const Chart = ({ xValues, yValues, legend, loading, twoFactor }) => {
     graphData.push({
       data: graph,
       color: (opacity = 1) => `${COLORS[i]} ${opacity})`,
-      withDots: graph.length === 1 ? true : false
+      withDots: graph.length === 1
     });
   });
 
   const data = {
-    labels: xValues
+    labels: xValues,
     datasets: graphData,
     legend: legend.map((item) => t(item))
   };
