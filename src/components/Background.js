@@ -29,10 +29,10 @@ const GreenBackground = ({ children, notAvoidingKeyboard, containerStyle }) => (
     style={styles.background}
   >
     {!notAvoidingKeyboard ?
-      <KeyboardAvoidingView style={[styles.container, containerStyle]} behavior="padding">
+      <KeyboardAvoidingView style={[styles.container, containerStyle]} behavior={Platform.OS === "ios" ? "padding" : "height"}>
         {children}
       </KeyboardAvoidingView> :
-      <View style={[styles.container, containerStyle]} behavior="padding">
+      <View style={[styles.container, containerStyle]}>
         {children}
       </View>}
   </ImageBackground>

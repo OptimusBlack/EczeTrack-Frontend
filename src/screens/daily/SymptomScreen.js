@@ -101,8 +101,6 @@ const SymptomScreen = ({ navigation }) => {
   ];
 
 
-  // const [selection, setSelection] = useState({});
-
   const options = Object.keys(_bodyParts).map( (part, idx) => {
     const isSelected = Object.keys(selection).includes(part);
     return (
@@ -189,10 +187,6 @@ const SymptomScreen = ({ navigation }) => {
     setShowModal('');
     setShowPicker(-1);
   };
-  const removeCurrentModal = ()=>{
-    delete selection[showModal];
-    hideModal();
-  };
 
   const onComplete = navigation.getParam('onComplete', ()=>{});
 
@@ -200,12 +194,9 @@ const SymptomScreen = ({ navigation }) => {
     const res = await record(selection, 'symptom');
     if(res && res.success){
       onComplete('symptom');
-      // selection = {};
     }
     navigation.navigate('DailyScreen');
   };
-
-  const isCurrentModalSelected = Object.keys(selection).includes(showModal);
 
   return (
     <GreenBackground notAvoidingKeyboard={true} containerStyle={styles.bgContainer}>
@@ -282,9 +273,9 @@ const SymptomScreen = ({ navigation }) => {
                 mode="text"
                 color={'black'}
                 style={{flex:1}}
-                onPress={isCurrentModalSelected ? removeCurrentModal: hideModal }
+                onPress={ hideModal }
               >
-                {isCurrentModalSelected ? t('REMOVE') : t('CANCEL')}
+                { t('CANCEL')}
               </Button>
               <Button
                 mode="contained"

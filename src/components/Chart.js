@@ -14,6 +14,8 @@ let COLORS = [
 
 ];
 
+const N_XLABELS = 5;
+
 const Chart = ({ xValues, yValues, legend, loading }) => {
   const { t } = useTranslation();
 
@@ -34,7 +36,7 @@ const Chart = ({ xValues, yValues, legend, loading }) => {
   });
 
   const data = {
-    labels: xValues,
+    labels: xValues.length > N_XLABELS ? xValues.filter((x, i) => i%(Math.ceil(xValues.length/N_XLABELS)) === 0) : xValues,
     datasets: graphData,
     legend: legend.map((item) => t(item))
   };
