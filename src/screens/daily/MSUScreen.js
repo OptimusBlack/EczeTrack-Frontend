@@ -102,6 +102,7 @@ const MSUScreen = ({ navigation }) => {
           renderItem={_listItem}
           keyExtractor={item => item.title}
           style={{ maxHeight: 140 }}
+          nestedScrollEnabled
         />}
         {i != 0 && <TextInput
           style={styles.inputBox}

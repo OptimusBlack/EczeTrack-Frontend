@@ -13,10 +13,9 @@ let COLORS = [
   "rgba(105, 31, 1,",
 
 ];
-
 const N_XLABELS = 5;
 
-const Chart = ({ xValues, yValues, legend, loading }) => {
+const Chart = ({ xValues, yValues, legend, loading, twoFactor }) => {
   const { t } = useTranslation();
 
   if(loading)
@@ -54,8 +53,8 @@ const Chart = ({ xValues, yValues, legend, loading }) => {
         backgroundGradientTo: "#FFFFFF",
         color: (opacity = 1) => `rgba(95, 184, 169, ${opacity})`,
         fillShadowGradientOpacity: 0, //opacity of the colour of area under the graph
-        strokeWidth: 3, // optional, default 3
-        decimalPlaces: 0,
+        strokeWidth: 4, // optional, default 3
+        decimalPlaces: twoFactor ? 2 : 0,
         labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
       }}
       bezier

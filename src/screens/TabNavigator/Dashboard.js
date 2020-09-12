@@ -12,7 +12,6 @@ import { IconButton } from 'react-native-paper';
 
 import { useTranslation } from 'react-i18next';
 
-
 import {getChartData} from '../../ApiManager';
 
 let twoFactorComparisionData = {
@@ -40,7 +39,7 @@ const Dashboard = ({ navigation }) => {
   const [factor2, setFactor2] = useState(factorList[0].value);
   const [factor3, setFactor3] = useState(factorList[1].value);
   const [factorList2, setFactorList2] = useState(factorList);
-  const [factorList3, setFactorList3] = useState(factorList.slice(1, 4));
+  const [factorList3, setFactorList3] = useState(factorList.slice(1));
 
   const [factor1ChartData, setFactor1ChartData] = useState({
     dates: ['03-06', '05-06', '07-06', '09-06'],
@@ -55,11 +54,7 @@ const Dashboard = ({ navigation }) => {
 
   const carouselRef = useRef(null);
 
-  const temp = {
-    dates: ['09-6', '09-7', '09-8', '09-9'],
-    data: [[3, 0, 0.5, 1.5, 2, 0, 7, 2, 5, 4, 3], [1, 0.5, 0.5, 3, 0]],
-    legend: []
-  };
+  // const temp = ['09-6', '09-7', '09-8', '09-9', '09-10', '09-11', '09-12', '09-13', '09-14', '09-15', '09-16', '09-17', '09-18', '09-19', '09-20', '09-21'];
 
   // const onBackPress = ()=>{
   //   BackHandler.removeEventListener('hardwareBackPress', onBackPress);
@@ -84,11 +79,22 @@ const Dashboard = ({ navigation }) => {
     return new Date(now.getTime() - (days[timeRange] * 24 * 60 * 60 * 1000));
   };
 
+  //Spaces values in an array equally and returns an array of length n
+  const pickn = (a, n) => {
+    if (a.length <= n) return a;
+
+    var p = Math.floor(a.length / n)
+    return a.slice(0, p * n).filter(function(_, i) { 
+        return 0 == i % p
+    })
+}
+
   const updateFactor1 = async () => {
     setLoading(true);
     const dateFrom = getDateFrom();
     const res = await getChartData(factor, dateFrom);
     if(res && !res.code){
+      res.chartData.dates = pickn(res.chartData.dates, 7)
       setFactor1ChartData(res.chartData);
     }
     setLoading(false);
@@ -123,9 +129,17 @@ const Dashboard = ({ navigation }) => {
     f3 = filterChartData(f3);
 
     const legend = f2.legend.concat(f3.legend);
-    const dates = mergeDates(f2.dates, f3.dates);
-    const f3Data = adjustStart(dates, f3.dates[0], f3.data);
-    const data = f2.data.concat(f3Data);
+    let dates = mergeDates(f2.dates, f3.dates);
+    let data;
+    
+    if (f3.dates[0] < f2.dates[0]){
+      const f2Data = adjustStart(dates, f2.dates[0], f2.data);
+      data = f3.data.concat(f2Data);
+    } else {
+      const f3Data = adjustStart(dates, f3.dates[0], f3.data);
+      data = f2.data.concat(f3Data);
+    }
+
     for(let i=0; i<data.length; i++){
       let max = Math.max(...data[i]);
       if(max === 0)
@@ -135,6 +149,7 @@ const Dashboard = ({ navigation }) => {
         data[i][j] /= max;
       }
     }
+    dates = pickn(dates, 7);
     setFactor2ChartData({data, legend, dates});
   };
 
@@ -188,7 +203,37 @@ const Dashboard = ({ navigation }) => {
     });
     mergedDates = mergedDates.concat(tempArray);
 
-    return mergedDates.sort();
+    return mergedDates.sort((a, b) => {
+      const aMonth = parseInt(a.split('-')[0]);
+      const aDate = parseInt(a.split('-')[1]);
+      const bMonth = parseInt(b.split('-')[0]);
+      const bDate = parseInt(b.split('-')[1]);
+
+      //if date A is smaller
+      if (aMonth < bMonth) {
+        return -1;
+      } else if (bMonth > aMonth) {
+        return -1;
+      } else if (aDate < bDate) {
+        return -1;
+      } else if (bDate > aDate) {
+        return -1;
+      }
+
+      //if date B is smaller
+      if (bMonth < aMonth) {
+        return 1;
+      } else if (aMonth > bMonth) {
+        return 1;
+      } else if (bDate < aDate) {
+        return 1;
+      } else if (aDate > bDate) {
+        return 1;
+      }
+
+      //both dates equal (WHICH CAN NEVER BE THE CASE LOL CUZ WE EXTRACTED DUPLICATES)
+      return 0;
+    });
   };
 
   const _updateFactor = (item) => {
@@ -264,6 +309,7 @@ const Dashboard = ({ navigation }) => {
           yValues={factor2ChartData.data}
           legend={factor2ChartData.legend}
           loading={loading}
+          twoFactor
         />
         <View style={styles.navigationContainer}>
           <Text style={styles.navigationText}>{t('Case History')}</Text>
