@@ -105,7 +105,7 @@ const DietScreen = ({ navigation }) => {
   };
 
   const onChangeMealType = (itemValue) => {
-    setShow(Platform.OS === 'ios');
+    // setShow(Platform.OS === 'ios');
     setMealType(itemValue);
   };
 

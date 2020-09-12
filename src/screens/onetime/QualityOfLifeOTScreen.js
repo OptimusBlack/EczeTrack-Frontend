@@ -189,7 +189,7 @@ const QualityOfLifeOTScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   answerContainer:{
     flexDirection: 'row',
-    alignItems: 'baseline',
+    // alignItems: 'baseline',
     marginTop: 5
   },
   inputBox:{
