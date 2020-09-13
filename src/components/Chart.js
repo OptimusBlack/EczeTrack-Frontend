@@ -53,7 +53,7 @@ const Chart = ({ xValues, yValues, legend, loading, twoFactor }) => {
         color: (opacity = 1) => `rgba(95, 184, 169, ${opacity})`,
         fillShadowGradientOpacity: 0, //opacity of the colour of area under the graph
         strokeWidth: 4, // optional, default 3
-        decimalPlaces: twoFactor ? 2 : 0,
+        decimalPlaces: 2,
         labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`
       }}
       bezier
