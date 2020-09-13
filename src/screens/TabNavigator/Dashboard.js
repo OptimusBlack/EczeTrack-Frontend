@@ -128,16 +128,18 @@ const Dashboard = ({ navigation }) => {
     f2 = filterChartData(f2);
     f3 = filterChartData(f3);
 
-    const legend = f2.legend.concat(f3.legend);
+    let legend;
     let dates = mergeDates(f2.dates, f3.dates);
     let data;
     
-    if (f3.dates[0] < f2.dates[0]){
+    if (dateIsSmaller(f3.dates[0], f2.dates[0])){
       const f2Data = adjustStart(dates, f2.dates[0], f2.data);
       data = f3.data.concat(f2Data);
+      legend = f3.legend.concat(f2.legend);
     } else {
       const f3Data = adjustStart(dates, f3.dates[0], f3.data);
       data = f2.data.concat(f3Data);
+      legend = f2.legend.concat(f3.legend);
     }
 
     for(let i=0; i<data.length; i++){
@@ -149,8 +151,29 @@ const Dashboard = ({ navigation }) => {
         data[i][j] /= max;
       }
     }
+
     dates = pickn(dates, 7);
     setFactor2ChartData({data, legend, dates});
+  };
+
+  const dateIsSmaller = (a, b) => {
+    if (a && b) {
+      const aMonth = parseInt(a.split('-')[0]);
+      const aDate = parseInt(a.split('-')[1]);
+      const bMonth = parseInt(b.split('-')[0]);
+      const bDate = parseInt(b.split('-')[1]);
+
+      let dateA = new Date();
+      dateA.setMonth(aMonth-1);
+      dateA.setDate(aDate+1);
+
+      let dateB = new Date();
+      dateB.setMonth(bMonth-1);
+      dateB.setDate(bDate+1);
+
+      if (dateA < dateB) return true;
+    }
+    return false
   };
 
   const adjustStart = (dates, startDate, data) => {
