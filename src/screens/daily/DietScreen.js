@@ -128,7 +128,7 @@ const DietScreen = ({ navigation }) => {
         key={idx}
         style={{fontFamily: 'Avenir-Bold', fontSize: 16}}
       >
-        {item.mealType}: {item.foodItemAmt}
+        Colors: {item.foodItemAmt}
       </Text>}
       {}
     </View>
