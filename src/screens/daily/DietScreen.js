@@ -23,7 +23,7 @@ import BackButton from "../../components/BackButton";
 import { getFoodList, record, getDayDAS } from "../../ApiManager";
 import { useTranslation } from 'react-i18next';
 
-import { Button as RNPButton } from 'react-native-paper';
+import { Button as RNPButton, Snackbar } from 'react-native-paper';
 
 let FOOD_LIST = [];
 
@@ -44,6 +44,7 @@ const DietScreen = ({ navigation }) => {
   const [show, setShow] = useState(false);
   const [isSelected, setIsSelected] = useState(-1);
   const [modalVisible, setModalVisible] = useState(false);
+  const [snackBarVisible, setSnackBarVisible] = useState(false);
 
   const [colorQuantity, setColorQuantity] = useState(0);
   const [snackQuantity, setSnackQuantity] = useState(0);
@@ -74,8 +75,11 @@ const DietScreen = ({ navigation }) => {
       vals = { 'mealType': 'Fruits', 'foodItem': 'colors', 'foodItemAmt': colorQuantity, 'foodItemAmtUnit': 'g' };
     else if (snackQuantity > 0)
       vals = { 'mealType': 'Snack', 'foodItem': 'snack', 'foodItemAmt': snackQuantity, 'foodItemAmtUnit': 'g' };
-    else
+    else {
       vals = { 'mealType': mealType, 'foodItem': foodItem, 'foodItemAmt': quantity, 'foodItemAmtUnit': 'g' };
+      
+      if (vals.foodItem === '') return setSnackBarVisible(true);
+    }
 
     const res = await record(vals, 'das');
     onComplete('das');
@@ -260,6 +264,17 @@ const DietScreen = ({ navigation }) => {
       </View>
 
       <Button mode="contained" onPress={validate}>{t('Confirm')}</Button>
+      <Snackbar
+        visible={snackBarVisible}
+        onDismiss={() => setSnackBarVisible(false)}
+        duration={Snackbar.DURATION_SHORT}
+        action={{
+          label: t('Dismiss'),
+          onPress: () => setSnackBarVisible(false)
+        }}
+      >
+        {t('Please select a food item')}
+      </Snackbar>
 
     </GreenBackground>
   );
